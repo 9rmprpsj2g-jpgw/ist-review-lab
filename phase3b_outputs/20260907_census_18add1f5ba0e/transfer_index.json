@@ -1,0 +1,201 @@
+{
+  "generation_id": "20260907_census_18add1f5ba0e",
+  "status": "FAILED_GENERATION_COMPLETED_RUNS_ONLY",
+  "completed_audits": 38,
+  "expected_runs": 180,
+  "archives": [
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_auto_tar_C12.zip",
+      "byte_size": 3739188,
+      "sha256": "566e43813547d4a73fd5bb12bf73fa497bece02c75ad662f49bf70692c05b6c3",
+      "policy": "auto_tar",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_explore_10_C12.zip",
+      "byte_size": 3838845,
+      "sha256": "9023bf55e91e313444b9950b2717e50a2b24718bda6ff3cc7e14134f7b36084a",
+      "policy": "explore_10",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_10_C12.zip",
+      "byte_size": 69302620,
+      "sha256": "1f62a9493c50ebc3e9c2f811763d1485e51bbae12b7fab8a92c71a9926253401",
+      "policy": "fixed_10",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29
+      ],
+      "audits": 2
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_100_C12.zip",
+      "byte_size": 10994678,
+      "sha256": "e37afe6dedda9426db4ac4485a2a2095efbb2444a27f8b6524044d58f2f1b614",
+      "policy": "fixed_100",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_20_C12.zip",
+      "byte_size": 52315697,
+      "sha256": "f763ec3ac4a4c837eac791fc867075f5fbc0007c82ab04f30f9759ffb433451f",
+      "policy": "fixed_20",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_50_C12.zip",
+      "byte_size": 21322292,
+      "sha256": "5a4a5c8f0297600c33a091d0569fae2d85e12337f1578ab9ceb24b69134317ed",
+      "policy": "fixed_50",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_grow_20pct_C12.zip",
+      "byte_size": 2900819,
+      "sha256": "28e2f6c3d6335d9f7eff73ff9f9070ef17365b5cde5a4584d2c586eec5d16188",
+      "policy": "grow_20pct",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_grow_5pct_C12.zip",
+      "byte_size": 5044815,
+      "sha256": "2ed4d4a4baacdf3d159cbd0c373842389314aeff16d6366df4fef566afa649c1",
+      "policy": "grow_5pct",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_random_C12.zip",
+      "byte_size": 620174,
+      "sha256": "485f891b1d5be92a98959a282eaa92479c5f22a0ff6ab0a99898b0bcf53450ca",
+      "policy": "random",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_random_C15.zip",
+      "byte_size": 215666,
+      "sha256": "019933f4169a2fef16bc64cdfb5d7661f5cf7dc3dfdcef31d11dc4469d788c3c",
+      "policy": "random",
+      "topic": "C15",
+      "seeds": [
+        11
+      ],
+      "audits": 1
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_only_frozen_C12.zip",
+      "byte_size": 3483496,
+      "sha256": "e8bc0fa2e26e901e6ee11facf04df88867731fa695c0888dd31533f7e49fd624",
+      "policy": "seed_only_frozen",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_only_frozen_C15.zip",
+      "byte_size": 1167617,
+      "sha256": "892c9b49b35164c04197c18f964af1e39e156bf87ac7d914b146e346178c97c7",
+      "policy": "seed_only_frozen",
+      "topic": "C15",
+      "seeds": [
+        11
+      ],
+      "audits": 1
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_similarity_C12.zip",
+      "byte_size": 619181,
+      "sha256": "d93df1c6c01a20d9d196f840dd0e1a49d40753a7fdf3b06a91a9a344ef925d81",
+      "policy": "seed_similarity",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_similarity_C15.zip",
+      "byte_size": 215298,
+      "sha256": "7b7bf824e1a00afe8ccadb81e5c31f0f8c954341b2bdc2547bd448f03801a0f3",
+      "policy": "seed_similarity",
+      "topic": "C15",
+      "seeds": [
+        11
+      ],
+      "audits": 1
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_uncertainty_C12.zip",
+      "byte_size": 3739457,
+      "sha256": "cf70062df862a0c475e3e70c3ae88f94f004b2b822b563d2ebe1a6243e599315",
+      "policy": "uncertainty",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3
+    }
+  ],
+  "diagnostics": {
+    "filename": "20260907_census_18add1f5ba0e_FAILURE_DIAGNOSTICS.zip",
+    "byte_size": 13576553,
+    "sha256": "9128241cede80654ef1cd9ba38545dee480e2592a0440a6c0656ded140498b40"
+  }
+}

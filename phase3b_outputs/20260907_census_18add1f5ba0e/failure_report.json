@@ -1,0 +1,48 @@
+{
+  "status": "FAILED_STOPPED",
+  "failed_run": [
+    "C15",
+    11,
+    "uncertainty",
+    23149
+  ],
+  "failure": "ConvergenceWarning('Liblinear failed to converge, increase the number of iterations.')",
+  "max_iter": 10000,
+  "completed": 38,
+  "expected": 180,
+  "other_without_completed_audit": 141,
+  "completed_fit_count": 11165,
+  "completed_audit_bytes": 464693139,
+  "completed_subset_estimate_bytes": [
+    381060248,
+    762120496
+  ],
+  "seconds_wall_including_wrapper": 858.8054582559998,
+  "sampled_tree_peak_rss_kib": 1174904,
+  "per_process_hwm_kib": {
+    "130204": 407444,
+    "130132": 581520,
+    "130205": 344276
+  },
+  "rss_caveat": "Started after launch; per-process lifetime VmHWM includes earlier peaks. Sampled tree sum includes shared pages multiple times and can miss sub-interval peaks.",
+  "original_resource_rss_fields": "INVALID: PID namespace mismatch; elapsed and exit status valid",
+  "protected_file_integrity": "PASS",
+  "protected_files_checked": 125,
+  "failed_round_details": "Unavailable: audits persisted only at successful run end; no rerun performed",
+  "original_plan_and_results_unchanged": true,
+  "phase4_started": false,
+  "incomplete_temporary_writes": [
+    {
+      "filename": ".writing-1d0bhr8w",
+      "byte_size": 9961989,
+      "sha256": "7f4258bc365ac4659a2b7fabcd81d8642d864c8df97a479ef65fd9c4199c0c32",
+      "status": "INCOMPLETE_TEMPORARY_WRITE_NOT_A_COMPLETED_AUDIT"
+    },
+    {
+      "filename": ".writing-2liv_yx1",
+      "byte_size": 24186887,
+      "sha256": "7b3531fb7b69c1ed1f45c6e9bd3a00760a7d841d810e719d257469fc62b1199d",
+      "status": "INCOMPLETE_TEMPORARY_WRITE_NOT_A_COMPLETED_AUDIT"
+    }
+  ]
+}

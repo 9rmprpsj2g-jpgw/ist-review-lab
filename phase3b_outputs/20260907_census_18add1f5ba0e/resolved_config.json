@@ -1,0 +1,142 @@
+{
+  "status": "POST-OUTCOME v2 configuration. Phase 2 resolves model parameters and policy names; no new experiment has run.",
+  "topics": [
+    "C12",
+    "C15",
+    "C16",
+    "C18",
+    "GCRIM"
+  ],
+  "seeds": [
+    11,
+    29,
+    47
+  ],
+  "policies": [
+    "random",
+    "seed_similarity",
+    "seed_only_frozen",
+    "uncertainty",
+    "auto_tar",
+    "fixed_20",
+    "explore_10",
+    "fixed_10",
+    "fixed_50",
+    "fixed_100",
+    "grow_5pct",
+    "grow_20pct"
+  ],
+  "budget": 23149,
+  "primary_metric": "recall_at_R",
+  "secondary_metrics": [
+    "overshoot_at_75",
+    "overshoot_at_80",
+    "overshoot_at_90",
+    "recall_at_1R_plus_100",
+    "recall_at_1000",
+    "recall_at_2R",
+    "recall_at_aR_plus_b",
+    "effort_at_75",
+    "effort_at_80",
+    "effort_at_90",
+    "whole_batch_depth",
+    "normalized_depth_by_N",
+    "normalized_depth_by_R",
+    "full_observed_gain_curves"
+  ],
+  "svm": {
+    "C": 1,
+    "loss": "hinge",
+    "dual": true,
+    "tol": 0.0001,
+    "max_iter": 10000
+  },
+  "seeding": "Same randomly chosen known-positive document for every method in a topic/seed pair; seed counts as one review; discovery/search cost excluded.",
+  "topic_selection": "Selected before any model runs for legal/judicial, performance, insolvency/liquidity, ownership changes and crime/law enforcement; no selection based on model results.",
+  "temporary_negatives": "100 random unreviewed documents, resampled each fit, never persisted as true labels",
+  "inference": "Descriptive within-collection results. No significance or superiority claim across legal matters or IST leads.",
+  "stopping": "Fixed 5000-document budget, independent of hidden labels. Unreached recall thresholds remain censored.",
+  "extensions": {
+    "fixed_20": "Review exactly 20 per retraining batch",
+    "explore_10": "Use 10% random exploration for batches of at least 10"
+  },
+  "revision": {
+    "date_utc": "2026-09-07",
+    "timing": "AFTER outcomes were observed",
+    "reason": "Fixed recall@1000 has topic-dependent mathematical ceilings and different prevalence-scaled review effort.",
+    "historical_plan": "experiment_plan.json",
+    "original_primary_metric": "recall_at_1000",
+    "original_primary_metric_always_reported": true,
+    "phase": "Phase 2 code fixes only; execution remains disabled pending Phase 3B approval",
+    "original_plan_sha256": "982f5079b33a6b473ba610a42194990ce6e2c2598708eacdc49b22aaa4af4719"
+  },
+  "metric_parameters": {
+    "a": [
+      1,
+      2,
+      4
+    ],
+    "b": [
+      0,
+      100,
+      1000
+    ],
+    "target_recalls": [
+      0.75,
+      0.8,
+      0.9
+    ],
+    "scaled_cutoff_clamp": "min(N, a*R+b)",
+    "recall_at_R_cutoff": "R",
+    "original_fixed_cutoff": 1000
+  },
+  "inputs": {
+    "runs_csv": "results/runs.csv",
+    "audits": "results/audits/*.json",
+    "N_column": "n",
+    "R_column": "positives",
+    "invoke_loader": true,
+    "invoke_experiment": true
+  },
+  "analysis": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_confidence": 0.95,
+    "bootstrap_variants": [
+      "percentile",
+      "BCa"
+    ],
+    "bootstrap_shared_draws": true,
+    "primary_inference": "exact paired-topic sign-flip",
+    "interval_material_disagreement": "different inclusion of zero or endpoint shift >= 25% of percentile width; post-outcome diagnostic, not a validated threshold",
+    "analysis_seed": 20260907,
+    "paired_unit": "topic; average all seeds within topic first",
+    "exact_sign_flip": true,
+    "wilcoxon": "exact signed-rank sign enumeration; zeros omitted; average ranks for ties",
+    "contrasts": "all unordered method pairs; unadjusted exploratory tests, not confirmatory discoveries",
+    "csv_consistency_absolute_tolerance": 1e-12,
+    "csv_consistency_relative_tolerance": 0
+  },
+  "censoring": {
+    "explicit_status": "CENSORED",
+    "full_mean_requires_all_topics_and_seeds": true,
+    "partial_recall_mean": "label coverage and name excluded topics",
+    "partial_effort_mean": "prohibited",
+    "partial_inference": "prohibited",
+    "extrapolation": "prohibited"
+  },
+  "deferred_phase_3_exit_criteria": {
+    "prerequisite": "instrumentation passes its exact replay test",
+    "required_run": "Deferred Phase 3B combined census and schedule sweep, all five topics at budget=N with new streams; first report per-policy model-fit count and wall-clock estimate and wait for user approval",
+    "generation": "distinct from immutable v1 results; preserve provenance",
+    "prohibited_now": "Do not invoke experiment.py in Phase 1 or Phase 2"
+  },
+  "withdrawn_exploration_option": "No pool/tail option in Phase 2: identical residual set under exploit-first. Distinct global exploration-before-exploitation arm deferred.",
+  "outputs": {
+    "directory": "phase3b_outputs/20260907_census_18add1f5ba0e",
+    "audit_directory": "audit_store/20260907_census_18add1f5ba0e"
+  },
+  "epsilon": 0.1,
+  "audit": {
+    "margin_scope": "batch_plus_100_min_1000_plus_selected"
+  }
+}

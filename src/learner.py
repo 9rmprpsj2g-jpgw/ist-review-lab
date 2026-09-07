@@ -13,7 +13,8 @@ from sklearn.svm import LinearSVC
 from .config import resolve_plan
 
 POLICIES = ("random", "seed_similarity", "seed_only_frozen", "uncertainty",
-            "auto_tar", "fixed_20", "explore_10")
+            "auto_tar", "fixed_20", "explore_10", "fixed_10", "fixed_50",
+            "fixed_100", "grow_5pct", "grow_20pct")
 
 
 STREAM_NAMES = ("seed_doc", "temp_negatives", "exploration", "certification")
@@ -41,7 +42,9 @@ class ReviewLearner:
         self.exploration_carry = Fraction(0)
         self.seed = seed
         self.labels = {}  # Real judgments only.
-        self.batch_size = 20 if policy == "fixed_20" else 1
+        self.fixed_batch = int(policy.split("_")[1]) if policy.startswith("fixed_") else None
+        self.growth_percent = 5 if policy == "grow_5pct" else 20 if policy == "grow_20pct" else 10
+        self.batch_size = self.fixed_batch or 1
         self.model = None
         self.last_temporary = np.array([], dtype=int)
         self.fit_count = 0
@@ -131,12 +134,16 @@ class ReviewLearner:
             selected = np.concatenate([exploit, explore])
         else:
             selected = ranked[:size]
-        if self.policy != "fixed_20":
-            self.batch_size += math.ceil(self.batch_size / 10)
+        if self.fixed_batch is None:
+            # Preserve the original 10% expression exactly for reproduction.
+            self.batch_size += (math.ceil(self.batch_size / 10) if self.growth_percent == 10
+                                else math.ceil(self.batch_size * self.growth_percent / 100))
         margins = self.candidate_margins
         scope = self.config["audit"]["margin_scope"]
-        if margins is not None and scope == "top_1000_plus_selected":
-            retained = set(ranked[:1000].tolist()) | set(selected.tolist())
+        window = (len(ranked) if scope == "full" else max(1000, before+100)
+                  if scope == "batch_plus_100_min_1000_plus_selected" else 1000)
+        if margins is not None and scope != "full":
+            retained = set(ranked[:window].tolist()) | set(selected.tolist())
             positions = [i for i, row in enumerate(margins["rows"]) if row in retained]
             margins = {"rows": [margins["rows"][i] for i in positions],
                        "values": [margins["values"][i] for i in positions]}
@@ -147,6 +154,10 @@ class ReviewLearner:
             "fit": deepcopy(self.last_fit) if self.fit_count != previous_fit else None,
             "candidate_margins": margins,
             "margin_scope": scope,
+            "margin_window_rule": ("full" if scope == "full" else "max(1000, batch_size_before_growth + 100)"
+                                   if scope == "batch_plus_100_min_1000_plus_selected" else "1000"),
+            "margin_window_requested": window,
+            "margin_window_resolved": min(window, len(ranked)),
             "candidate_count": len(ranked),
             "margin_unavailable_reason": (
                 "policy_has_no_svm" if self.policy in ("random", "seed_similarity") else None),

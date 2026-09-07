@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "protected_files": 125,
+  "source_sha256": "dacf17248a805e7e168c476892e4e9c47426bec167162ac1835d41beac22073d",
+  "baseline": "e42d73374df18fd9d3fd0074891acec171e7c6fa",
+  "tests_passed": 14
+}

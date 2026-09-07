@@ -1,0 +1,102 @@
+{
+  "status": "ALL_16_FILES_SAVED",
+  "generation_status": "FAILED",
+  "files": [
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_auto_tar_C12.zip",
+      "file_id": "file_000000008ce4822f8391e327fcb5127d",
+      "library_file_id": "libfile_53b2ba2216e88191ac5cac18b861af4c",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_explore_10_C12.zip",
+      "file_id": "file_00000000633c820da98d9ce8825095e7",
+      "library_file_id": "libfile_8c1514934af08191b09a7e86d35dc14b",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_fixed_10_C12.zip",
+      "file_id": "file_0000000025d0822f985aebded0246ab7",
+      "library_file_id": "libfile_27cf13c20e3c819192bd15d5df05a797",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_fixed_100_C12.zip",
+      "file_id": "file_0000000011dc81f6bb417891eada2826",
+      "library_file_id": "libfile_58ef57dd47cc81919f5598b9e0b5aaf3",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_fixed_20_C12.zip",
+      "file_id": "file_00000000de04820c9e062360d370c932",
+      "library_file_id": "libfile_1f0c4eecd50481919ca16796936aaea2",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_fixed_50_C12.zip",
+      "file_id": "file_000000006a6c81f6be27757793809cf5",
+      "library_file_id": "libfile_1cc378f55be481919b866d95146280ba",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_grow_20pct_C12.zip",
+      "file_id": "file_000000005b3881f69302c1b62144b6c0",
+      "library_file_id": "libfile_ea619a4e1dd08191af7977e88ba46679",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_grow_5pct_C12.zip",
+      "file_id": "file_000000003f40820d951c30cbdbad75e0",
+      "library_file_id": "libfile_09084f4118048191905a09897ca4c958",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_random_C12.zip",
+      "file_id": "file_000000007fdc81f99276fe73168a0df4",
+      "library_file_id": "libfile_502a10585df081919e6dc396bfbe235b",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_random_C15.zip",
+      "file_id": "file_00000000a314820da2b01a16f5669bee",
+      "library_file_id": "libfile_8f492a8941b88191abefc3b50f2c0f4f",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_seed_only_frozen_C12.zip",
+      "file_id": "file_00000000ce5881f6b0a127a93a2cdc76",
+      "library_file_id": "libfile_d3e333326720819198dc19cb1ce38e3d",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_seed_only_frozen_C15.zip",
+      "file_id": "file_00000000c96c81f695fdcf7e564c5b0e",
+      "library_file_id": "libfile_a2ba6674c82c8191be1f8f861d659949",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_seed_similarity_C12.zip",
+      "file_id": "file_000000009724820ca910491cf6f00d6e",
+      "library_file_id": "libfile_20b9c3aabe7c8191920cedda4cb80edf",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_seed_similarity_C15.zip",
+      "file_id": "file_0000000081f081f6a8484eaf15025ba1",
+      "library_file_id": "libfile_531c022b7f40819185e8e98c87b00ac8",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILED_uncertainty_C12.zip",
+      "file_id": "file_000000004270822fbe5ec89276ef7b2c",
+      "library_file_id": "libfile_0a2b15262f9c81918e95e6351e92aad6",
+      "status": "succeeded"
+    },
+    {
+      "file_name": "20260907_census_18add1f5ba0e_FAILURE_DIAGNOSTICS.zip",
+      "file_id": "file_000000004794820ca833f36b2d6b4644",
+      "library_file_id": "libfile_81fa062d33e081919db18920e69f013a",
+      "status": "succeeded"
+    }
+  ]
+}

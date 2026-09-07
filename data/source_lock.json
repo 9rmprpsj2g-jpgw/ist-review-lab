@@ -1,0 +1,10 @@
+{
+  "source_url": "https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel/rcv1_topics_train.txt.bz2",
+  "sha256": "dacf17248a805e7e168c476892e4e9c47426bec167162ac1835d41beac22073d",
+  "rows": 23149,
+  "features": 28454,
+  "nnz": 1739103,
+  "unique_token_bags": 22419,
+  "features_fit_scope": "all unlabeled documents in the fixed review pool",
+  "source_split": "RCV1-v2 chronological training partition, used as a review pool"
+}

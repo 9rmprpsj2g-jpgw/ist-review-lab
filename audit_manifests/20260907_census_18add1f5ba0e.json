@@ -1,0 +1,2079 @@
+{
+  "generation_id": "20260907_census_18add1f5ba0e",
+  "status": "FAILED",
+  "schema_version": 3,
+  "code_commit": "6a83f0ed1ba53bd9b6e247025c1ebc969e4450bb",
+  "resolved_config": {
+    "status": "POST-OUTCOME v2 configuration. Phase 2 resolves model parameters and policy names; no new experiment has run.",
+    "topics": [
+      "C12",
+      "C15",
+      "C16",
+      "C18",
+      "GCRIM"
+    ],
+    "seeds": [
+      11,
+      29,
+      47
+    ],
+    "policies": [
+      "random",
+      "seed_similarity",
+      "seed_only_frozen",
+      "uncertainty",
+      "auto_tar",
+      "fixed_20",
+      "explore_10",
+      "fixed_10",
+      "fixed_50",
+      "fixed_100",
+      "grow_5pct",
+      "grow_20pct"
+    ],
+    "budget": 23149,
+    "primary_metric": "recall_at_R",
+    "secondary_metrics": [
+      "overshoot_at_75",
+      "overshoot_at_80",
+      "overshoot_at_90",
+      "recall_at_1R_plus_100",
+      "recall_at_1000",
+      "recall_at_2R",
+      "recall_at_aR_plus_b",
+      "effort_at_75",
+      "effort_at_80",
+      "effort_at_90",
+      "whole_batch_depth",
+      "normalized_depth_by_N",
+      "normalized_depth_by_R",
+      "full_observed_gain_curves"
+    ],
+    "svm": {
+      "C": 1,
+      "loss": "hinge",
+      "dual": true,
+      "tol": 0.0001,
+      "max_iter": 10000
+    },
+    "seeding": "Same randomly chosen known-positive document for every method in a topic/seed pair; seed counts as one review; discovery/search cost excluded.",
+    "topic_selection": "Selected before any model runs for legal/judicial, performance, insolvency/liquidity, ownership changes and crime/law enforcement; no selection based on model results.",
+    "temporary_negatives": "100 random unreviewed documents, resampled each fit, never persisted as true labels",
+    "inference": "Descriptive within-collection results. No significance or superiority claim across legal matters or IST leads.",
+    "stopping": "Fixed 5000-document budget, independent of hidden labels. Unreached recall thresholds remain censored.",
+    "extensions": {
+      "fixed_20": "Review exactly 20 per retraining batch",
+      "explore_10": "Use 10% random exploration for batches of at least 10"
+    },
+    "revision": {
+      "date_utc": "2026-09-07",
+      "timing": "AFTER outcomes were observed",
+      "reason": "Fixed recall@1000 has topic-dependent mathematical ceilings and different prevalence-scaled review effort.",
+      "historical_plan": "experiment_plan.json",
+      "original_primary_metric": "recall_at_1000",
+      "original_primary_metric_always_reported": true,
+      "phase": "Phase 2 code fixes only; execution remains disabled pending Phase 3B approval",
+      "original_plan_sha256": "982f5079b33a6b473ba610a42194990ce6e2c2598708eacdc49b22aaa4af4719"
+    },
+    "metric_parameters": {
+      "a": [
+        1,
+        2,
+        4
+      ],
+      "b": [
+        0,
+        100,
+        1000
+      ],
+      "target_recalls": [
+        0.75,
+        0.8,
+        0.9
+      ],
+      "scaled_cutoff_clamp": "min(N, a*R+b)",
+      "recall_at_R_cutoff": "R",
+      "original_fixed_cutoff": 1000
+    },
+    "inputs": {
+      "runs_csv": "results/runs.csv",
+      "audits": "results/audits/*.json",
+      "N_column": "n",
+      "R_column": "positives",
+      "invoke_loader": true,
+      "invoke_experiment": true
+    },
+    "analysis": {
+      "bootstrap_resamples": 10000,
+      "bootstrap_confidence": 0.95,
+      "bootstrap_variants": [
+        "percentile",
+        "BCa"
+      ],
+      "bootstrap_shared_draws": true,
+      "primary_inference": "exact paired-topic sign-flip",
+      "interval_material_disagreement": "different inclusion of zero or endpoint shift >= 25% of percentile width; post-outcome diagnostic, not a validated threshold",
+      "analysis_seed": 20260907,
+      "paired_unit": "topic; average all seeds within topic first",
+      "exact_sign_flip": true,
+      "wilcoxon": "exact signed-rank sign enumeration; zeros omitted; average ranks for ties",
+      "contrasts": "all unordered method pairs; unadjusted exploratory tests, not confirmatory discoveries",
+      "csv_consistency_absolute_tolerance": 1e-12,
+      "csv_consistency_relative_tolerance": 0
+    },
+    "censoring": {
+      "explicit_status": "CENSORED",
+      "full_mean_requires_all_topics_and_seeds": true,
+      "partial_recall_mean": "label coverage and name excluded topics",
+      "partial_effort_mean": "prohibited",
+      "partial_inference": "prohibited",
+      "extrapolation": "prohibited"
+    },
+    "deferred_phase_3_exit_criteria": {
+      "prerequisite": "instrumentation passes its exact replay test",
+      "required_run": "Deferred Phase 3B combined census and schedule sweep, all five topics at budget=N with new streams; first report per-policy model-fit count and wall-clock estimate and wait for user approval",
+      "generation": "distinct from immutable v1 results; preserve provenance",
+      "prohibited_now": "Do not invoke experiment.py in Phase 1 or Phase 2"
+    },
+    "withdrawn_exploration_option": "No pool/tail option in Phase 2: identical residual set under exploit-first. Distinct global exploration-before-exploitation arm deferred.",
+    "outputs": {
+      "directory": "phase3b_outputs/20260907_census_18add1f5ba0e",
+      "audit_directory": "audit_store/20260907_census_18add1f5ba0e"
+    },
+    "epsilon": 0.1,
+    "audit": {
+      "margin_scope": "batch_plus_100_min_1000_plus_selected"
+    }
+  },
+  "config_sha256": "37a077c2d23490baefae19b82217c07401b914fbc71b09b4b45ba8affe92e346",
+  "source": {
+    "source_url": "https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel/rcv1_topics_train.txt.bz2",
+    "sha256": "dacf17248a805e7e168c476892e4e9c47426bec167162ac1835d41beac22073d",
+    "rows": 23149,
+    "features": 28454,
+    "nnz": 1739103,
+    "unique_token_bags": 22419,
+    "features_fit_scope": "all unlabeled documents in the fixed review pool",
+    "source_split": "RCV1-v2 chronological training partition, used as a review pool"
+  },
+  "feature_matrix_sha256": "d05c1a7dbe28f69b0844f748b8844c5529a416473407240ae0b6feff3719afca",
+  "feature_digest_encoding": "sorted JSON(shape,dtypes), CSR data/indices/indptr bytes in C order, compact ASCII JSON external IDs; native endian recorded by environment",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sklearn": "1.8.0",
+    "byteorder": "little"
+  },
+  "rng_derivation": "SHA-256 ist-review-lab|integer_seed|stream_name; default_rng",
+  "expected_grid": [
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 11,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 29,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C16",
+      "seed": 47,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 11,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 29,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "C18",
+      "seed": 47,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 11,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 29,
+      "policy": "grow_20pct",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "random",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "seed_similarity",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "seed_only_frozen",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "uncertainty",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "auto_tar",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "fixed_20",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "explore_10",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "fixed_10",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "fixed_50",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "fixed_100",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "grow_5pct",
+      "budget": 23149
+    },
+    {
+      "topic": "GCRIM",
+      "seed": 47,
+      "policy": "grow_20pct",
+      "budget": 23149
+    }
+  ],
+  "completed": 38,
+  "failed": [
+    {
+      "run": [
+        "C15",
+        11,
+        "uncertainty",
+        23149
+      ],
+      "error": "ConvergenceWarning('Liblinear failed to converge, increase the number of iterations.')",
+      "traceback": "concurrent.futures.process._RemoteTraceback: \n\"\"\"\nTraceback (most recent call last):\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/process.py\", line 264, in _process_worker\n    r = call_item.fn(*call_item.args, **call_item.kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/experiment.py\", line 41, in simulate\n    batch = learner.query(budget-len(order))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/learner.py\", line 123, in query\n    ranked = self.rank()\n             ^^^^^^^^^^^\n  File \"/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/learner.py\", line 111, in rank\n    self.fit()\n  File \"/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/learner.py\", line 90, in fit\n    self.model.fit(train_X, train_y)\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/base.py\", line 1336, in wrapper\n    return fit_method(estimator, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_classes.py\", line 330, in fit\n    self.coef_, self.intercept_, n_iter_ = _fit_liblinear(\n                                           ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py\", line 1258, in _fit_liblinear\n    warnings.warn(\nsklearn.exceptions.ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/census.py\", line 121, in main\n    task=futures[future];result=future.result()\n                                ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nsklearn.exceptions.ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.\n"
+    }
+  ],
+  "entries": [
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_random.json",
+      "byte_size": 841950,
+      "sha256": "55f2af121a8a216242434f3112e8dbb1570be5dbec6ae28b9ee7a28af2f97431",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_seed_similarity.json",
+      "byte_size": 865107,
+      "sha256": "0c6defbe70da292f4985ca85034c5d9c78695cc3767900c36c8c5723a832cbbc",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 1,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_seed_only_frozen.json",
+      "byte_size": 3308245,
+      "sha256": "da0d97e0905a6c9c52c48fa5ec66748333ec3d9c1acf790ab3b2d5a7fc6c4872",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "uncertainty",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_uncertainty.json",
+      "byte_size": 3422227,
+      "sha256": "41f2026baf483c37670bf72a2509a51b486a6dfa8f0e2f85c110b5274d5a9038",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "auto_tar",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_auto_tar.json",
+      "byte_size": 3423476,
+      "sha256": "5a3eb9b776869268e2c2095554cf0077e1eb41c998f6a72983be85db6e8e274d",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "explore_10",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_explore_10.json",
+      "byte_size": 3498109,
+      "sha256": "bfcbb2828f016d61715081708e7689223edff91e8c6cb5bca22a6bdc3a09e0b4",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_20",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 1158,
+      "fits": 1158,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_fixed_20.json",
+      "byte_size": 44315301,
+      "sha256": "495bde3435d071368f978f82f551014007dc133595ad19ad7d12ee09d1ce41f9",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_50",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 463,
+      "fits": 463,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_fixed_50.json",
+      "byte_size": 18236435,
+      "sha256": "e299cd8817ccaaf4c419f1b87ec7000980ec8a791c88c057bef43bb83ca72223",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_100",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 232,
+      "fits": 232,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_fixed_100.json",
+      "byte_size": 9544493,
+      "sha256": "f20114cd40476f6f1af5d0b1e139f606e9b4b99f242118c99323c4f4eca25a4d",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "grow_5pct",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 95,
+      "fits": 95,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_grow_5pct.json",
+      "byte_size": 4502577,
+      "sha256": "6470f705d5cf41187f15deb75edb352b4007899329e1842c0287a8d2a8d66b47",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "grow_20pct",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 40,
+      "fits": 40,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_grow_20pct.json",
+      "byte_size": 2745201,
+      "sha256": "60406e7c23ea11e7e741ae2c89eebb8b5ce11af6115e925b61ca025e119a640e",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "random",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_random.json",
+      "byte_size": 841950,
+      "sha256": "cc360e029c05035591040a8544b860f0aa1b5c3dfc1ef76d1c32242d33e1f50f",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "seed_similarity",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_seed_similarity.json",
+      "byte_size": 865107,
+      "sha256": "fb5e8146d609d070d6f7587607f9bac191d2f670404dd77984c4a17b6bab6f6c",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "seed_only_frozen",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 1,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_seed_only_frozen.json",
+      "byte_size": 3314761,
+      "sha256": "bf7e1db48ed93d4c3c8decb889b06141c353a5f7d3815b947f212afe0a4fe099",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "uncertainty",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_uncertainty.json",
+      "byte_size": 3422096,
+      "sha256": "888a7a3fb3a28bc6f7ff84204d12a110066efebbb570961c428c28f6cc62e32b",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "auto_tar",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_auto_tar.json",
+      "byte_size": 3425245,
+      "sha256": "3fe546d674745b46dfe526f72404bc58ec2962417db0a64fe692520ea8666279",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "fixed_10",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 2315,
+      "fits": 2315,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_11_fixed_10.json",
+      "byte_size": 87782855,
+      "sha256": "47b73e2cc08173ae906c6a7556193e43aa5987af31c0904f58d24046f3cbcedf",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "explore_10",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_explore_10.json",
+      "byte_size": 3500489,
+      "sha256": "0c6ef644940feb39d784005b2d1132b0c268beee5be3f527f65d4fca77156e5a",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_20",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 1158,
+      "fits": 1158,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_fixed_20.json",
+      "byte_size": 44313017,
+      "sha256": "44d9419d9afb62f8d3cd5bcc4abe1bae278d3ed1839620728936661ce12c31a8",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_50",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 463,
+      "fits": 463,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_fixed_50.json",
+      "byte_size": 18234848,
+      "sha256": "24eb0abc09be1aa5ad90681e54eb561bb90c0d656e4e157c229003b901334df3",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_100",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 232,
+      "fits": 232,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_fixed_100.json",
+      "byte_size": 9543791,
+      "sha256": "64d464f6e84013f72f95e7c745952a3cfdf61d26c5a627bd055a8a7965021d48",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "grow_5pct",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 95,
+      "fits": 95,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_grow_5pct.json",
+      "byte_size": 4504578,
+      "sha256": "c031fa0b8fb4b9dd68c583ac8a557f98462f9fc10d3bf04449756db741d89cc4",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "grow_20pct",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 40,
+      "fits": 40,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_grow_20pct.json",
+      "byte_size": 2746681,
+      "sha256": "d2acf9cb34fd27a773f023f01749671414f739be0c82a0e7fb49c21af968a9cf",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "random",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_random.json",
+      "byte_size": 841950,
+      "sha256": "3cc02670716788af5b5d4108253dafb1560c251e073f33c7c6f39a5f4bfad555",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "seed_similarity",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_seed_similarity.json",
+      "byte_size": 865107,
+      "sha256": "f3f47aaae72ffdaf4bb77dfc7811196f671a5e3c4eaf4457a4abc7d3a1188658",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "seed_only_frozen",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 1,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_seed_only_frozen.json",
+      "byte_size": 3305988,
+      "sha256": "1623bc5f9f49d3a3496eb39dd3c978ad2b991108d88a441a6faba29912436924",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "uncertainty",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_uncertainty.json",
+      "byte_size": 3422162,
+      "sha256": "a6b5b9f1fc03cb7473b60da39598c6316ab2561de8e87b0ee299d96885db7203",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "auto_tar",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_auto_tar.json",
+      "byte_size": 3423289,
+      "sha256": "7a29e5f8c7beabe84c3ed15b495812c9cdf09acf454e42d6c0a48caceac8e8e1",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 29,
+      "policy": "fixed_10",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 2315,
+      "fits": 2315,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_29_fixed_10.json",
+      "byte_size": 87778015,
+      "sha256": "1dd268bd7bd5ff68d9c9a6806843e444556f7730fb570644be13a8e408fa71d6",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "explore_10",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 63,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_explore_10.json",
+      "byte_size": 3499422,
+      "sha256": "5718c02a165f27c59aa3b6ffc5a8649b538be11268a71365826fed87b5d1bcf1",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_20",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 1158,
+      "fits": 1158,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_fixed_20.json",
+      "byte_size": 44314594,
+      "sha256": "f0f668902a8e9ff73dbbcea112e3f1848549259a12dddcc4db20337fea917e2b",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_50",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 463,
+      "fits": 463,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_fixed_50.json",
+      "byte_size": 18236005,
+      "sha256": "12279afd7c3bfcee1b3098f8b51a54218df47e2dd16555f8eeaa3647c6b13212",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "fixed_100",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 232,
+      "fits": 232,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_fixed_100.json",
+      "byte_size": 9544366,
+      "sha256": "d03f699fba46b093191afb06540495a5a5fabb5de2a215f343cfb0624482f1f9",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "grow_5pct",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 95,
+      "fits": 95,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_grow_5pct.json",
+      "byte_size": 4502819,
+      "sha256": "a19b38d2cd004c927e54bcf3a7e1fe9a17d4f87a758f158d0aa5705c0013ad9e",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C12",
+      "seed": 47,
+      "policy": "grow_20pct",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 40,
+      "fits": 40,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C12_47_grow_20pct.json",
+      "byte_size": 2745297,
+      "sha256": "863deff90219f86d1df228a3fa49939eb5df91e9b404310ec752096564548dc3",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "random",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C15_11_random.json",
+      "byte_size": 841950,
+      "sha256": "4f564bb4f2d869470e63eb0497ba9f9a17aebcc6bc4e86b838a181d1a64b3561",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "seed_similarity",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 0,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C15_11_seed_similarity.json",
+      "byte_size": 865107,
+      "sha256": "be33a908b2e8259291926e470c33f439001cb8edfa8172be78619002e16b6878",
+      "validation_status": "PASS"
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "seed_only_frozen",
+      "budget": 23149,
+      "n": 23149,
+      "reviewed": 23149,
+      "rounds": 63,
+      "fits": 1,
+      "margin_scope": "batch_plus_100_min_1000_plus_selected",
+      "filename": "C15_11_seed_only_frozen.json",
+      "byte_size": 3308529,
+      "sha256": "c7fd7a616c1c74140d078523512e26704e9aa5866b16fe5463950e9ada898e31",
+      "validation_status": "PASS"
+    }
+  ],
+  "archive_status": "FAILED_GENERATION_COMPLETED_RUNS_DELIVERED",
+  "seconds_wall": 857.2071920689996,
+  "archives": [
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_auto_tar_C12.zip",
+      "byte_size": 3739188,
+      "sha256": "566e43813547d4a73fd5bb12bf73fa497bece02c75ad662f49bf70692c05b6c3",
+      "policy": "auto_tar",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000008ce4822f8391e327fcb5127d",
+      "download_library_file_id": "libfile_53b2ba2216e88191ac5cac18b861af4c"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_explore_10_C12.zip",
+      "byte_size": 3838845,
+      "sha256": "9023bf55e91e313444b9950b2717e50a2b24718bda6ff3cc7e14134f7b36084a",
+      "policy": "explore_10",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_00000000633c820da98d9ce8825095e7",
+      "download_library_file_id": "libfile_8c1514934af08191b09a7e86d35dc14b"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_10_C12.zip",
+      "byte_size": 69302620,
+      "sha256": "1f62a9493c50ebc3e9c2f811763d1485e51bbae12b7fab8a92c71a9926253401",
+      "policy": "fixed_10",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29
+      ],
+      "audits": 2,
+      "download_file_id": "file_0000000025d0822f985aebded0246ab7",
+      "download_library_file_id": "libfile_27cf13c20e3c819192bd15d5df05a797"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_100_C12.zip",
+      "byte_size": 10994678,
+      "sha256": "e37afe6dedda9426db4ac4485a2a2095efbb2444a27f8b6524044d58f2f1b614",
+      "policy": "fixed_100",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_0000000011dc81f6bb417891eada2826",
+      "download_library_file_id": "libfile_58ef57dd47cc81919f5598b9e0b5aaf3"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_20_C12.zip",
+      "byte_size": 52315697,
+      "sha256": "f763ec3ac4a4c837eac791fc867075f5fbc0007c82ab04f30f9759ffb433451f",
+      "policy": "fixed_20",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_00000000de04820c9e062360d370c932",
+      "download_library_file_id": "libfile_1f0c4eecd50481919ca16796936aaea2"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_fixed_50_C12.zip",
+      "byte_size": 21322292,
+      "sha256": "5a4a5c8f0297600c33a091d0569fae2d85e12337f1578ab9ceb24b69134317ed",
+      "policy": "fixed_50",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000006a6c81f6be27757793809cf5",
+      "download_library_file_id": "libfile_1cc378f55be481919b866d95146280ba"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_grow_20pct_C12.zip",
+      "byte_size": 2900819,
+      "sha256": "28e2f6c3d6335d9f7eff73ff9f9070ef17365b5cde5a4584d2c586eec5d16188",
+      "policy": "grow_20pct",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000005b3881f69302c1b62144b6c0",
+      "download_library_file_id": "libfile_ea619a4e1dd08191af7977e88ba46679"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_grow_5pct_C12.zip",
+      "byte_size": 5044815,
+      "sha256": "2ed4d4a4baacdf3d159cbd0c373842389314aeff16d6366df4fef566afa649c1",
+      "policy": "grow_5pct",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000003f40820d951c30cbdbad75e0",
+      "download_library_file_id": "libfile_09084f4118048191905a09897ca4c958"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_random_C12.zip",
+      "byte_size": 620174,
+      "sha256": "485f891b1d5be92a98959a282eaa92479c5f22a0ff6ab0a99898b0bcf53450ca",
+      "policy": "random",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000007fdc81f99276fe73168a0df4",
+      "download_library_file_id": "libfile_502a10585df081919e6dc396bfbe235b"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_random_C15.zip",
+      "byte_size": 215666,
+      "sha256": "019933f4169a2fef16bc64cdfb5d7661f5cf7dc3dfdcef31d11dc4469d788c3c",
+      "policy": "random",
+      "topic": "C15",
+      "seeds": [
+        11
+      ],
+      "audits": 1,
+      "download_file_id": "file_00000000a314820da2b01a16f5669bee",
+      "download_library_file_id": "libfile_8f492a8941b88191abefc3b50f2c0f4f"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_only_frozen_C12.zip",
+      "byte_size": 3483496,
+      "sha256": "e8bc0fa2e26e901e6ee11facf04df88867731fa695c0888dd31533f7e49fd624",
+      "policy": "seed_only_frozen",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_00000000ce5881f6b0a127a93a2cdc76",
+      "download_library_file_id": "libfile_d3e333326720819198dc19cb1ce38e3d"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_only_frozen_C15.zip",
+      "byte_size": 1167617,
+      "sha256": "892c9b49b35164c04197c18f964af1e39e156bf87ac7d914b146e346178c97c7",
+      "policy": "seed_only_frozen",
+      "topic": "C15",
+      "seeds": [
+        11
+      ],
+      "audits": 1,
+      "download_file_id": "file_00000000c96c81f695fdcf7e564c5b0e",
+      "download_library_file_id": "libfile_a2ba6674c82c8191be1f8f861d659949"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_similarity_C12.zip",
+      "byte_size": 619181,
+      "sha256": "d93df1c6c01a20d9d196f840dd0e1a49d40753a7fdf3b06a91a9a344ef925d81",
+      "policy": "seed_similarity",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000009724820ca910491cf6f00d6e",
+      "download_library_file_id": "libfile_20b9c3aabe7c8191920cedda4cb80edf"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_seed_similarity_C15.zip",
+      "byte_size": 215298,
+      "sha256": "7b7bf824e1a00afe8ccadb81e5c31f0f8c954341b2bdc2547bd448f03801a0f3",
+      "policy": "seed_similarity",
+      "topic": "C15",
+      "seeds": [
+        11
+      ],
+      "audits": 1,
+      "download_file_id": "file_0000000081f081f6a8484eaf15025ba1",
+      "download_library_file_id": "libfile_531c022b7f40819185e8e98c87b00ac8"
+    },
+    {
+      "filename": "20260907_census_18add1f5ba0e_FAILED_uncertainty_C12.zip",
+      "byte_size": 3739457,
+      "sha256": "cf70062df862a0c475e3e70c3ae88f94f004b2b822b563d2ebe1a6243e599315",
+      "policy": "uncertainty",
+      "topic": "C12",
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "audits": 3,
+      "download_file_id": "file_000000004270822fbe5ec89276ef7b2c",
+      "download_library_file_id": "libfile_0a2b15262f9c81918e95e6351e92aad6"
+    }
+  ],
+  "incomplete_temporary_writes": [
+    {
+      "filename": ".writing-1d0bhr8w",
+      "byte_size": 9961989,
+      "sha256": "7f4258bc365ac4659a2b7fabcd81d8642d864c8df97a479ef65fd9c4199c0c32",
+      "status": "INCOMPLETE_TEMPORARY_WRITE_NOT_A_COMPLETED_AUDIT"
+    },
+    {
+      "filename": ".writing-2liv_yx1",
+      "byte_size": 24186887,
+      "sha256": "7b3531fb7b69c1ed1f45c6e9bd3a00760a7d841d810e719d257469fc62b1199d",
+      "status": "INCOMPLETE_TEMPORARY_WRITE_NOT_A_COMPLETED_AUDIT"
+    }
+  ],
+  "diagnostic_archive": {
+    "filename": "20260907_census_18add1f5ba0e_FAILURE_DIAGNOSTICS.zip",
+    "byte_size": 13576553,
+    "sha256": "9128241cede80654ef1cd9ba38545dee480e2592a0440a6c0656ded140498b40",
+    "download_library_file_id": "libfile_81fa062d33e081919db18920e69f013a"
+  }
+}

@@ -14,6 +14,15 @@ def externalize_round(record, document_ids):
     record = deepcopy(record)
     if record["round_index"] == 0 and record["candidate_count"] is None:
         record["candidate_count"] = len(document_ids)-len(record["selected_rows"])
+    if record["round_index"] == 0:
+        scope = record["margin_scope"]
+        window = (record["candidate_count"] if scope == "full" else
+                  max(1000, record["batch_size_before_growth"]+100)
+                  if scope == "batch_plus_100_min_1000_plus_selected" else 1000)
+        record["margin_window_rule"] = ("full" if scope == "full" else
+            "max(1000, batch_size_before_growth + 100)" if scope == "batch_plus_100_min_1000_plus_selected" else "1000")
+        record["margin_window_requested"] = window
+        record["margin_window_resolved"] = min(window, record["candidate_count"])
     record["selected_document_ids"] = [str(document_ids[r]) for r in record["selected_rows"]]
     fit = record["fit"]
     record["temporary_negative_document_ids"] = ([] if fit is None else

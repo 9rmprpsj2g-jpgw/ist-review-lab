@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 import platform
+import resource
 import time
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -16,6 +17,7 @@ from .learner import ReviewLearner, new_svm, POLICIES
 from .config import resolve_plan
 from .metrics import evaluate
 from .audit import seed_round, externalize_round, replay_row_order
+from .census_io import atomic_json
 
 _X = _IDS = _TOPICS = None
 
@@ -49,15 +51,21 @@ def simulate(task):
         exact = result[f"effort_at_{target}"]
         result[f"batch_effort_at_{target}"] = (
             next(b for b in batch_ends if b >= exact) if exact else None)
-    audit = {"schema_version": 3, "audit_config": learner.config["audit"],
+    audit = {"schema_version": 3, "budget": budget, "n": len(y),
+             "resolved_config": learner.config, "audit_config": learner.config["audit"],
              "rounds": rounds, "topic": topic, "seed": random_seed, "policy": policy,
              "row_order": order, "batch_ends": batch_ends,
              "observed_labels": y[order].tolist()}
     if replay_row_order(audit) != order:
         raise AssertionError("Audit-only replay differs from observed row order")
-    dest = output_directory(output_dir) / "audits"
+    dest = output_directory(config.get("outputs", {}).get("audit_directory",
+                            str(output_directory(output_dir) / "audits")))
     dest.mkdir(parents=True, exist_ok=True)
-    (dest / f"{topic}_{random_seed}_{policy}.json").write_text(json.dumps(audit, allow_nan=False))
+    audit_path = dest / f"{topic}_{random_seed}_{policy}.json"
+    if audit_path.exists():
+        raise ValueError("Refusing to overwrite an existing audit")
+    atomic_json(audit_path, audit)
+    result["worker_process_peak_rss_kib"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     return result
 
 

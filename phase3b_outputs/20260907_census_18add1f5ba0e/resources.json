@@ -1,0 +1,1 @@
+{"exit_code": 1, "seconds_wall": 858.8054582559998, "sampled_process_tree_peak_rss_kib": 0, "process_peak_rss_kib": {"7": 0}, "samples": 1711, "sampling_interval_seconds": 0.5, "caveat": "Tree peak is sampled sum of RSS, counts shared pages per process, may miss sub-interval peaks. Per-process VmHWM observed while alive; worker ru_maxrss also recorded per run."}

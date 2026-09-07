@@ -1,0 +1,14 @@
+{
+  "host_root_pid": 130132,
+  "started_unix": 1788819765.2813816,
+  "elapsed_seconds": 667.6277823448181,
+  "sampled_tree_peak_rss_kib": 1174904,
+  "per_process_hwm_kib": {
+    "130204": 407444,
+    "130132": 581520,
+    "130205": 344276
+  },
+  "samples": 1331,
+  "caveat": "Started after launch; per-process lifetime VmHWM includes earlier peaks. Sampled tree sum includes shared pages multiple times and can miss sub-interval peaks.",
+  "status": "COMPLETE"
+}

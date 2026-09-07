@@ -1,0 +1,82 @@
+{"completed": 1, "total": 180, "topic": "C12", "seed": 11, "policy": "random", "fits": 0, "audit_bytes": 841950, "elapsed_seconds": 5.759514252999907}
+{"completed": 2, "total": 180, "topic": "C12", "seed": 11, "policy": "seed_similarity", "fits": 0, "audit_bytes": 865107, "elapsed_seconds": 6.42637307699988}
+{"completed": 3, "total": 180, "topic": "C12", "seed": 11, "policy": "seed_only_frozen", "fits": 1, "audit_bytes": 3308245, "elapsed_seconds": 6.665895889999774}
+{"completed": 4, "total": 180, "topic": "C12", "seed": 11, "policy": "uncertainty", "fits": 63, "audit_bytes": 3422227, "elapsed_seconds": 11.336629022000125}
+{"completed": 5, "total": 180, "topic": "C12", "seed": 11, "policy": "auto_tar", "fits": 63, "audit_bytes": 3423476, "elapsed_seconds": 12.978515234000042}
+{"completed": 6, "total": 180, "topic": "C12", "seed": 11, "policy": "explore_10", "fits": 63, "audit_bytes": 3498109, "elapsed_seconds": 18.22822263099988}
+{"completed": 7, "total": 180, "topic": "C12", "seed": 11, "policy": "fixed_20", "fits": 1158, "audit_bytes": 44315301, "elapsed_seconds": 167.36148506599966}
+{"completed": 8, "total": 180, "topic": "C12", "seed": 11, "policy": "fixed_50", "fits": 463, "audit_bytes": 18236435, "elapsed_seconds": 230.14397470599943}
+{"completed": 9, "total": 180, "topic": "C12", "seed": 11, "policy": "fixed_100", "fits": 232, "audit_bytes": 9544493, "elapsed_seconds": 263.66717820600024}
+{"completed": 10, "total": 180, "topic": "C12", "seed": 11, "policy": "grow_5pct", "fits": 95, "audit_bytes": 4502577, "elapsed_seconds": 273.0866823319993}
+{"completed": 11, "total": 180, "topic": "C12", "seed": 11, "policy": "grow_20pct", "fits": 40, "audit_bytes": 2745201, "elapsed_seconds": 276.9304647200006}
+{"completed": 12, "total": 180, "topic": "C12", "seed": 29, "policy": "random", "fits": 0, "audit_bytes": 841950, "elapsed_seconds": 277.05716049200055}
+{"completed": 13, "total": 180, "topic": "C12", "seed": 29, "policy": "seed_similarity", "fits": 0, "audit_bytes": 865107, "elapsed_seconds": 277.8218916980004}
+{"completed": 14, "total": 180, "topic": "C12", "seed": 29, "policy": "seed_only_frozen", "fits": 1, "audit_bytes": 3314761, "elapsed_seconds": 278.7616125789991}
+{"completed": 15, "total": 180, "topic": "C12", "seed": 29, "policy": "uncertainty", "fits": 63, "audit_bytes": 3422096, "elapsed_seconds": 284.8862548529996}
+{"completed": 16, "total": 180, "topic": "C12", "seed": 29, "policy": "auto_tar", "fits": 63, "audit_bytes": 3425245, "elapsed_seconds": 290.27109994000057}
+{"completed": 17, "total": 180, "topic": "C12", "seed": 11, "policy": "fixed_10", "fits": 2315, "audit_bytes": 87782855, "elapsed_seconds": 338.5650238769995}
+{"completed": 18, "total": 180, "topic": "C12", "seed": 29, "policy": "explore_10", "fits": 63, "audit_bytes": 3500489, "elapsed_seconds": 341.81160868699953}
+{"completed": 19, "total": 180, "topic": "C12", "seed": 29, "policy": "fixed_20", "fits": 1158, "audit_bytes": 44313017, "elapsed_seconds": 451.11766267299936}
+{"completed": 20, "total": 180, "topic": "C12", "seed": 29, "policy": "fixed_50", "fits": 463, "audit_bytes": 18234848, "elapsed_seconds": 516.6517830989997}
+{"completed": 21, "total": 180, "topic": "C12", "seed": 29, "policy": "fixed_100", "fits": 232, "audit_bytes": 9543791, "elapsed_seconds": 548.3864288290006}
+{"completed": 22, "total": 180, "topic": "C12", "seed": 29, "policy": "grow_5pct", "fits": 95, "audit_bytes": 4504578, "elapsed_seconds": 558.2627664880001}
+{"completed": 23, "total": 180, "topic": "C12", "seed": 29, "policy": "grow_20pct", "fits": 40, "audit_bytes": 2746681, "elapsed_seconds": 561.4112513359996}
+{"completed": 24, "total": 180, "topic": "C12", "seed": 47, "policy": "random", "fits": 0, "audit_bytes": 841950, "elapsed_seconds": 561.4671630539997}
+{"completed": 25, "total": 180, "topic": "C12", "seed": 47, "policy": "seed_similarity", "fits": 0, "audit_bytes": 865107, "elapsed_seconds": 562.2877978769993}
+{"completed": 26, "total": 180, "topic": "C12", "seed": 47, "policy": "seed_only_frozen", "fits": 1, "audit_bytes": 3305988, "elapsed_seconds": 563.256627839999}
+{"completed": 27, "total": 180, "topic": "C12", "seed": 47, "policy": "uncertainty", "fits": 63, "audit_bytes": 3422162, "elapsed_seconds": 569.0747526470004}
+{"completed": 28, "total": 180, "topic": "C12", "seed": 47, "policy": "auto_tar", "fits": 63, "audit_bytes": 3423289, "elapsed_seconds": 574.6921721260005}
+{"completed": 29, "total": 180, "topic": "C12", "seed": 29, "policy": "fixed_10", "fits": 2315, "audit_bytes": 87778015, "elapsed_seconds": 662.6082696129997}
+{"completed": 30, "total": 180, "topic": "C12", "seed": 47, "policy": "explore_10", "fits": 63, "audit_bytes": 3499422, "elapsed_seconds": 666.3584999609993}
+{"completed": 31, "total": 180, "topic": "C12", "seed": 47, "policy": "fixed_20", "fits": 1158, "audit_bytes": 44314594, "elapsed_seconds": 736.2663600720007}
+{"completed": 32, "total": 180, "topic": "C12", "seed": 47, "policy": "fixed_50", "fits": 463, "audit_bytes": 18236005, "elapsed_seconds": 798.9508227049992}
+{"completed": 33, "total": 180, "topic": "C12", "seed": 47, "policy": "fixed_100", "fits": 232, "audit_bytes": 9544366, "elapsed_seconds": 832.2489693360003}
+{"completed": 34, "total": 180, "topic": "C12", "seed": 47, "policy": "grow_5pct", "fits": 95, "audit_bytes": 4502819, "elapsed_seconds": 840.8571002259996}
+{"completed": 35, "total": 180, "topic": "C12", "seed": 47, "policy": "grow_20pct", "fits": 40, "audit_bytes": 2745297, "elapsed_seconds": 843.9897028970008}
+{"completed": 36, "total": 180, "topic": "C15", "seed": 11, "policy": "random", "fits": 0, "audit_bytes": 841950, "elapsed_seconds": 844.0659110689994}
+{"completed": 37, "total": 180, "topic": "C15", "seed": 11, "policy": "seed_similarity", "fits": 0, "audit_bytes": 865107, "elapsed_seconds": 844.8932611189994}
+{"completed": 38, "total": 180, "topic": "C15", "seed": 11, "policy": "seed_only_frozen", "fits": 1, "audit_bytes": 3308529, "elapsed_seconds": 845.8399930790001}
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/process.py", line 264, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/experiment.py", line 41, in simulate
+    batch = learner.query(budget-len(order))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/learner.py", line 123, in query
+    ranked = self.rank()
+             ^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/learner.py", line 111, in rank
+    self.fit()
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/learner.py", line 90, in fit
+    self.model.fit(train_X, train_y)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/base.py", line 1336, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_classes.py", line 330, in fit
+    self.coef_, self.intercept_, n_iter_ = _fit_liblinear(
+                                           ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py", line 1258, in _fit_liblinear
+    warnings.warn(
+sklearn.exceptions.ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/census.py", line 152, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/census.py", line 121, in main
+    task=futures[future];result=future.result()
+                                ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+sklearn.exceptions.ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.

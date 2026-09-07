@@ -5,3 +5,6 @@ __pycache__/
 phase1_outputs/reproducibility/**/*.svg
 phase1_outputs/reproducibility/**/gain_curves.csv.gz
 .idea/
+/audit_store/
+/data/raw/
+/transfer_packages/

@@ -14,7 +14,7 @@ NESTED_FIELDS = {
     "analysis": set("bootstrap_resamples bootstrap_confidence bootstrap_variants bootstrap_shared_draws primary_inference interval_material_disagreement analysis_seed paired_unit exact_sign_flip wilcoxon contrasts csv_consistency_absolute_tolerance csv_consistency_relative_tolerance".split()),
     "censoring": set("explicit_status full_mean_requires_all_topics_and_seeds partial_recall_mean partial_effort_mean partial_inference extrapolation".split()),
     "deferred_phase_3_exit_criteria": set("prerequisite required_run generation prohibited_now".split()),
-    "outputs": set("directory notebook".split()),
+    "outputs": set("directory notebook audit_directory".split()),
 }
 
 
@@ -47,6 +47,6 @@ def resolve_plan(plan=None):
     config["epsilon"] = epsilon
     audit = config.setdefault("audit", {"margin_scope": "full"})
     audit.setdefault("margin_scope", "full")
-    if audit["margin_scope"] not in ("full", "top_1000_plus_selected"):
-        raise ValueError("margin_scope must be full or top_1000_plus_selected")
+    if audit["margin_scope"] not in ("full", "top_1000_plus_selected", "batch_plus_100_min_1000_plus_selected"):
+        raise ValueError("Unknown margin_scope")
     return config
