@@ -1,0 +1,20 @@
+{
+  "status": "FAILED",
+  "execution_method": "Python compile/exec of sequential code cells in one fresh namespace per run; separate fresh Python subprocess per run; IPython capture_output for stdout/stderr and rich display; nbformat for stored notebook outputs",
+  "libraries": {
+    "nbformat": "5.10.4",
+    "IPython": "9.17.1",
+    "nbclient": "0.10.2",
+    "ipykernel": "6.30.1"
+  },
+  "python": "3.12.13 (main, Aug  7 2026, 02:25:39) [Clang 22.1.3 ]",
+  "fresh_namespace": true,
+  "fresh_process_per_run": true,
+  "nbclient_used": false,
+  "fallback_reason": "Installed InProcessKernelManager is not a drop-in nbclient lifecycle implementation (shutdown_kernel(now=...) / cleanup_resources); in-process ipykernel also initializes ZeroMQ IOPub machinery. No socket-free nbclient configuration was established; user explicitly authorized fresh-namespace fallback.",
+  "network_transport_unavailable_reason": "Prior normal Jupyter kernel startup failed before the first cell: ZeroMQ Operation not permitted (src/ip_resolver.cpp:542); Kernel died before replying to kernel_info. No new network transport attempt was made.",
+  "comparison": "Exact SHA-256 of every generated file and executed notebook; no exclusions or numerical tolerance; volatile figure timestamps disabled before execution",
+  "reproducibility_directory": "phase1_outputs/reproducibility/9b2271427496429aa26450c974d7d47c",
+  "scope": "Phase 1 only; archived consistency, not independent external ground-truth verification",
+  "error": "Repeatability FAILURE; differing files: ['figures/curves_gain.svg', 'figures/curves_recall.png']"
+}

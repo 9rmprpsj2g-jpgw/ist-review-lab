@@ -1,0 +1,8 @@
+method,recall_at_1000,recall_at_2R_plus_0,recall_at_2R_plus_100,recall_at_2R_plus_1000
+random,4.68%,CENSORED | PARTIAL 7.38% (4/5; excludes C15),CENSORED | PARTIAL 7.73% (4/5; excludes C15),CENSORED | PARTIAL 11.00% (4/5; excludes C15)
+seed_similarity,27.24%,CENSORED | PARTIAL 29.67% (4/5; excludes C15),CENSORED | PARTIAL 31.48% (4/5; excludes C15),CENSORED | PARTIAL 44.10% (4/5; excludes C15)
+frozen_svm,27.73%,CENSORED | PARTIAL 32.27% (4/5; excludes C15),CENSORED | PARTIAL 34.68% (4/5; excludes C15),CENSORED | PARTIAL 46.40% (4/5; excludes C15)
+uncertainty,51.02%,CENSORED | PARTIAL 58.23% (4/5; excludes C15),CENSORED | PARTIAL 64.95% (4/5; excludes C15),CENSORED | PARTIAL 79.56% (4/5; excludes C15)
+auto_tar,66.43%,CENSORED | PARTIAL 73.89% (4/5; excludes C15),CENSORED | PARTIAL 80.38% (4/5; excludes C15),CENSORED | PARTIAL 93.62% (4/5; excludes C15)
+fixed_20,66.40%,CENSORED | PARTIAL 74.16% (4/5; excludes C15),CENSORED | PARTIAL 80.24% (4/5; excludes C15),CENSORED | PARTIAL 93.50% (4/5; excludes C15)
+explore_10,64.26%,CENSORED | PARTIAL 73.19% (4/5; excludes C15),CENSORED | PARTIAL 77.33% (4/5; excludes C15),CENSORED | PARTIAL 93.45% (4/5; excludes C15)

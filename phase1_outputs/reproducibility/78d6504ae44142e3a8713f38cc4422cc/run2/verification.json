@@ -1,0 +1,30 @@
+{
+  "status": "PASSED",
+  "scope": "Archived-input consistency and Phase 1 execution only",
+  "runs_validated": 105,
+  "audits_validated": 105,
+  "protected_files_unchanged": 129,
+  "metric_rows": 2520,
+  "topic_metric_rows": 840,
+  "pairwise_contrasts": 504,
+  "computed_full_topic_contrasts": 112,
+  "censored_metric_rows": 840,
+  "gain_curve_positions": 525000,
+  "original_primary_metric": "recall_at_1000",
+  "revised_primary_metric": "recall_at_R",
+  "revision_after_outcomes": true,
+  "external_ground_truth_verified": false,
+  "phase_2_started": false,
+  "versions": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "nbformat": "5.10.4",
+    "nbclient": "0.10.2",
+    "ipykernel": "6.30.1",
+    "Pillow": "12.3.0",
+    "PyMuPDF": "1.26.6"
+  },
+  "python": "3.12.13"
+}

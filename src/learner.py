@@ -4,25 +4,39 @@ Auto TAR's temporary negatives are never recorded as reviewer judgments.
 The SVM implementation is an explicit deviation from the paper's SVMlight.
 """
 import math
+import hashlib
+from fractions import Fraction
 import numpy as np
 from sklearn.svm import LinearSVC
+from .config import resolve_plan
 
-POLICIES = ("random", "seed_similarity", "frozen_svm", "uncertainty",
+POLICIES = ("random", "seed_similarity", "seed_only_frozen", "uncertainty",
             "auto_tar", "fixed_20", "explore_10")
 
 
-def new_svm(seed=0):
-    return LinearSVC(C=1.0, loss="hinge", dual=True, tol=1e-4,
-                     max_iter=10000, random_state=int(seed))
+STREAM_NAMES = ("seed_doc", "temp_negatives", "exploration", "certification")
+
+
+def named_streams(seed):
+    return {name: np.random.default_rng(int.from_bytes(
+        hashlib.sha256(f"ist-review-lab|{int(seed)}|{name}".encode("utf-8")).digest(), "big"))
+        for name in STREAM_NAMES}
+
+
+def new_svm(seed=0, plan=None):
+    return LinearSVC(**resolve_plan(plan)["svm"], random_state=int(seed))
 
 
 class ReviewLearner:
-    def __init__(self, X, policy="auto_tar", seed=0):
+    def __init__(self, X, policy="auto_tar", seed=0, plan=None):
         if policy not in POLICIES:
             raise ValueError(f"Unknown policy: {policy}")
         self.X = X
         self.policy = policy
-        self.rng = np.random.default_rng(seed)
+        self.streams = named_streams(seed)
+        self.config = resolve_plan(plan)
+        self.epsilon = Fraction(str(self.config["epsilon"]))
+        self.exploration_carry = Fraction(0)
         self.seed = seed
         self.labels = {}  # Real judgments only.
         self.batch_size = 20 if policy == "fixed_20" else 1
@@ -54,13 +68,13 @@ class ReviewLearner:
         candidates = self.remaining()
         # Deliberately sample only unreviewed documents to avoid contradictory
         # copies of already reviewed positives. Recorded as a paper deviation.
-        self.last_temporary = self.rng.choice(
+        self.last_temporary = self.streams["temp_negatives"].choice(
             candidates, min(100, len(candidates)), replace=False)
         train_ids = np.array(list(self.labels) + self.last_temporary.tolist())
         train_y = np.array(list(self.labels.values()) + [0]*len(self.last_temporary))
         if len(np.unique(train_y)) < 2:
             raise ValueError("No unreviewed or confirmed negative examples remain.")
-        self.model = new_svm(self.seed)
+        self.model = new_svm(self.seed, self.config)
         self.model.fit(self.X[train_ids], train_y)
         self.fit_count += 1
 
@@ -69,12 +83,12 @@ class ReviewLearner:
         if not len(candidates):
             return candidates
         if self.policy == "random":
-            return self.rng.permutation(candidates)
+            return self.streams["exploration"].permutation(candidates)
         if self.policy == "seed_similarity":
             seed_id = next(i for i, v in self.labels.items() if v == 1)
             scores = (self.X[candidates] @ self.X[seed_id].T).toarray().ravel()
         else:
-            if self.model is None or self.policy != "frozen_svm":
+            if self.model is None or self.policy != "seed_only_frozen":
                 self.fit()
             scores = self.model.decision_function(self.X[candidates])
             if self.policy == "uncertainty":
@@ -86,9 +100,13 @@ class ReviewLearner:
         ranked = self.rank()
         size = min(self.batch_size, int(limit), len(ranked))
         if self.policy == "explore_10" and size >= 10:
-            n_explore = max(1, int(size * 0.1))
+            # Carry applies to eligible review slots only. The intentional gate
+            # excludes earlier/small batches and the externally supplied seed.
+            self.exploration_carry += size*self.epsilon
+            n_explore = int(self.exploration_carry)
+            self.exploration_carry -= n_explore
             exploit = ranked[:size-n_explore]
-            explore = self.rng.choice(ranked[size-n_explore:], n_explore, replace=False)
+            explore = self.streams["exploration"].choice(ranked[size-n_explore:], n_explore, replace=False)
             selected = np.concatenate([exploit, explore])
         else:
             selected = ranked[:size]

@@ -1,0 +1,71 @@
+{
+  "status": "PASSED",
+  "execution_method": "Python compile/exec of sequential code cells in one fresh namespace per run; separate fresh Python subprocess per run; IPython capture_output for stdout/stderr and rich display; nbformat for stored notebook outputs",
+  "libraries": {
+    "nbformat": "5.10.4",
+    "IPython": "9.17.1",
+    "nbclient": "0.10.2",
+    "ipykernel": "6.30.1",
+    "Pillow": "12.3.0",
+    "PyMuPDF": "1.26.6"
+  },
+  "python": "3.12.13 (main, Aug  7 2026, 02:25:39) [Clang 22.1.3 ]",
+  "fresh_namespace": true,
+  "fresh_process_per_run": true,
+  "nbclient_used": false,
+  "fallback_reason": "Installed InProcessKernelManager is not a drop-in nbclient lifecycle implementation (shutdown_kernel(now=...) / cleanup_resources); in-process ipykernel also initializes ZeroMQ IOPub machinery. No socket-free nbclient configuration was established; user explicitly authorized fresh-namespace fallback.",
+  "network_transport_unavailable_reason": "Prior normal Jupyter kernel startup failed before the first cell: ZeroMQ Operation not permitted (src/ip_resolver.cpp:542); Kernel died before replying to kernel_info. No new network transport attempt was made.",
+  "comparison": "Final user gate: exact bytes for all CSV, JSON, Markdown, HTML and executed notebooks (including gzip CSV); all figures complete and decodable; protected digests unchanged. Figure identity and size are not gates; differences are warnings.",
+  "warnings": [
+    {
+      "run": "run1",
+      "temporary_litter_removed": {
+        "file": "figures/.writing-fq6y155f",
+        "bytes": 0
+      }
+    },
+    {
+      "run": "run1",
+      "temporary_litter_removed": {
+        "file": "figures/.writing-gobjx86r",
+        "bytes": 128524
+      }
+    },
+    {
+      "run": "run2",
+      "temporary_litter_removed": {
+        "file": "figures/.writing-4zbsez0k",
+        "bytes": 140764
+      }
+    },
+    {
+      "run": "run2",
+      "temporary_litter_removed": {
+        "file": "figures/.writing-6d41ivyq",
+        "bytes": 128524
+      }
+    }
+  ],
+  "resumed_existing_first_execution": true,
+  "reproducibility_directory": "phase1_outputs/reproducibility/78d6504ae44142e3a8713f38cc4422cc",
+  "scope": "Phase 1 only; archived consistency, not independent external ground-truth verification",
+  "runs_completed": 2,
+  "agreeing_files": 44,
+  "byte_identical_files": 44,
+  "completeness_checks": "PASSED for both runs",
+  "different_files": [],
+  "timestamps_ignored": false,
+  "protected_files_unchanged": 129,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "stored_outputs": 48,
+  "notebook_sha256": "453b644cae65943f68a1240c0182dc4de72fd92cc6daab9322916ee209944fa5"
+}

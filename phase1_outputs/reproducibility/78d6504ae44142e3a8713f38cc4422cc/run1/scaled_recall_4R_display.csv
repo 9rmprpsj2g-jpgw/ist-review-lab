@@ -1,0 +1,8 @@
+method,recall_at_1000,recall_at_4R_plus_0,recall_at_4R_plus_100,recall_at_4R_plus_1000
+random,4.68%,"CENSORED | PARTIAL 10.23% (3/5; excludes C15,C18)","CENSORED | PARTIAL 10.90% (3/5; excludes C15,C18)","CENSORED | PARTIAL 7.99% (2/5; excludes C15,C18,GCRIM)"
+seed_similarity,27.24%,"CENSORED | PARTIAL 39.77% (3/5; excludes C15,C18)","CENSORED | PARTIAL 42.65% (3/5; excludes C15,C18)","CENSORED | PARTIAL 47.64% (2/5; excludes C15,C18,GCRIM)"
+frozen_svm,27.73%,"CENSORED | PARTIAL 43.57% (3/5; excludes C15,C18)","CENSORED | PARTIAL 45.92% (3/5; excludes C15,C18)","CENSORED | PARTIAL 47.40% (2/5; excludes C15,C18,GCRIM)"
+uncertainty,51.02%,"CENSORED | PARTIAL 66.38% (3/5; excludes C15,C18)","CENSORED | PARTIAL 75.28% (3/5; excludes C15,C18)","CENSORED | PARTIAL 85.51% (2/5; excludes C15,C18,GCRIM)"
+auto_tar,66.43%,"CENSORED | PARTIAL 78.06% (3/5; excludes C15,C18)","CENSORED | PARTIAL 86.88% (3/5; excludes C15,C18)","CENSORED | PARTIAL 91.20% (2/5; excludes C15,C18,GCRIM)"
+fixed_20,66.40%,"CENSORED | PARTIAL 77.73% (3/5; excludes C15,C18)","CENSORED | PARTIAL 86.66% (3/5; excludes C15,C18)","CENSORED | PARTIAL 90.86% (2/5; excludes C15,C18,GCRIM)"
+explore_10,64.26%,"CENSORED | PARTIAL 74.63% (3/5; excludes C15,C18)","CENSORED | PARTIAL 85.94% (3/5; excludes C15,C18)","CENSORED | PARTIAL 91.11% (2/5; excludes C15,C18,GCRIM)"

@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .venv/
 .DS_Store
+phase1_outputs/reproducibility/**/*.svg
+phase1_outputs/reproducibility/**/gain_curves.csv.gz
+.idea/

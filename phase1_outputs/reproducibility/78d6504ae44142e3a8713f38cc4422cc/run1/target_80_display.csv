@@ -1,0 +1,8 @@
+method,recall_at_1000,effort_at_80,batch_effort_at_80,depth_fraction_at_80,depth_per_positive_at_80
+random,4.68%,"CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean"
+seed_similarity,27.24%,"CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean"
+frozen_svm,27.73%,"CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean","CENSORED (topics: C12,C15,C16,C18,GCRIM); no mean"
+uncertainty,51.02%,"CENSORED (topics: C15,GCRIM); no mean","CENSORED (topics: C15,GCRIM); no mean","CENSORED (topics: C15,GCRIM); no mean","CENSORED (topics: C15,GCRIM); no mean"
+auto_tar,66.43%,"1,468.067","1,565.733",0.063,2.341
+fixed_20,66.40%,"1,424.067","1,433.000",0.062,2.249
+explore_10,64.26%,"1,552.667","1,660.533",0.067,2.344

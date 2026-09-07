@@ -1,0 +1,8 @@
+method,recall_at_R,recall_at_1000,recall_at_2R,effort_at_75,effort_at_80,effort_at_90,batch_effort_at_90
+random,5.41%,4.77%,10.24%,"CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)"
+seed_similarity,29.71%,27.51%,41.89%,"CENSORED (seeds: 29,47)","CENSORED (seeds: 29,47)","CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)"
+frozen_svm,31.74%,29.19%,47.07%,"CENSORED (seeds: 29,47)","CENSORED (seeds: 29,47)","CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)"
+uncertainty,48.37%,43.37%,65.67%,"CENSORED (seeds: 11,47)","CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)","CENSORED (seeds: 11,29,47)"
+auto_tar,78.49%,72.93%,92.88%,"1,039.000","1,184.000","1,737.333","1,884.000"
+fixed_20,79.08%,72.99%,93.41%,"1,034.667","1,164.667","1,652.667","1,661.000"
+explore_10,75.46%,68.58%,92.20%,"1,126.333","1,258.333","1,881.333","2,021.333"

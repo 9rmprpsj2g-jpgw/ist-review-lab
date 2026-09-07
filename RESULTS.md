@@ -4,7 +4,14 @@ Overshoot is committed batch effort minus exact effort at the target crossing. L
 
 The original recall@1000 difference between AutoTAR and fixed-20 is +0.0276 percentage points (exact sign-flip p=0.875). Committed effort tells a different cost story: AutoTAR minus fixed-20 is +97.6, +132.7 and +193.9 documents at 75%, 80% and 90% targets. At 80% and 90% all five topics agree in direction. These are direction and magnitude observations, NOT statistically significant findings; the five-topic exact two-sided floor is 0.0625.
 
-**Correction to the proposed interpretation:** archived exact effort at 75% is +19.6 documents, percentile 95% interval [-8.07, 51.07], p=0.3125. The supplied -1.06 documents and interval [-1.47, -0.65] do not match the archived exact-effort contrast. The supported decomposition is +97.6 = +19.6 exact effort +78.0 overshoot. This does not show that growing batches cross the target one document earlier.
+**Interpretation:** exact-effort differences are unresolved, not equal. At 75%, the interval spans zero and topic signs are mixed (C16: -26.7 documents; C15: +76.0). The evidence does not establish that either schedule reaches the target earlier or later. Overshoot is the dominant contribution to the committed-cost difference: **+97.6 committed = +19.6 exact effort +78.0 overshoot**, with overshoot accounting for 78.0/97.6 = 79.9%, approximately 80%, at 75% recall. Mean excess overshoot grows across the measured targets (+78.0, +88.7, +131.2 documents). All five topic differences are positive at each target and both overshoot intervals exclude zero; exact sign-flip p=0.0625 is not statistical significance.
+
+| 75% component, AutoTAR minus fixed-20 | Mean documents | Percentile 95% | BCa 95% | Exact sign-flip p |
+| --- | ---: | --- | --- | ---: |
+| Exact effort | +19.6 | [-8.07, 51.07] | [-6.20, 52.60] | 0.3125 |
+| Overshoot | +78.0 | [35.47, 131.53] | [39.73, 134.24] | 0.0625 |
+
+The means decompose committed cost; confidence intervals are computed separately for each paired metric and must not be added or subtracted.
 
 This amendment is post-outcome analysis of the same five topics, three seeds and seven policies. No learning experiment has been rerun.
 

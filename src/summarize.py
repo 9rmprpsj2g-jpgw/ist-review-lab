@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from .data import ROOT
 
-NAMES={'random':'Random review','seed_similarity':'Seed similarity','frozen_svm':'Frozen SVM',
+NAMES={'random':'Random review','seed_similarity':'Seed similarity','seed_only_frozen':'Seed-only frozen SVM',
        'uncertainty':'Uncertainty sampling','auto_tar':'Auto TAR','fixed_20':'Fixed batches of 20',
        'explore_10':'10% random exploration'}
 TOPICS={'C12':'Legal / judicial','C15':'Corporate performance','C16':'Insolvency / liquidity',
@@ -45,7 +45,7 @@ def main():
     pd.DataFrame(paired).to_csv(ROOT/'results/paired_differences.csv',index=False)
     plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,
                          'axes.spines.right':False,'figure.facecolor':'white','axes.facecolor':'white'})
-    colors={'random':'#97A5B0','seed_similarity':'#BAC4CB','frozen_svm':'#526C86',
+    colors={'random':'#97A5B0','seed_similarity':'#BAC4CB','seed_only_frozen':'#526C86',
             'uncertainty':'#987AAA','auto_tar':'#087F8C','fixed_20':'#DC923C','explore_10':'#BB5D66'}
     out=ROOT/'results/figures';out.mkdir(exist_ok=True)
     fig,ax=plt.subplots(figsize=(10,4.5),layout='constrained')
@@ -63,7 +63,7 @@ def main():
     for policy in order:curve_table[policy]=np.mean(curves[policy],axis=0)
     curve_table.to_csv(ROOT/'results/gain_curves.csv',index=False)
     fig,ax=plt.subplots(figsize=(10,4.4),layout='constrained')
-    for policy in ['auto_tar','frozen_svm','uncertainty','random']:
+    for policy in ['auto_tar','seed_only_frozen','uncertainty','random']:
         ax.plot(curve_table.reviews,curve_table[policy]*100,label=NAMES[policy],color=colors[policy],lw=2.4)
     ax.set(xlabel='Documents reviewed, including the seed',ylabel='Mean topic recall (%)',xlim=(0,5000),ylim=(0,100))
     ax.axvline(1000,color='#CBD2D8',ls=':',lw=1);ax.grid(alpha=.15);ax.legend(frameon=False,loc='lower right')
@@ -93,7 +93,7 @@ This is a scoped reproduction of the Auto TAR protocol on a public RCV1-v2 subse
 
 ## Main finding
 
-Auto TAR found an average of {auto.recall_at_1000:.1%} of each topic's relevant documents in the first 1,000 reviews. Random review found {summary.loc['random','recall_at_1000']:.1%}; a frozen SVM found {summary.loc['frozen_svm','recall_at_1000']:.1%}. These are equally weighted topic means across five topics and three starting seeds. The budget was 1,000 / 23,149 = 4.32% of the collection. This finding concerns topic retrieval, not the probability of an IST sale.
+Auto TAR found an average of {auto.recall_at_1000:.1%} of each topic's relevant documents in the first 1,000 reviews. Random review found {summary.loc['random','recall_at_1000']:.1%}; a frozen SVM found {summary.loc['seed_only_frozen','recall_at_1000']:.1%}. These are equally weighted topic means across five topics and three starting seeds. The budget was 1,000 / 23,149 = 4.32% of the collection. This finding concerns topic retrieval, not the probability of an IST sale.
 
 {table_md(display)}
 

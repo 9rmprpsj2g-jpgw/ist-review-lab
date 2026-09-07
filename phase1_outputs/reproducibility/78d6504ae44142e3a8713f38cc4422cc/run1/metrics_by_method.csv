@@ -1,0 +1,169 @@
+policy,metric,status,full_mean,partial_mean,mean_label,topics_total,topics_observed,observed_topics,censored_topics
+auto_tar,batch_effort_at_75,OBSERVED,1399.9333333333334,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,batch_effort_at_80,OBSERVED,1565.7333333333331,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,batch_effort_at_90,OBSERVED,2724.266666666667,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,depth_fraction_at_75,OBSERVED,0.05661295664319553,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,depth_fraction_at_80,OBSERVED,0.06341814621221939,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,depth_fraction_at_90,OBSERVED,0.11156709433092862,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,depth_per_positive_at_75,OBSERVED,1.9186295577591366,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,depth_per_positive_at_80,OBSERVED,2.340880377659471,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,depth_per_positive_at_90,OBSERVED,15.724854771525703,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,effort_at_75,OBSERVED,1310.5333333333333,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,effort_at_80,OBSERVED,1468.0666666666668,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,effort_at_90,OBSERVED,2582.666666666667,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,recall_at_1000,OBSERVED,0.6643087909247065,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,recall_at_1R_plus_0,OBSERVED,0.652724617490483,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,recall_at_1R_plus_100,OBSERVED,0.6935703397606409,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+auto_tar,recall_at_1R_plus_1000,CENSORED,CENSORED,0.9177689991585141,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+auto_tar,recall_at_2R,CENSORED,CENSORED,0.7389131686735575,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+auto_tar,recall_at_2R_plus_0,CENSORED,CENSORED,0.7389131686735575,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+auto_tar,recall_at_2R_plus_100,CENSORED,CENSORED,0.8037801779357696,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+auto_tar,recall_at_2R_plus_1000,CENSORED,CENSORED,0.9362124655199227,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+auto_tar,recall_at_4R_plus_0,CENSORED,CENSORED,0.7805543398824821,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+auto_tar,recall_at_4R_plus_100,CENSORED,CENSORED,0.8687635518262272,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+auto_tar,recall_at_4R_plus_1000,CENSORED,CENSORED,0.9119931437141786,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+auto_tar,recall_at_R,OBSERVED,0.652724617490483,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,batch_effort_at_75,OBSERVED,1525.3999999999999,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,batch_effort_at_80,OBSERVED,1660.5333333333335,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,batch_effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,4,"C12,C15,C18,GCRIM",C16
+explore_10,depth_fraction_at_75,OBSERVED,0.060699526257433724,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,depth_fraction_at_80,OBSERVED,0.06707273172347258,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,depth_fraction_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,4,"C12,C15,C18,GCRIM",C16
+explore_10,depth_per_positive_at_75,OBSERVED,2.062023206243409,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,depth_per_positive_at_80,OBSERVED,2.3443076201363136,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,depth_per_positive_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,4,"C12,C15,C18,GCRIM",C16
+explore_10,effort_at_75,OBSERVED,1405.1333333333332,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,effort_at_80,OBSERVED,1552.6666666666667,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,4,"C12,C15,C18,GCRIM",C16
+explore_10,recall_at_1000,OBSERVED,0.6426357280419769,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,recall_at_1R_plus_0,OBSERVED,0.6310854344650361,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,recall_at_1R_plus_100,OBSERVED,0.6729223556414224,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+explore_10,recall_at_1R_plus_1000,CENSORED,CENSORED,0.9071682204708489,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+explore_10,recall_at_2R,CENSORED,CENSORED,0.7318687736940265,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+explore_10,recall_at_2R_plus_0,CENSORED,CENSORED,0.7318687736940265,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+explore_10,recall_at_2R_plus_100,CENSORED,CENSORED,0.773311942846835,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+explore_10,recall_at_2R_plus_1000,CENSORED,CENSORED,0.934472929353163,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+explore_10,recall_at_4R_plus_0,CENSORED,CENSORED,0.7462765563500544,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+explore_10,recall_at_4R_plus_100,CENSORED,CENSORED,0.859431652916205,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+explore_10,recall_at_4R_plus_1000,CENSORED,CENSORED,0.9111182530755084,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+explore_10,recall_at_R,OBSERVED,0.6310854344650361,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,batch_effort_at_75,OBSERVED,1302.3333333333335,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,batch_effort_at_80,OBSERVED,1432.9999999999998,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,batch_effort_at_90,OBSERVED,2530.333333333333,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,depth_fraction_at_75,OBSERVED,0.055766267801344915,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,depth_fraction_at_80,OBSERVED,0.06151741615908535,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,depth_fraction_at_90,OBSERVED,0.10885711405820267,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,depth_per_positive_at_75,OBSERVED,2.005103357729246,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,depth_per_positive_at_80,OBSERVED,2.2485401599539165,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,depth_per_positive_at_90,OBSERVED,15.706412421304341,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,effort_at_75,OBSERVED,1290.9333333333334,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,effort_at_80,OBSERVED,1424.0666666666666,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,effort_at_90,OBSERVED,2519.9333333333334,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,recall_at_1000,OBSERVED,0.6640326625879146,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,recall_at_1R_plus_0,OBSERVED,0.6464142156563573,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,recall_at_1R_plus_100,OBSERVED,0.704154488075646,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+fixed_20,recall_at_1R_plus_1000,CENSORED,CENSORED,0.918765195400919,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+fixed_20,recall_at_2R,CENSORED,CENSORED,0.7416091769303632,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+fixed_20,recall_at_2R_plus_0,CENSORED,CENSORED,0.7416091769303632,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+fixed_20,recall_at_2R_plus_100,CENSORED,CENSORED,0.8023876617864638,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+fixed_20,recall_at_2R_plus_1000,CENSORED,CENSORED,0.9350431940592088,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+fixed_20,recall_at_4R_plus_0,CENSORED,CENSORED,0.7772837814009851,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+fixed_20,recall_at_4R_plus_100,CENSORED,CENSORED,0.8665940461893152,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+fixed_20,recall_at_4R_plus_1000,CENSORED,CENSORED,0.9085917831699608,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+fixed_20,recall_at_R,OBSERVED,0.6464142156563573,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+frozen_svm,batch_effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,batch_effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,batch_effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,depth_fraction_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,depth_fraction_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,depth_fraction_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,depth_per_positive_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,depth_per_positive_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,depth_per_positive_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+frozen_svm,recall_at_1000,OBSERVED,0.27726194073930915,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+frozen_svm,recall_at_1R_plus_0,OBSERVED,0.2575814323563697,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+frozen_svm,recall_at_1R_plus_100,OBSERVED,0.2832899798769731,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+frozen_svm,recall_at_1R_plus_1000,CENSORED,CENSORED,0.40386629036052385,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+frozen_svm,recall_at_2R,CENSORED,CENSORED,0.32265070929624895,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+frozen_svm,recall_at_2R_plus_0,CENSORED,CENSORED,0.32265070929624895,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+frozen_svm,recall_at_2R_plus_100,CENSORED,CENSORED,0.34682103642398604,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+frozen_svm,recall_at_2R_plus_1000,CENSORED,CENSORED,0.46396699470197955,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+frozen_svm,recall_at_4R_plus_0,CENSORED,CENSORED,0.4357156412482021,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+frozen_svm,recall_at_4R_plus_100,CENSORED,CENSORED,0.45921651253266355,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+frozen_svm,recall_at_4R_plus_1000,CENSORED,CENSORED,0.47404788687128396,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+frozen_svm,recall_at_R,OBSERVED,0.2575814323563697,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+random,batch_effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,batch_effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,batch_effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,depth_fraction_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,depth_fraction_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,depth_fraction_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,depth_per_positive_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,depth_per_positive_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,depth_per_positive_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+random,recall_at_1000,OBSERVED,0.04679484766289136,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+random,recall_at_1R_plus_0,OBSERVED,0.0706854254741179,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+random,recall_at_1R_plus_100,OBSERVED,0.07382780355476334,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+random,recall_at_1R_plus_1000,CENSORED,CENSORED,0.08102109452820302,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+random,recall_at_2R,CENSORED,CENSORED,0.07384657816037801,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+random,recall_at_2R_plus_0,CENSORED,CENSORED,0.07384657816037801,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+random,recall_at_2R_plus_100,CENSORED,CENSORED,0.07729744709316842,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+random,recall_at_2R_plus_1000,CENSORED,CENSORED,0.1099506096293917,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+random,recall_at_4R_plus_0,CENSORED,CENSORED,0.10230264633051663,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+random,recall_at_4R_plus_100,CENSORED,CENSORED,0.10899014309631672,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+random,recall_at_4R_plus_1000,CENSORED,CENSORED,0.07990072669487742,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+random,recall_at_R,OBSERVED,0.0706854254741179,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+seed_similarity,batch_effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,batch_effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,batch_effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,depth_fraction_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,depth_fraction_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,depth_fraction_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,depth_per_positive_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,depth_per_positive_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,depth_per_positive_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,0,,"C12,C15,C16,C18,GCRIM"
+seed_similarity,recall_at_1000,OBSERVED,0.27240605269594664,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+seed_similarity,recall_at_1R_plus_0,OBSERVED,0.26616238963571026,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+seed_similarity,recall_at_1R_plus_100,OBSERVED,0.2897249205976231,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+seed_similarity,recall_at_1R_plus_1000,CENSORED,CENSORED,0.37666903369581484,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+seed_similarity,recall_at_2R,CENSORED,CENSORED,0.2966766171119204,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+seed_similarity,recall_at_2R_plus_0,CENSORED,CENSORED,0.2966766171119204,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+seed_similarity,recall_at_2R_plus_100,CENSORED,CENSORED,0.31484243193863004,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+seed_similarity,recall_at_2R_plus_1000,CENSORED,CENSORED,0.4410303757556131,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+seed_similarity,recall_at_4R_plus_0,CENSORED,CENSORED,0.3977235844720856,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+seed_similarity,recall_at_4R_plus_100,CENSORED,CENSORED,0.42654157365789286,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+seed_similarity,recall_at_4R_plus_1000,CENSORED,CENSORED,0.47637795275590555,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+seed_similarity,recall_at_R,OBSERVED,0.26616238963571026,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+uncertainty,batch_effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,batch_effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,batch_effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,1,C16,"C12,C15,C18,GCRIM"
+uncertainty,depth_fraction_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,depth_fraction_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,depth_fraction_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,1,C16,"C12,C15,C18,GCRIM"
+uncertainty,depth_per_positive_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,depth_per_positive_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,depth_per_positive_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,1,C16,"C12,C15,C18,GCRIM"
+uncertainty,effort_at_75,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,effort_at_80,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,3,"C12,C16,C18","C15,GCRIM"
+uncertainty,effort_at_90,CENSORED,CENSORED,,NOT COMPUTED: censored; no success-only effort mean,5,1,C16,"C12,C15,C18,GCRIM"
+uncertainty,recall_at_1000,OBSERVED,0.5102219329039789,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+uncertainty,recall_at_1R_plus_0,OBSERVED,0.40666736882736865,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+uncertainty,recall_at_1R_plus_100,OBSERVED,0.4503184240147167,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",
+uncertainty,recall_at_1R_plus_1000,CENSORED,CENSORED,0.7517340251817367,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+uncertainty,recall_at_2R,CENSORED,CENSORED,0.5823190832795511,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+uncertainty,recall_at_2R_plus_0,CENSORED,CENSORED,0.5823190832795511,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+uncertainty,recall_at_2R_plus_100,CENSORED,CENSORED,0.6494844181586054,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+uncertainty,recall_at_2R_plus_1000,CENSORED,CENSORED,0.7956497997633452,PARTIAL recall mean: 4/5 topics,5,4,"C12,C16,C18,GCRIM",C15
+uncertainty,recall_at_4R_plus_0,CENSORED,CENSORED,0.6637636861189015,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+uncertainty,recall_at_4R_plus_100,CENSORED,CENSORED,0.7527548685717022,PARTIAL recall mean: 3/5 topics,5,3,"C12,C16,GCRIM","C15,C18"
+uncertainty,recall_at_4R_plus_1000,CENSORED,CENSORED,0.8551252522006177,PARTIAL recall mean: 2/5 topics,5,2,"C12,C16","C15,C18,GCRIM"
+uncertainty,recall_at_R,OBSERVED,0.40666736882736865,,Full mean: 5/5 topics,5,5,"C12,C15,C16,C18,GCRIM",

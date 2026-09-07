@@ -1,0 +1,247 @@
+{
+  "RESULTS.md": {
+    "bytes": 5608,
+    "format": "decoded text"
+  },
+  "analysis_environment.json": {
+    "bytes": 270,
+    "format": "parsed JSON"
+  },
+  "censor_inventory.csv": {
+    "bytes": 67717,
+    "format": "parsed CSV",
+    "rows": 840,
+    "columns": 8
+  },
+  "censoring_census.csv": {
+    "bytes": 2027,
+    "format": "parsed CSV",
+    "rows": 24,
+    "columns": 7
+  },
+  "executed_notebook.ipynb": {
+    "bytes": 2122162,
+    "format": "parsed JSON"
+  },
+  "figures/curves_gain.pdf": {
+    "bytes": 116073,
+    "format": "PDF decoded pages",
+    "pages": 1
+  },
+  "figures/curves_gain.png": {
+    "bytes": 260208,
+    "format": "PNG",
+    "dimensions": [
+      1339,
+      1181
+    ]
+  },
+  "figures/curves_gain.svg": {
+    "bytes": 676786,
+    "format": "SVG parsed XML"
+  },
+  "figures/curves_normalized.pdf": {
+    "bytes": 116038,
+    "format": "PDF decoded pages",
+    "pages": 1
+  },
+  "figures/curves_normalized.png": {
+    "bytes": 244432,
+    "format": "PNG",
+    "dimensions": [
+      1340,
+      1181
+    ]
+  },
+  "figures/curves_normalized.svg": {
+    "bytes": 668022,
+    "format": "SVG parsed XML"
+  },
+  "figures/curves_recall.pdf": {
+    "bytes": 116206,
+    "format": "PDF decoded pages",
+    "pages": 1
+  },
+  "figures/curves_recall.png": {
+    "bytes": 245308,
+    "format": "PNG",
+    "dimensions": [
+      1340,
+      1181
+    ]
+  },
+  "figures/curves_recall.svg": {
+    "bytes": 671957,
+    "format": "SVG parsed XML"
+  },
+  "figures/targets_batch_effort.pdf": {
+    "bytes": 62637,
+    "format": "PDF decoded pages",
+    "pages": 1
+  },
+  "figures/targets_batch_effort.png": {
+    "bytes": 197185,
+    "format": "PNG",
+    "dimensions": [
+      1589,
+      1583
+    ]
+  },
+  "figures/targets_batch_effort.svg": {
+    "bytes": 322588,
+    "format": "SVG parsed XML"
+  },
+  "figures/targets_effort.pdf": {
+    "bytes": 64192,
+    "format": "PDF decoded pages",
+    "pages": 1
+  },
+  "figures/targets_effort.png": {
+    "bytes": 198148,
+    "format": "PNG",
+    "dimensions": [
+      1589,
+      1583
+    ]
+  },
+  "figures/targets_effort.svg": {
+    "bytes": 321374,
+    "format": "SVG parsed XML"
+  },
+  "gain_curves.csv.gz": {
+    "bytes": 10136569,
+    "format": "parsed CSV",
+    "rows": 525000,
+    "columns": 10
+  },
+  "metrics_by_method.csv": {
+    "bytes": 20696,
+    "format": "parsed CSV",
+    "rows": 168,
+    "columns": 10
+  },
+  "metrics_by_run.csv": {
+    "bytes": 255746,
+    "format": "parsed CSV",
+    "rows": 2520,
+    "columns": 14
+  },
+  "metrics_by_topic.csv": {
+    "bytes": 63789,
+    "format": "parsed CSV",
+    "rows": 840,
+    "columns": 10
+  },
+  "paired_statistics.csv": {
+    "bytes": 134648,
+    "format": "parsed CSV",
+    "rows": 504,
+    "columns": 28
+  },
+  "paired_statistics_with_original_metric.csv": {
+    "bytes": 148447,
+    "format": "parsed CSV",
+    "rows": 504,
+    "columns": 30
+  },
+  "paired_topic_differences.csv": {
+    "bytes": 208918,
+    "format": "parsed CSV",
+    "rows": 2520,
+    "columns": 8
+  },
+  "population.csv": {
+    "bytes": 287,
+    "format": "parsed CSV",
+    "rows": 5,
+    "columns": 5
+  },
+  "primary_metrics_display.csv": {
+    "bytes": 539,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 4
+  },
+  "results.html": {
+    "bytes": 1923984,
+    "format": "HTML end marker"
+  },
+  "results_tables.md": {
+    "bytes": 7366,
+    "format": "decoded text"
+  },
+  "review_results.md": {
+    "bytes": 31427,
+    "format": "decoded text"
+  },
+  "scaled_recall_1R_display.csv": {
+    "bytes": 627,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 5
+  },
+  "scaled_recall_2R_display.csv": {
+    "bytes": 1174,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 5
+  },
+  "scaled_recall_4R_display.csv": {
+    "bytes": 1343,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 5
+  },
+  "target_75_display.csv": {
+    "bytes": 1115,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 6
+  },
+  "target_80_display.csv": {
+    "bytes": 1115,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 6
+  },
+  "target_90_display.csv": {
+    "bytes": 1241,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 6
+  },
+  "topic_C12_display.csv": {
+    "bytes": 857,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 8
+  },
+  "topic_C15_display.csv": {
+    "bytes": 1088,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 8
+  },
+  "topic_C16_display.csv": {
+    "bytes": 837,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 8
+  },
+  "topic_C18_display.csv": {
+    "bytes": 899,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 8
+  },
+  "topic_GCRIM_display.csv": {
+    "bytes": 918,
+    "format": "parsed CSV",
+    "rows": 7,
+    "columns": 8
+  },
+  "verification.json": {
+    "bytes": 829,
+    "format": "parsed JSON"
+  }
+}

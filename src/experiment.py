@@ -12,7 +12,8 @@ import pandas as pd
 import scipy
 import sklearn
 from .data import load_collection, ROOT
-from .learner import ReviewLearner
+from .learner import ReviewLearner, new_svm, POLICIES
+from .config import resolve_plan
 from .metrics import evaluate
 
 _X = _IDS = _TOPICS = None
@@ -24,10 +25,10 @@ def initialize():
 
 
 def simulate(task):
-    topic, random_seed, policy, budget = task
+    topic, random_seed, policy, budget, config, output_dir = task
     y = np.array([topic in s for s in _TOPICS], dtype=np.uint8)
-    seed_index = int(np.random.default_rng(random_seed).choice(np.flatnonzero(y)))
-    learner = ReviewLearner(_X, policy, random_seed)
+    learner = ReviewLearner(_X, policy, random_seed, config)
+    seed_index = int(learner.streams["seed_doc"].choice(np.flatnonzero(y)))
     learner.observe([seed_index], [1])
     order = [seed_index]
     batch_ends = [1]
@@ -48,22 +49,51 @@ def simulate(task):
     audit = {"topic": topic, "seed": random_seed, "policy": policy,
              "row_order": order, "batch_ends": batch_ends,
              "observed_labels": y[order].tolist()}
-    dest = ROOT / "results/audits"
+    dest = output_directory(output_dir) / "audits"
     dest.mkdir(parents=True, exist_ok=True)
     (dest / f"{topic}_{random_seed}_{policy}.json").write_text(json.dumps(audit))
     return result
 
 
+def output_directory(path):
+    destination = Path(path)
+    if not destination.is_absolute():
+        destination = ROOT / destination
+    destination = destination.resolve()
+    if destination == (ROOT/"results").resolve() or (ROOT/"results").resolve() in destination.parents:
+        raise ValueError("results/ is frozen v1 evidence; choose a new output directory")
+    return destination
+
+
+def write_configuration(config, destination):
+    """Record instantiated parameters without fitting a model or loading data."""
+    resolved = resolve_plan(config)
+    if any(policy not in POLICIES for policy in resolved.get("policies", [])):
+        raise ValueError("Unknown policy in plan; frozen_svm is now seed_only_frozen")
+    destination = output_directory(destination)
+    destination.mkdir(parents=True, exist_ok=True)
+    (destination/"resolved_config.json").write_text(json.dumps(resolved,indent=2)+"\n")
+    actual = {str(seed):new_svm(seed,resolved).get_params(deep=True) for seed in resolved.get("seeds",[0])}
+    (destination/"model_parameters.json").write_text(json.dumps(actual,indent=2)+"\n")
+    return resolved
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--jobs", type=int, default=2)
+    parser.add_argument("--plan", type=Path, default=ROOT/"experiment_plan_v2.json")
+    parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
-    config_path = ROOT / "experiment_plan.json"
-    config = json.loads(config_path.read_text())
+    config_path = args.plan
+    config = resolve_plan(json.loads(config_path.read_text()))
+    destination = output_directory(args.output_dir or config.get("outputs",{}).get("directory","phase2_outputs"))
+    if not config.get("inputs",{}).get("invoke_experiment",False):
+        raise ValueError("Experiment execution is disabled in this plan; Phase 3B requires separate approval")
+    config = write_configuration(config,destination)
     X, ids, topics, info = load_collection()
     print(json.dumps(info), flush=True)
     print({t: sum(t in s for s in topics) for t in config["topics"]}, flush=True)
-    jobs = [(t,s,p,config["budget"]) for t in config["topics"]
+    jobs = [(t,s,p,config["budget"],config,str(destination)) for t in config["topics"]
             for s in config["seeds"] for p in config["policies"]]
     start = time.perf_counter()
     results = []
@@ -73,14 +103,14 @@ def main():
             print(f'{len(results)}/{len(jobs)} {result["topic"]} '
                   f'{result["seed"]} {result["policy"]}: '
                   f'R@1000={result["recall_at_1000"]:.3f}', flush=True)
-            pd.DataFrame(results).to_csv(ROOT / "results/runs.csv", index=False)
+            pd.DataFrame(results).to_csv(destination / "runs.csv", index=False)
     environment = {"python": platform.python_version(), "platform": platform.platform(),
                    "numpy": np.__version__, "scipy": scipy.__version__,
                    "scikit_learn": sklearn.__version__, "pandas": pd.__version__,
                    "seconds_wall": time.perf_counter()-start, "jobs": args.jobs,
                    "plan_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
                    "data_sha256": info["sha256"], "runs": len(results)}
-    (ROOT / "results/environment.json").write_text(json.dumps(environment, indent=2)+"\n")
+    (destination / "environment.json").write_text(json.dumps(environment, indent=2)+"\n")
 
 
 if __name__ == "__main__":

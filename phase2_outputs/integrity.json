@@ -1,0 +1,18 @@
+{
+  "status": "PASSED",
+  "baseline_tag": "v1-frozen",
+  "baseline_commit": "f6045c63a4bcd1c8f2e6c5735dd4da120b706233",
+  "tagged_manifest_digests_checked": 129,
+  "unchanged_worktree_manifest_files": 127,
+  "authorized_source_changes": [
+    "src/experiment.py",
+    "src/learner.py"
+  ],
+  "original_results_unchanged": 124,
+  "original_audits_unchanged": 105,
+  "restored_final_run_files_checked": 88,
+  "unit_tests_passed": 7,
+  "experiments_run": 0,
+  "model_fits_run": 0,
+  "phase_3_started": false
+}

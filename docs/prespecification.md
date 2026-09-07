@@ -30,3 +30,8 @@ Phase 1 stops for user review. It does not implement RNG changes, rename policie
 Phase 1A was requested AFTER the approved Phase 1 results were examined. Overshoot at 75/80/90 and promotion of recall@(R+100) are outcome-informed additions. The headline shift toward committed review cost is explicitly exploratory; neither the new metric nor the schedule hypothesis was advance-prespecified. Original experiment_plan.json remains unchanged. New schedule experiments require the later Phase 3B estimate/approval gate.
 
 After the original results and percentile analysis had been observed, the user requested BCa intervals alongside percentile intervals and all five raw topic differences. Exact sign-flip remains the primary inferential statement. The material-disagreement reporting diagnostic (different zero inclusion or endpoint shift at least 25% of percentile width) was chosen before computing BCa, but AFTER original outcomes. This is not advance prespecification or proof of interval coverage. No original plan field is edited.
+
+
+## Phase 2 implementation revision
+
+The post-outcome v2 plan now names seed_only_frozen, resolves epsilon=0.1 and directs future outputs to phase2_outputs. Experiment execution remains disabled pending Phase 3B approval. Original experiment_plan.json is unchanged at v1-frozen. Exploration carry is defined over review slots in batches passing the intentional size>=10 gate; the seed and gated batches are excluded. A global one-document bound would contradict that gate. Independent RNG streams change realized trajectories, so they cannot be exactly paired with v1-frozen draws. These are implementation corrections, not newly prespecified findings.
