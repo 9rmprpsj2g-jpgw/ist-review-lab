@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "verified_runs": 105,
+  "metric_comparisons": 1470,
+  "checks": [
+    "unique review IDs",
+    "matched seeds across methods",
+    "revealed labels match source",
+    "fixed budget respected",
+    "independent precision and recall arithmetic",
+    "censored recall thresholds",
+    "batch-complete effort",
+    "WSS definition"
+  ]
+}

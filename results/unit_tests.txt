@@ -1,0 +1,11 @@
+test_csv_queue_dedup_missing_labels_and_formula_safety (test_integrity.IntegrityTests.test_csv_queue_dedup_missing_labels_and_formula_safety) ... ok
+test_effort_and_censoring (test_integrity.IntegrityTests.test_effort_and_censoring) ... ok
+test_fixed_budget_replay_deterministic (test_integrity.IntegrityTests.test_fixed_budget_replay_deterministic) ... ok
+test_no_repeated_review_and_batch_growth (test_integrity.IntegrityTests.test_no_repeated_review_and_batch_growth) ... ok
+test_temporary_negatives_do_not_become_labels (test_integrity.IntegrityTests.test_temporary_negatives_do_not_become_labels) ... ok
+test_unseen_truth_cannot_change_next_query (test_integrity.IntegrityTests.test_unseen_truth_cannot_change_next_query) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.056s
+
+OK

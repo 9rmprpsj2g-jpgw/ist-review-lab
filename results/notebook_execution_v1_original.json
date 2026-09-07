@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "executed_code_cells": 8,
+  "execution_method": "Python exec of every code cell in order, with captured real stdout",
+  "environment": "local Python 3.12.13; Colab UI not exercised"
+}

@@ -1,0 +1,25 @@
+{
+  "python": "3.12.13",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "scikit_learn": "1.8.0",
+  "pandas": "2.2.3",
+  "seconds_wall": 402.1202802539999,
+  "jobs": 2,
+  "plan_sha256": "982f5079b33a6b473ba610a42194990ce6e2c2598708eacdc49b22aaa4af4719",
+  "data_sha256": "dacf17248a805e7e168c476892e4e9c47426bec167162ac1835d41beac22073d",
+  "runs": 105,
+  "delivery_source_sha256": {
+    "src/__init__.py": "2177a20b6422f457edb4e673e61fba7c0929141e04bc8256e727877e62acf40e",
+    "src/bdr_queue.py": "afb30016bb3c3a909f0c2380c7c85e3c6294f93be925862506e0e9f25c157c3a",
+    "src/build_report.py": "4ab9a6eadb098a6c57a6858682415c352e7fc192901539a832f70be2688b30c9",
+    "src/data.py": "b35e1d43fa9a3d8dd0772958d0409286ffa7dac5ef6bf87d74bedaa1162ee1e5",
+    "src/experiment.py": "2c02cb228f9b2053d5ec39d28b7de0443afb2fe687729c43c240ce840fbb9e0e",
+    "src/learner.py": "09d56ea4a6235e43ffb32be33f3bc91f58d52b2e4daee9be5c0e1f93845dbbc2",
+    "src/metrics.py": "2833b49b349f32b1b318af56172908867c418ac152d0e39dc17b87028cffe4f5",
+    "src/replay.py": "5a83b3ae78a48202d2a3191c78d0582704791f964f85e832ee926b05923ff1af",
+    "src/summarize.py": "de64cc4a541120557d5230a0bdd023c5fd89d9d388c2eabe4bfa68f920550f82",
+    "src/verify_results.py": "e88b852f5858b5d95f3ed72b7bd13a7b8e517a0c4845e0b9b0ce8adf542342ac"
+  }
+}

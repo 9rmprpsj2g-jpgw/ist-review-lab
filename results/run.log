@@ -1,0 +1,123 @@
+{"source_url": "https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel/rcv1_topics_train.txt.bz2", "sha256": "dacf17248a805e7e168c476892e4e9c47426bec167162ac1835d41beac22073d", "rows": 23149, "features": 28454, "nnz": 1739103, "unique_token_bags": 22419, "features_fit_scope": "all unlabeled documents in the fixed review pool", "source_split": "RCV1-v2 chronological training partition, used as a review pool"}
+{'C12': 381, 'C15': 4179, 'C16': 49, 'C18': 1462, 'GCRIM': 1133}
+1/105 C12 11 random: R@1000=0.052
+2/105 C12 11 seed_similarity: R@1000=0.525
+3/105 C12 11 frozen_svm: R@1000=0.630
+4/105 C12 11 uncertainty: R@1000=0.748
+5/105 C12 11 auto_tar: R@1000=0.892
+6/105 C12 11 fixed_20: R@1000=0.898
+7/105 C12 11 explore_10: R@1000=0.885
+8/105 C12 29 random: R@1000=0.068
+9/105 C12 29 seed_similarity: R@1000=0.325
+10/105 C12 29 frozen_svm: R@1000=0.294
+11/105 C12 29 uncertainty: R@1000=0.751
+12/105 C12 29 auto_tar: R@1000=0.882
+13/105 C12 29 fixed_20: R@1000=0.892
+14/105 C12 29 explore_10: R@1000=0.885
+15/105 C12 47 random: R@1000=0.037
+16/105 C12 47 seed_similarity: R@1000=0.423
+17/105 C12 47 frozen_svm: R@1000=0.428
+18/105 C12 47 uncertainty: R@1000=0.732
+19/105 C12 47 auto_tar: R@1000=0.900
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+20/105 C12 47 fixed_20: R@1000=0.895
+21/105 C12 47 explore_10: R@1000=0.885
+22/105 C15 11 random: R@1000=0.046
+23/105 C15 11 seed_similarity: R@1000=0.208
+24/105 C15 11 frozen_svm: R@1000=0.152
+25/105 C15 11 uncertainty: R@1000=0.132
+26/105 C15 11 auto_tar: R@1000=0.237
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+27/105 C15 11 fixed_20: R@1000=0.236
+28/105 C15 11 explore_10: R@1000=0.218
+29/105 C15 29 random: R@1000=0.046
+30/105 C15 29 seed_similarity: R@1000=0.234
+31/105 C15 29 frozen_svm: R@1000=0.218
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+32/105 C15 29 uncertainty: R@1000=0.133
+33/105 C15 29 auto_tar: R@1000=0.239
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+34/105 C15 29 fixed_20: R@1000=0.239
+35/105 C15 29 explore_10: R@1000=0.221
+36/105 C15 47 random: R@1000=0.042
+37/105 C15 47 seed_similarity: R@1000=0.106
+38/105 C15 47 frozen_svm: R@1000=0.090
+39/105 C15 47 uncertainty: R@1000=0.132
+40/105 C15 47 auto_tar: R@1000=0.237
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+41/105 C15 47 fixed_20: R@1000=0.235
+42/105 C15 47 explore_10: R@1000=0.220
+43/105 C16 11 random: R@1000=0.082
+44/105 C16 11 seed_similarity: R@1000=0.163
+45/105 C16 11 frozen_svm: R@1000=0.204
+46/105 C16 11 uncertainty: R@1000=0.898
+47/105 C16 11 auto_tar: R@1000=0.898
+48/105 C16 11 fixed_20: R@1000=0.898
+49/105 C16 11 explore_10: R@1000=0.898
+50/105 C16 29 random: R@1000=0.020
+51/105 C16 29 seed_similarity: R@1000=0.143
+52/105 C16 29 frozen_svm: R@1000=0.082
+53/105 C16 29 uncertainty: R@1000=0.898
+54/105 C16 29 auto_tar: R@1000=0.898
+55/105 C16 29 fixed_20: R@1000=0.878
+56/105 C16 29 explore_10: R@1000=0.898
+57/105 C16 47 random: R@1000=0.020
+58/105 C16 47 seed_similarity: R@1000=0.633
+59/105 C16 47 frozen_svm: R@1000=0.633
+60/105 C16 47 uncertainty: R@1000=0.857
+61/105 C16 47 auto_tar: R@1000=0.857
+62/105 C16 47 fixed_20: R@1000=0.857
+63/105 C16 47 explore_10: R@1000=0.857
+64/105 C18 11 random: R@1000=0.051
+65/105 C18 11 seed_similarity: R@1000=0.256
+66/105 C18 11 frozen_svm: R@1000=0.252
+67/105 C18 11 uncertainty: R@1000=0.358
+68/105 C18 11 auto_tar: R@1000=0.581
+69/105 C18 11 fixed_20: R@1000=0.584
+70/105 C18 11 explore_10: R@1000=0.541
+71/105 C18 29 random: R@1000=0.048
+72/105 C18 29 seed_similarity: R@1000=0.186
+73/105 C18 29 frozen_svm: R@1000=0.221
+74/105 C18 29 uncertainty: R@1000=0.359
+75/105 C18 29 auto_tar: R@1000=0.577
+76/105 C18 29 fixed_20: R@1000=0.581
+77/105 C18 29 explore_10: R@1000=0.544
+78/105 C18 47 random: R@1000=0.046
+79/105 C18 47 seed_similarity: R@1000=0.060
+80/105 C18 47 frozen_svm: R@1000=0.080
+81/105 C18 47 uncertainty: R@1000=0.355
+82/105 C18 47 auto_tar: R@1000=0.578
+83/105 C18 47 fixed_20: R@1000=0.577
+84/105 C18 47 explore_10: R@1000=0.531
+85/105 GCRIM 11 random: R@1000=0.054
+86/105 GCRIM 11 seed_similarity: R@1000=0.444
+87/105 GCRIM 11 frozen_svm: R@1000=0.433
+88/105 GCRIM 11 uncertainty: R@1000=0.427
+89/105 GCRIM 11 auto_tar: R@1000=0.734
+90/105 GCRIM 11 fixed_20: R@1000=0.748
+91/105 GCRIM 11 explore_10: R@1000=0.692
+92/105 GCRIM 29 random: R@1000=0.051
+93/105 GCRIM 29 seed_similarity: R@1000=0.095
+94/105 GCRIM 29 frozen_svm: R@1000=0.126
+95/105 GCRIM 29 uncertainty: R@1000=0.435
+96/105 GCRIM 29 auto_tar: R@1000=0.722
+97/105 GCRIM 29 fixed_20: R@1000=0.716
+98/105 GCRIM 29 explore_10: R@1000=0.679
+99/105 GCRIM 47 random: R@1000=0.038
+100/105 GCRIM 47 seed_similarity: R@1000=0.286
+101/105 GCRIM 47 frozen_svm: R@1000=0.316
+102/105 GCRIM 47 uncertainty: R@1000=0.439
+103/105 GCRIM 47 auto_tar: R@1000=0.732
+104/105 GCRIM 47 fixed_20: R@1000=0.726
+105/105 GCRIM 47 explore_10: R@1000=0.687

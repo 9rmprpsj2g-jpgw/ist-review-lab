@@ -1,0 +1,19 @@
+{
+  "status": "PASSED",
+  "phase": "1A analysis amendment; awaiting review before Phase 2",
+  "learning_experiments_run": 0,
+  "ground_truth_fixtures_computed": false,
+  "protected_digests_unchanged": 129,
+  "existing_metric_records_identical": 2520,
+  "overshoot_records_checked": 315,
+  "metric_records": 2835,
+  "contrast_records": 567,
+  "checks": [
+    "archived input validation",
+    "unchanged original metric CSV fields",
+    "overshoot component identity and censoring",
+    "protected digests"
+  ],
+  "analysis_seed": 20260907,
+  "report_sha256": "84240422c86bb6dae2f63a253d30df3d01de49a6d749c71491ac4f614734b3c3"
+}

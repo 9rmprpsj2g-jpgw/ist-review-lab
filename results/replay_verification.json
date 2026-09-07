@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "topic": "C12",
+  "seed": 11,
+  "policy": "auto_tar",
+  "identical_review_positions": 5000,
+  "reference_preserved": true
+}

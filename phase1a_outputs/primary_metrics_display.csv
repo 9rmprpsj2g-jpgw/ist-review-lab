@@ -1,0 +1,8 @@
+method,recall_at_R,recall_at_1R_plus_100,recall_at_1000,recall_at_2R
+random,7.07%,7.38%,4.68%,CENSORED | PARTIAL 7.38% (4/5; excludes C15)
+seed_similarity,26.62%,28.97%,27.24%,CENSORED | PARTIAL 29.67% (4/5; excludes C15)
+frozen_svm,25.76%,28.33%,27.73%,CENSORED | PARTIAL 32.27% (4/5; excludes C15)
+uncertainty,40.67%,45.03%,51.02%,CENSORED | PARTIAL 58.23% (4/5; excludes C15)
+auto_tar,65.27%,69.36%,66.43%,CENSORED | PARTIAL 73.89% (4/5; excludes C15)
+fixed_20,64.64%,70.42%,66.40%,CENSORED | PARTIAL 74.16% (4/5; excludes C15)
+explore_10,63.11%,67.29%,64.26%,CENSORED | PARTIAL 73.19% (4/5; excludes C15)

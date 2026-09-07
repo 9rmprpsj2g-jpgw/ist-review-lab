@@ -1,0 +1,13 @@
+{
+  "as_of": "2026-09-07",
+  "seed": 11,
+  "reviewed": 4,
+  "positives": 2,
+  "negatives": 2,
+  "unreviewed": 20,
+  "returned": 20,
+  "duplicate_exclusions": [],
+  "score_meaning": "Uncalibrated SVM ranking margin, not probability of buying",
+  "adaptation": "Class-balanced SVM using confirmed labels only; no temporary negatives for small operational queues",
+  "scope": "Prototype ranked by supplied text and reviewer labels; dates are displayed, not used in ranking; no IST outcome validation"
+}
