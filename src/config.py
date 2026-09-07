@@ -47,6 +47,6 @@ def resolve_plan(plan=None):
     config["epsilon"] = epsilon
     audit = config.setdefault("audit", {"margin_scope": "full"})
     audit.setdefault("margin_scope", "full")
-    if audit["margin_scope"] != "full":
-        raise ValueError("Only full candidate margins are authorized; truncation requires an explicit design approval")
+    if audit["margin_scope"] not in ("full", "top_1000_plus_selected"):
+        raise ValueError("margin_scope must be full or top_1000_plus_selected")
     return config

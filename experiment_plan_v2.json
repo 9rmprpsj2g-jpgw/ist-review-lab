@@ -130,5 +130,8 @@
     "directory": "phase2_outputs",
     "notebook": "notebooks/01_results.ipynb"
   },
-  "epsilon": 0.1
+  "epsilon": 0.1,
+  "audit": {
+    "margin_scope": "top_1000_plus_selected"
+  }
 }

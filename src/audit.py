@@ -2,8 +2,8 @@
 from copy import deepcopy
 
 
-def seed_round(row, batch_size):
-    return dict(round_index=0, fit_index=None, fit=None, candidate_margins=None,
+def seed_round(row, batch_size, margin_scope="full", candidate_count=None):
+    return dict(margin_scope=margin_scope, candidate_count=candidate_count, round_index=0, fit_index=None, fit=None, candidate_margins=None,
                 margin_unavailable_reason="seed_before_ranking", selected_rows=[int(row)],
                 selection_operators=["seed"], batch_size_before_growth=batch_size,
                 batch_size_after_growth=batch_size)
@@ -12,6 +12,8 @@ def seed_round(row, batch_size):
 def externalize_round(record, document_ids):
     """Preserve numeric ranking rows and their external string identities."""
     record = deepcopy(record)
+    if record["round_index"] == 0 and record["candidate_count"] is None:
+        record["candidate_count"] = len(document_ids)-len(record["selected_rows"])
     record["selected_document_ids"] = [str(document_ids[r]) for r in record["selected_rows"]]
     fit = record["fit"]
     record["temporary_negative_document_ids"] = ([] if fit is None else

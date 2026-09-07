@@ -31,7 +31,7 @@ def simulate(task):
     learner = ReviewLearner(_X, policy, random_seed, config)
     seed_index = int(learner.streams["seed_doc"].choice(np.flatnonzero(y)))
     learner.observe([seed_index], [1])
-    rounds = [externalize_round(seed_round(seed_index, learner.batch_size), _IDS)]
+    rounds = [externalize_round(seed_round(seed_index, learner.batch_size, learner.config["audit"]["margin_scope"], len(y)-1), _IDS)]
     order = [seed_index]
     batch_ends = [1]
     start = time.perf_counter()

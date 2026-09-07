@@ -24,3 +24,11 @@ Fixed-20 has 250 query rounds at 5,000 and 1,158 at census, including the clippe
 ## Deferred
 
 Numeric-row versus lexical-string-ID tie order still blocks exact TARexp matching. Exploit-first/explore-last remains a within-batch confound; tail/global sampling is not implemented. Probability-based stopping belongs to a distinct future logistic-regression arm. Phase 3B requires separate compute estimates and approval before any experiment, schedule sweep or census run.
+
+## Approved margin scope amendment
+
+The default for API callers remains full for compatibility. experiment_plan_v2.json explicitly chooses audit.margin_scope="top_1000_plus_selected". Both values are accepted. Every query round records margin_scope and candidate_count before selection. Round zero records the same configured scope and N−1 unreviewed documents after the supplied seed; it is not a scored candidate set. Retained rows stay in numeric candidate order; membership is the union of the first 1,000 under the policy's actual ranking and all selected rows. Uncertainty therefore uses closeness to zero for membership while logging raw signed margins. Exploration selections outside the top 1,000 are retained. No ranking, tie-breaking or selection behavior changes.
+
+This supersedes the earlier full-only restriction and unapproved top-N proposal. Full-pool margin distribution analysis is no longer available directly in truncated audit files. Refit-based recovery requires the same feature matrix, ordered training set (recoverable from prior selections, observed_labels and temporary-negative rows), parameters, RNG/environment and solver behavior. Exact margin regeneration is not tested here and cross-platform bit identity is not guaranteed.
+
+The user's rationale that every study batch is below 1,000 does not extend to census: the arithmetic maximum actual batch is 2,070 for 10% growth, 1,096 for 5%, and 3,373 for 20%. All-selected retention covers these. Logged top/selected scores permit internal consistency checks but cannot independently establish that no omitted score exceeds the cutoff. That stronger check needs recomputation or full scores; even a purported top-N list relies on correct instrumentation. Selection replay is unchanged and does not depend on scores.

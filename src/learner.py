@@ -133,12 +133,21 @@ class ReviewLearner:
             selected = ranked[:size]
         if self.policy != "fixed_20":
             self.batch_size += math.ceil(self.batch_size / 10)
+        margins = self.candidate_margins
+        scope = self.config["audit"]["margin_scope"]
+        if margins is not None and scope == "top_1000_plus_selected":
+            retained = set(ranked[:1000].tolist()) | set(selected.tolist())
+            positions = [i for i, row in enumerate(margins["rows"]) if row in retained]
+            margins = {"rows": [margins["rows"][i] for i in positions],
+                       "values": [margins["values"][i] for i in positions]}
         self.round_count += 1
         self.last_round = {
             "round_index": self.round_count,
             "fit_index": self.fit_count or None,
             "fit": deepcopy(self.last_fit) if self.fit_count != previous_fit else None,
-            "candidate_margins": self.candidate_margins,
+            "candidate_margins": margins,
+            "margin_scope": scope,
+            "candidate_count": len(ranked),
             "margin_unavailable_reason": (
                 "policy_has_no_svm" if self.policy in ("random", "seed_similarity") else None),
             "selected_rows": selected.tolist(),

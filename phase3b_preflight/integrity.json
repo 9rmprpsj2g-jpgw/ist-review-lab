@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "protected_files": 125,
+  "baseline": "86fbf4d5c7230dde21083253121aa841879906a2",
+  "experiment_runs": 0,
+  "actual_model_fits": 0,
+  "tests_passed": 11
+}
