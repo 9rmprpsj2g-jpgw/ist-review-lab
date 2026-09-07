@@ -1,0 +1,181 @@
+{
+  "runs_checked": 105,
+  "fits_checked": 5880,
+  "nonconverged_fits": 8,
+  "affected_runs": 6,
+  "counts": [
+    {
+      "topic": "C15",
+      "policy": "auto_tar",
+      "count": 1
+    },
+    {
+      "topic": "C15",
+      "policy": "fixed_20",
+      "count": 4
+    },
+    {
+      "topic": "C15",
+      "policy": "uncertainty",
+      "count": 3
+    }
+  ],
+  "failures": [
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "uncertainty",
+      "fit_index": 9,
+      "round_index": 9,
+      "labeled_prefix_end": 37,
+      "n_iter": 10000,
+      "effort_at_75": null,
+      "precedes_75_target": null,
+      "effort_at_80": null,
+      "precedes_80_target": null,
+      "effort_at_90": null,
+      "precedes_90_target": null
+    },
+    {
+      "topic": "C15",
+      "seed": 11,
+      "policy": "fixed_20",
+      "fit_index": 209,
+      "round_index": 209,
+      "labeled_prefix_end": 4161,
+      "n_iter": 10000,
+      "effort_at_75": 3223.0,
+      "precedes_75_target": false,
+      "effort_at_80": 3491.0,
+      "precedes_80_target": false,
+      "effort_at_90": 4283.0,
+      "precedes_90_target": true
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "uncertainty",
+      "fit_index": 40,
+      "round_index": 40,
+      "labeled_prefix_end": 2317,
+      "n_iter": 10000,
+      "effort_at_75": null,
+      "precedes_75_target": null,
+      "effort_at_80": null,
+      "precedes_80_target": null,
+      "effort_at_90": null,
+      "precedes_90_target": null
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "uncertainty",
+      "fit_index": 47,
+      "round_index": 47,
+      "labeled_prefix_end": 4698,
+      "n_iter": 10000,
+      "effort_at_75": null,
+      "precedes_75_target": null,
+      "effort_at_80": null,
+      "precedes_80_target": null,
+      "effort_at_90": null,
+      "precedes_90_target": null
+    },
+    {
+      "topic": "C15",
+      "seed": 29,
+      "policy": "fixed_20",
+      "fit_index": 250,
+      "round_index": 250,
+      "labeled_prefix_end": 4981,
+      "n_iter": 10000,
+      "effort_at_75": 3219.0,
+      "precedes_75_target": false,
+      "effort_at_80": 3478.0,
+      "precedes_80_target": false,
+      "effort_at_90": 4262.0,
+      "precedes_90_target": false
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "auto_tar",
+      "fit_index": 47,
+      "round_index": 47,
+      "labeled_prefix_end": 4698,
+      "n_iter": 10000,
+      "effort_at_75": 3312.0,
+      "precedes_75_target": false,
+      "effort_at_80": 3638.0,
+      "precedes_80_target": false,
+      "effort_at_90": 4467.0,
+      "precedes_90_target": false
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "fixed_20",
+      "fit_index": 221,
+      "round_index": 221,
+      "labeled_prefix_end": 4401,
+      "n_iter": 10000,
+      "effort_at_75": 3235.0,
+      "precedes_75_target": false,
+      "effort_at_80": 3479.0,
+      "precedes_80_target": false,
+      "effort_at_90": 4310.0,
+      "precedes_90_target": false
+    },
+    {
+      "topic": "C15",
+      "seed": 47,
+      "policy": "fixed_20",
+      "fit_index": 247,
+      "round_index": 247,
+      "labeled_prefix_end": 4921,
+      "n_iter": 10000,
+      "effort_at_75": 3235.0,
+      "precedes_75_target": false,
+      "effort_at_80": 3479.0,
+      "precedes_80_target": false,
+      "effort_at_90": 4310.0,
+      "precedes_90_target": false
+    }
+  ],
+  "overshoot_interpretation": "Among auto_tar and fixed_20, no flagged fit precedes a 75% or 80% target. C15/11/fixed_20 fit 209 follows 4161 reviews and precedes the 90% crossing at 4283 (committed 4301); the 90% trajectory therefore includes an upstream non-converged fit. A fully converged counterfactual outcome is unknown.",
+  "original_log_sha256": "e514642a2b60afcf9b0fefd30116cabc286fb1226e8d9984483e56380b30c51a",
+  "original_warning_lines": [
+    {
+      "line": 22,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 24,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 33,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 40,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 44,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 46,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 55,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    },
+    {
+      "line": 57,
+      "text": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/svm/_base.py:1258: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations."
+    }
+  ]
+}

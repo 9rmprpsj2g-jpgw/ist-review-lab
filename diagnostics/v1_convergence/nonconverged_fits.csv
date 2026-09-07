@@ -1,0 +1,9 @@
+topic,seed,policy,fit_index,round_index,labeled_prefix_end,n_iter,effort_at_75,precedes_75_target,effort_at_80,precedes_80_target,effort_at_90,precedes_90_target
+C15,11,uncertainty,9,9,37,10000,,,,,,
+C15,11,fixed_20,209,209,4161,10000,3223.0,False,3491.0,False,4283.0,True
+C15,29,uncertainty,40,40,2317,10000,,,,,,
+C15,29,uncertainty,47,47,4698,10000,,,,,,
+C15,29,fixed_20,250,250,4981,10000,3219.0,False,3478.0,False,4262.0,False
+C15,47,auto_tar,47,47,4698,10000,3312.0,False,3638.0,False,4467.0,False
+C15,47,fixed_20,221,221,4401,10000,3235.0,False,3479.0,False,4310.0,False
+C15,47,fixed_20,247,247,4921,10000,3235.0,False,3479.0,False,4310.0,False
