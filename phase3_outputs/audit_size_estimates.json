@@ -1,0 +1,133 @@
+{
+  "kind": "structural estimate, not a measured run",
+  "collection_size": 23149,
+  "assumptions": "24\u201348 bytes per margin entry; 80\u2013160 per reviewed document; 400\u2013800 per round; 3000\u20136000 per fit. External IDs <=12 ASCII characters. Uncompressed JSON; Python RAM usage may be substantially larger.",
+  "runs": [
+    {
+      "policy": "random",
+      "budget": 5000,
+      "query_rounds": 47,
+      "fits": 0,
+      "candidate_margin_entries": 0,
+      "estimated_bytes_low": 418800,
+      "estimated_bytes_high": 837600
+    },
+    {
+      "policy": "random",
+      "budget": 23149,
+      "query_rounds": 63,
+      "fits": 0,
+      "candidate_margin_entries": 0,
+      "estimated_bytes_low": 1877120,
+      "estimated_bytes_high": 3754240
+    },
+    {
+      "policy": "seed_similarity",
+      "budget": 5000,
+      "query_rounds": 47,
+      "fits": 0,
+      "candidate_margin_entries": 0,
+      "estimated_bytes_low": 418800,
+      "estimated_bytes_high": 837600
+    },
+    {
+      "policy": "seed_similarity",
+      "budget": 23149,
+      "query_rounds": 63,
+      "fits": 0,
+      "candidate_margin_entries": 0,
+      "estimated_bytes_low": 1877120,
+      "estimated_bytes_high": 3754240
+    },
+    {
+      "policy": "seed_only_frozen",
+      "budget": 5000,
+      "query_rounds": 47,
+      "fits": 1,
+      "candidate_margin_entries": 1041653,
+      "estimated_bytes_low": 25421472,
+      "estimated_bytes_high": 50842944
+    },
+    {
+      "policy": "seed_only_frozen",
+      "budget": 23149,
+      "query_rounds": 63,
+      "fits": 1,
+      "candidate_margin_entries": 1220622,
+      "estimated_bytes_low": 31175048,
+      "estimated_bytes_high": 62350096
+    },
+    {
+      "policy": "uncertainty",
+      "budget": 5000,
+      "query_rounds": 47,
+      "fits": 47,
+      "candidate_margin_entries": 1041653,
+      "estimated_bytes_low": 25559472,
+      "estimated_bytes_high": 51118944
+    },
+    {
+      "policy": "uncertainty",
+      "budget": 23149,
+      "query_rounds": 63,
+      "fits": 63,
+      "candidate_margin_entries": 1220622,
+      "estimated_bytes_low": 31361048,
+      "estimated_bytes_high": 62722096
+    },
+    {
+      "policy": "auto_tar",
+      "budget": 5000,
+      "query_rounds": 47,
+      "fits": 47,
+      "candidate_margin_entries": 1041653,
+      "estimated_bytes_low": 25559472,
+      "estimated_bytes_high": 51118944
+    },
+    {
+      "policy": "auto_tar",
+      "budget": 23149,
+      "query_rounds": 63,
+      "fits": 63,
+      "candidate_margin_entries": 1220622,
+      "estimated_bytes_low": 31361048,
+      "estimated_bytes_high": 62722096
+    },
+    {
+      "policy": "fixed_20",
+      "budget": 5000,
+      "query_rounds": 250,
+      "fits": 250,
+      "candidate_margin_entries": 5164500,
+      "estimated_bytes_low": 125198000,
+      "estimated_bytes_high": 250396000
+    },
+    {
+      "policy": "fixed_20",
+      "budget": 23149,
+      "query_rounds": 1158,
+      "fits": 1158,
+      "candidate_margin_entries": 13407324,
+      "estimated_bytes_low": 327564896,
+      "estimated_bytes_high": 655129792
+    },
+    {
+      "policy": "explore_10",
+      "budget": 5000,
+      "query_rounds": 47,
+      "fits": 47,
+      "candidate_margin_entries": 1041653,
+      "estimated_bytes_low": 25559472,
+      "estimated_bytes_high": 51118944
+    },
+    {
+      "policy": "explore_10",
+      "budget": 23149,
+      "query_rounds": 63,
+      "fits": 63,
+      "candidate_margin_entries": 1220622,
+      "estimated_bytes_low": 31361048,
+      "estimated_bytes_high": 62722096
+    }
+  ]
+}

@@ -15,6 +15,7 @@ from .data import load_collection, ROOT
 from .learner import ReviewLearner, new_svm, POLICIES
 from .config import resolve_plan
 from .metrics import evaluate
+from .audit import seed_round, externalize_round, replay_row_order
 
 _X = _IDS = _TOPICS = None
 
@@ -30,6 +31,7 @@ def simulate(task):
     learner = ReviewLearner(_X, policy, random_seed, config)
     seed_index = int(learner.streams["seed_doc"].choice(np.flatnonzero(y)))
     learner.observe([seed_index], [1])
+    rounds = [externalize_round(seed_round(seed_index, learner.batch_size), _IDS)]
     order = [seed_index]
     batch_ends = [1]
     start = time.perf_counter()
@@ -38,6 +40,7 @@ def simulate(task):
         learner.observe(batch, y[batch])
         order.extend(batch.tolist())
         batch_ends.append(len(order))
+        rounds.append(externalize_round(learner.last_round, _IDS))
     result = evaluate(order, y)
     result.update(topic=topic, seed=random_seed, policy=policy,
                   seed_doc_id=_IDS[seed_index], fits=learner.fit_count,
@@ -46,12 +49,15 @@ def simulate(task):
         exact = result[f"effort_at_{target}"]
         result[f"batch_effort_at_{target}"] = (
             next(b for b in batch_ends if b >= exact) if exact else None)
-    audit = {"topic": topic, "seed": random_seed, "policy": policy,
+    audit = {"schema_version": 3, "audit_config": learner.config["audit"],
+             "rounds": rounds, "topic": topic, "seed": random_seed, "policy": policy,
              "row_order": order, "batch_ends": batch_ends,
              "observed_labels": y[order].tolist()}
+    if replay_row_order(audit) != order:
+        raise AssertionError("Audit-only replay differs from observed row order")
     dest = output_directory(output_dir) / "audits"
     dest.mkdir(parents=True, exist_ok=True)
-    (dest / f"{topic}_{random_seed}_{policy}.json").write_text(json.dumps(audit))
+    (dest / f"{topic}_{random_seed}_{policy}.json").write_text(json.dumps(audit, allow_nan=False))
     return result
 
 

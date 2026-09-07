@@ -4,8 +4,9 @@ import math
 from sklearn.svm import LinearSVC
 
 SVM_DEFAULTS = dict(C=1.0, loss="hinge", dual=True, tol=1e-4, max_iter=10000)
-PLAN_FIELDS = set("status topics seeds policies budget primary_metric secondary_metrics svm seeding topic_selection temporary_negatives inference stopping extensions revision metric_parameters inputs analysis censoring deferred_phase_3_exit_criteria withdrawn_exploration_option outputs epsilon".split())
+PLAN_FIELDS = set("status topics seeds policies budget primary_metric secondary_metrics svm seeding topic_selection temporary_negatives inference stopping extensions revision metric_parameters inputs analysis censoring deferred_phase_3_exit_criteria withdrawn_exploration_option outputs epsilon audit".split())
 NESTED_FIELDS = {
+    "audit": {"margin_scope"},
     "extensions": set("fixed_20 explore_10".split()),
     "revision": set("date_utc timing reason historical_plan original_primary_metric original_primary_metric_always_reported phase original_plan_sha256".split()),
     "metric_parameters": set("a b target_recalls scaled_cutoff_clamp recall_at_R_cutoff original_fixed_cutoff".split()),
@@ -44,4 +45,8 @@ def resolve_plan(plan=None):
     if isinstance(epsilon, bool) or not isinstance(epsilon, (int,float)) or not math.isfinite(epsilon) or not 0 <= epsilon <= 1:
         raise ValueError("epsilon must be finite and between 0 and 1")
     config["epsilon"] = epsilon
+    audit = config.setdefault("audit", {"margin_scope": "full"})
+    audit.setdefault("margin_scope", "full")
+    if audit["margin_scope"] != "full":
+        raise ValueError("Only full candidate margins are authorized; truncation requires an explicit design approval")
     return config

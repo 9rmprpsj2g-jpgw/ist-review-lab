@@ -5,6 +5,8 @@ The SVM implementation is an explicit deviation from the paper's SVMlight.
 """
 import math
 import hashlib
+import time
+from copy import deepcopy
 from fractions import Fraction
 import numpy as np
 from sklearn.svm import LinearSVC
@@ -43,6 +45,10 @@ class ReviewLearner:
         self.model = None
         self.last_temporary = np.array([], dtype=int)
         self.fit_count = 0
+        self.last_fit = None
+        self.last_round = None
+        self.round_count = 0
+        self.candidate_margins = None
 
     def observe(self, indices, labels):
         indices, labels = list(indices), list(labels)
@@ -75,14 +81,24 @@ class ReviewLearner:
         if len(np.unique(train_y)) < 2:
             raise ValueError("No unreviewed or confirmed negative examples remain.")
         self.model = new_svm(self.seed, self.config)
-        self.model.fit(self.X[train_ids], train_y)
+        train_X = self.X[train_ids]
+        parameters = deepcopy(self.model.get_params(deep=True))
+        started = time.perf_counter()
+        self.model.fit(train_X, train_y)
+        elapsed = time.perf_counter() - started
         self.fit_count += 1
+        self.last_fit = {"fit_index": self.fit_count,
+                         "temporary_negative_rows": self.last_temporary.tolist(),
+                         "model_parameters": parameters, "fit_seconds": elapsed}
 
     def rank(self):
+        self.candidate_margins = None
         candidates = self.remaining()
         if not len(candidates):
             return candidates
         if self.policy == "random":
+            # Exclusive consumer: random and explore_10 cannot coexist in a run.
+            # Retain the Phase 2 stream to preserve its realized trajectories.
             return self.streams["exploration"].permutation(candidates)
         if self.policy == "seed_similarity":
             seed_id = next(i for i, v in self.labels.items() if v == 1)
@@ -91,13 +107,18 @@ class ReviewLearner:
             if self.model is None or self.policy != "seed_only_frozen":
                 self.fit()
             scores = self.model.decision_function(self.X[candidates])
+            self.candidate_margins = {"rows": candidates.tolist(),
+                                      "values": scores.tolist()}
             if self.policy == "uncertainty":
                 scores = -np.abs(scores)
         # Fixed row-index tie-breaking, independent of relevance labels.
         return candidates[np.lexsort((candidates, -scores))]
 
     def query(self, limit):
+        before = self.batch_size
+        previous_fit = self.fit_count
         ranked = self.rank()
+        n_explore = 0
         size = min(self.batch_size, int(limit), len(ranked))
         if self.policy == "explore_10" and size >= 10:
             # Carry applies to eligible review slots only. The intentional gate
@@ -112,4 +133,18 @@ class ReviewLearner:
             selected = ranked[:size]
         if self.policy != "fixed_20":
             self.batch_size += math.ceil(self.batch_size / 10)
+        self.round_count += 1
+        self.last_round = {
+            "round_index": self.round_count,
+            "fit_index": self.fit_count or None,
+            "fit": deepcopy(self.last_fit) if self.fit_count != previous_fit else None,
+            "candidate_margins": self.candidate_margins,
+            "margin_unavailable_reason": (
+                "policy_has_no_svm" if self.policy in ("random", "seed_similarity") else None),
+            "selected_rows": selected.tolist(),
+            "selection_operators": (["random"] * size if self.policy == "random" else
+                                    ["exploit"] * (size-n_explore) + ["explore"] * n_explore),
+            "batch_size_before_growth": before,
+            "batch_size_after_growth": self.batch_size,
+        }
         return selected
