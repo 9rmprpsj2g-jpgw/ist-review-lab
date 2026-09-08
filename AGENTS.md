@@ -169,3 +169,7 @@ the only test worth publishing at this sample size. Percentile and BCa
 intervals are sensitivity analyses; report both and treat disagreement
 as evidence the interval is untrustworthy. Always report the number of
 nonzero pairs alongside any p-value.
+
+## Mandatory phase-gate log inspection
+
+Every phase gate must inspect run logs and captured warnings, not only test results and numerical outputs. A passing test suite is not evidence that nothing went wrong. Record the logs inspected and any warnings, their attribution where known, and their resolution or explicit unresolved status before reporting the gate. Do not infer absence of warnings from a log tail or from successful exit status.

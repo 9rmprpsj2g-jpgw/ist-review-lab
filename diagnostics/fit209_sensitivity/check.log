@@ -1,0 +1,57 @@
+{
+  "status": "COMPLETE",
+  "intervention": "Only fit 209 max_iter changes to 100000; subsequent fits retain original 10000.",
+  "topic": "C15",
+  "seed": 11,
+  "policy": "fixed_20",
+  "fit_index": 209,
+  "reviewed_before_fit": 4161,
+  "candidates": 18988,
+  "baseline": {
+    "max_iter": 10000,
+    "n_iter": 10000,
+    "convergence_warning": true,
+    "warnings": [
+      {
+        "category": "ConvergenceWarning",
+        "message": "Liblinear failed to converge, increase the number of iterations."
+      }
+    ]
+  },
+  "probe": {
+    "max_iter": 100000,
+    "n_iter": 10190,
+    "convergence_warning": false,
+    "warnings": []
+  },
+  "original_parameters": {
+    "C": 1.0,
+    "class_weight": null,
+    "dual": true,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "loss": "hinge",
+    "max_iter": 10000,
+    "multi_class": "ovr",
+    "penalty": "l2",
+    "random_state": 11,
+    "tol": 0.0001,
+    "verbose": 0
+  },
+  "archive_sha256": "745b1e686b183a003ecfd93d9ad614b619540f5dea8379eec87c5a1e066325bb",
+  "ledger_sha256": "a78e7fce175e6007625c1c202607e514829ace425bc2de491ef7639e17e5b159",
+  "spearman_rank_correlation": 0.999999929314762,
+  "removed_rows": [],
+  "added_rows": [],
+  "ordered_batch_positions_changed": 0,
+  "ordered_batch_identical": true,
+  "downstream_fits": 41,
+  "downstream_nonconverged_fits": 0,
+  "complete_row_order_identical": true,
+  "review_positions_changed": 0,
+  "effort_at_90": 4283,
+  "batch_effort_at_90": 4301,
+  "original_effort_at_90": 4283.0,
+  "original_batch_effort_at_90": 4301.0,
+  "isolated_change_in_five_topic_three_seed_mean_contrast": -0.0
+}

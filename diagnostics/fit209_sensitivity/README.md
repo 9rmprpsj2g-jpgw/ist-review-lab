@@ -1,0 +1,9 @@
+# Isolated v1 fit-209 sensitivity
+
+Only C15/11/fixed_20 fit 209 was given a larger numerical ceiling: 100,000 instead of 10,000. The observed solver stop was 10,190 iterations with no convergence warning; 100,000 is not a claimed requirement or a new experiment setting. The original fit was separately reconstructed, reproducing its 10,000 iterations, warning and exact archived batch. The training row/label order, temporary negatives, seed and every other model parameter were identical between fits.
+
+Full-candidate Spearman correlation: 0.999999929314762 (18,988 candidates, tie-aware average ranks). The top-20 batch changed by zero replacements, zero symmetric-difference documents and zero ordered positions. Candidate rows and both raw margin vectors are preserved in the evidence NPZ. Correlation alone is not the outcome check.
+
+All 41 remaining fits were replayed under the original 10,000 limit, after advancing the original RNG through the first 209 temporary-negative draws and checking every draw against its previous reconstruction. Subsequent fits emitted no convergence warnings. The entire 5,000-position row_order was exactly identical, including the remainder. Exact effort at 90% stayed 4,283 and committed effort stayed 4,301. Thus this isolated intervention changes the five-topic/three-seed auto_tar-minus-fixed_20 committed-effort contrast by zero documents. This is an observed identity, not equivalence inferred from a nonsignificant test.
+
+The comparison isolates completing fit 209. It is not an all-fits reoptimization, does not resolve other capped fits, and does not determine an adequate census iteration limit. That investigation, production convergence logging, plan revisions and full rerun await approval. No Phase 4 analysis occurred. Historical results remain unchanged and their limitation remains disclosed in RESULTS.md, followed by this explicitly subsequent diagnostic.

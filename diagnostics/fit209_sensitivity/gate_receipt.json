@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETE",
+  "protected_file_integrity": "PASS",
+  "protected_files_checked": 126,
+  "logs_inspected": [
+    {
+      "path": "results/run.log",
+      "sha256": "e514642a2b60afcf9b0fefd30116cabc286fb1226e8d9984483e56380b30c51a",
+      "historical_convergence_warning_messages": 8
+    },
+    {
+      "path": "diagnostics/fit209_sensitivity/check.log",
+      "sha256": "6db837384f64fea4f71763f62e97eebc661e3515aa5e8820263a82b7163978ab",
+      "baseline_warning_status": "Known v1 warning reproduced; expected control observation",
+      "probe_warnings": [],
+      "downstream_warning_categories": {}
+    }
+  ],
+  "data_files": [
+    {
+      "path": "audit_store/fit209_sensitivity/candidate_margins.npz",
+      "sha256": "35c0f9d18ad454abd1d06ccca79e492349d8061211f307efb472c693b348d536",
+      "bytes": 311382
+    },
+    {
+      "path": "audit_store/fit209_sensitivity/replayed_trajectory.json",
+      "sha256": "44239177e1ff06284b2e034bcd048e72e1ed641e30f782e08e08738ddff83f96",
+      "bytes": 82269
+    }
+  ],
+  "unresolved": "Other seven v1 capped fits and census-wide max_iter adequacy; no new full-grid approval",
+  "plan_or_production_parameter_changes": false
+}
