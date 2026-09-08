@@ -1,0 +1,112 @@
+{
+  "rounds": 47,
+  "seed_reviews": 1,
+  "final_batch_actual": 302,
+  "runs": [
+    {
+      "run": "C12_11_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C12_29_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C12_47_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C15_11_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C15_29_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C15_47_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C16_11_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C16_29_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C16_47_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C18_11_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C18_29_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "C18_47_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "GCRIM_11_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "GCRIM_29_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    },
+    {
+      "run": "GCRIM_47_auto_tar",
+      "audit_fit_count": null,
+      "runs_csv_fits": 47,
+      "audit_rounds": 47,
+      "boundaries_match": true
+    }
+  ]
+}

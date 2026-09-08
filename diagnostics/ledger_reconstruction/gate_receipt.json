@@ -1,0 +1,79 @@
+{
+  "comparisons": [
+    {
+      "run": "C12_11_auto_tar",
+      "old_is_exact_prefix": true,
+      "missing_fit_indices": [],
+      "captured_warnings": []
+    },
+    {
+      "run": "C12_47_auto_tar",
+      "old_is_exact_prefix": true,
+      "missing_fit_indices": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "captured_warnings": []
+    },
+    {
+      "run": "C16_47_auto_tar",
+      "old_is_exact_prefix": true,
+      "missing_fit_indices": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "captured_warnings": []
+    }
+  ],
+  "protected_diff": [],
+  "log_inspected": "diagnostics/ledger_reconstruction/reconstruct.log",
+  "log_sha256": "fcc430eed4c268f847d3a63a73c0cc41280ba96b6b66870de56ccc222c03d2e5",
+  "archive_prefix_comparisons": [
+    {
+      "run": "C12_11_auto_tar",
+      "archived_deficient_is_exact_prefix": true,
+      "archived_records": 41,
+      "current_old_records": 41,
+      "current_old_sha256": "0dfc6cd307d6c7bd27191c2108d8104d8f17a10b24ac0adfa09e5483e8e75d58",
+      "missing_archive_fit_indices": []
+    },
+    {
+      "run": "C12_47_auto_tar",
+      "archived_deficient_is_exact_prefix": true,
+      "archived_records": 42,
+      "current_old_records": 42,
+      "current_old_sha256": "8ef36b757fe12cafc4b30258cd0a00aaad5bef70a6ba62618d7801cddd0e4065",
+      "missing_archive_fit_indices": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ]
+    },
+    {
+      "run": "C16_47_auto_tar",
+      "archived_deficient_is_exact_prefix": true,
+      "archived_records": 40,
+      "current_old_records": 40,
+      "current_old_sha256": "eddacf0914adb3fa8ac65194d87930ee58a7b30b7641d1c50c9da75db83ade05",
+      "missing_archive_fit_indices": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ]
+    }
+  ]
+}
