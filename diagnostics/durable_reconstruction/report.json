@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETE",
+  "runs_completed": 1,
+  "fits_checked": 47,
+  "nonconverged_fits": 0,
+  "runs": [
+    {
+      "topic": "C12",
+      "seed": 11,
+      "policy": "auto_tar",
+      "reviewed": 5000,
+      "fits": 47,
+      "nonconverged_fits": 0,
+      "max_observed_n_iter": 2920,
+      "trajectory_match": "EXACT",
+      "ledger": "audit_store/v1_durable_reconstruction/C12_11_auto_tar.jsonl",
+      "ledger_sha256": "038cb83c785ae7a2abe366668eae61925f22b615389763db693344369ba1a23c",
+      "ledger_bytes": 99218,
+      "expected_sha256": "038cb83c785ae7a2abe366668eae61925f22b615389763db693344369ba1a23c",
+      "digest_match": true
+    }
+  ],
+  "limitations": "Temporary negatives reconstructed from frozen code/RNG, not archived directly. Warnings and n_iter_ are retrospective observations, not contemporaneous v1 logs.",
+  "learner_source_sha256": "09d56ea4a6235e43ffb32be33f3bc91f58d52b2e4daee9be5c0e1f93845dbbc2",
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "scikit_learn": "1.8.0"
+  },
+  "source_sha256": "dacf17248a805e7e168c476892e4e9c47426bec167162ac1835d41beac22073d",
+  "seconds_wall": 2.8229459970007156
+}

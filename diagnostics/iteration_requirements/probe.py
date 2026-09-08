@@ -1,4 +1,9 @@
 """Measure iteration counts for all known capped fits; no production changes."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[2]))
+from src import durable_io as _durable
 import hashlib,json,math,sys,warnings
 from pathlib import Path
 import numpy as np
@@ -17,7 +22,7 @@ def main():
     out.mkdir(parents=True)
     X,ids,topics,info=load_collection()
     report={'status':'RUNNING','diagnostic_ceiling':CEILING,'headroom_rule':'ceil(2 * observed_max / 1000) * 1000','fits':[]}
-    def save():(HERE/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+    def save():_durable.write_text(HERE/'report.json', json.dumps(report,indent=2)+'\n')
     def probe(name,rows,labels,negatives,parameters,metadata):
         train=np.asarray(rows+negatives);target=np.asarray(labels+[0]*len(negatives))
         model=LinearSVC(**{**parameters,'max_iter':CEILING})
@@ -28,7 +33,7 @@ def main():
             'diagnostic_ceiling':CEILING,'reviewed':len(rows),'temporary_negatives':len(negatives),
             'original_parameters':parameters,'warnings':[{'category':w.category.__name__,'message':str(w.message)} for w in caught]}
         state={'reviewed_rows':rows,'reviewed_labels':labels,'temporary_negative_rows':negatives,'model_parameters':parameters}
-        path=out/f'{name}.json';path.write_text(json.dumps(state)+'\n')
+        path=out/f'{name}.json';_durable.write_text(path, json.dumps(state)+'\n')
         record['state_file']=str(path.relative_to(ROOT));record['state_sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
         report['fits'].append(record);save();print(json.dumps(record),flush=True)
         if bad:raise RuntimeError('Diagnostic ceiling exhausted; no automatic escalation')

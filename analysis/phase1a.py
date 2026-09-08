@@ -1,4 +1,9 @@
 """Phase 1A archived-input reanalysis only. Never imports the learning runner."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import csv
 import hashlib
 import json
@@ -31,8 +36,8 @@ def main():
         for column in missing:
             if column in shown:
                 shown[column] = shown[column].astype(object).where(shown[column].notna(), CENSORED)
-        with atomic_file(out/name, "w") as handle:
-            shown.to_csv(handle, index=False)
+        with atomic_file(out/name, "w", expected_count=len(shown)) as handle:
+            _durable.write_csv(shown, handle, index=False)
     export(metrics,"metrics_by_run.csv",("value",))
     export(topics,"metrics_by_topic.csv",("value",))
     export(methods,"metrics_by_method.csv",("full_mean",))

@@ -1,4 +1,9 @@
 """Generate tables and publication-style figures directly from audited runs."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import json
 import numpy as np
 import pandas as pd
@@ -28,13 +33,13 @@ def main():
     summary['runs']=f.groupby('policy').size()
     summary['reached_75']=f.groupby('policy').effort_at_75.count()
     summary['reached_90']=f.groupby('policy').effort_at_90.count()
-    summary.to_csv(ROOT/'results/summary.csv')
+    _durable.write_csv(summary, ROOT/'results/summary.csv')
     topic=f[f.policy=='auto_tar'].groupby('topic').agg(
         positives=('positives','first'),mean_recall=('recall_at_1000','mean'),
         min_recall=('recall_at_1000','min'),max_recall=('recall_at_1000','max'),
         mean_effort_75=('effort_at_75','mean'),mean_effort_90=('effort_at_90','mean'))
     topic['recall_ceiling_at_1000']=np.minimum(1,1000/topic.positives)
-    topic.to_csv(ROOT/'results/by_topic.csv')
+    _durable.write_csv(topic, ROOT/'results/by_topic.csv')
     base=f[f.policy=='auto_tar'].set_index(['topic','seed'])
     paired=[]
     for policy in ['fixed_20','explore_10']:
@@ -42,7 +47,7 @@ def main():
         for idx in base.index:
             delta=float(variant.loc[idx,'recall_at_1000']-base.loc[idx,'recall_at_1000'])
             paired.append({'topic':idx[0],'seed':idx[1],'policy':policy,'delta_recall_at_1000':delta})
-    pd.DataFrame(paired).to_csv(ROOT/'results/paired_differences.csv',index=False)
+    _durable.write_csv(pd.DataFrame(paired), ROOT/'results/paired_differences.csv', index=False)
     plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,
                          'axes.spines.right':False,'figure.facecolor':'white','axes.facecolor':'white'})
     colors={'random':'#97A5B0','seed_similarity':'#BAC4CB','seed_only_frozen':'#526C86',
@@ -54,20 +59,20 @@ def main():
     ax.invert_yaxis();ax.set_xlim(0,100);ax.set_xlabel('Mean topic recall after 1,000 reviews (%)')
     for i,value in enumerate(values):ax.text(value+1,i,f'{value:.1f}%',va='center',fontsize=10)
     ax.grid(axis='x',alpha=.15);ax.set_axisbelow(True)
-    fig.savefig(out/'recall_comparison.png',dpi=180);fig.savefig(out/'recall_comparison.svg');plt.close(fig)
+    _durable.save_figure(fig, out/'recall_comparison.png', dpi=180);_durable.save_figure(fig, out/'recall_comparison.svg');plt.close(fig)
     curves={p:[] for p in order}
     for row in f.itertuples():
         audit=json.loads((ROOT/f'results/audits/{row.topic}_{row.seed}_{row.policy}.json').read_text())
         curves[row.policy].append(np.cumsum(audit['observed_labels'])/row.positives)
     curve_table=pd.DataFrame({'reviews':np.arange(1,5001)})
     for policy in order:curve_table[policy]=np.mean(curves[policy],axis=0)
-    curve_table.to_csv(ROOT/'results/gain_curves.csv',index=False)
+    _durable.write_csv(curve_table, ROOT/'results/gain_curves.csv', index=False)
     fig,ax=plt.subplots(figsize=(10,4.4),layout='constrained')
     for policy in ['auto_tar','seed_only_frozen','uncertainty','random']:
         ax.plot(curve_table.reviews,curve_table[policy]*100,label=NAMES[policy],color=colors[policy],lw=2.4)
     ax.set(xlabel='Documents reviewed, including the seed',ylabel='Mean topic recall (%)',xlim=(0,5000),ylim=(0,100))
     ax.axvline(1000,color='#CBD2D8',ls=':',lw=1);ax.grid(alpha=.15);ax.legend(frameon=False,loc='lower right')
-    fig.savefig(out/'gain_curves.png',dpi=180);fig.savefig(out/'gain_curves.svg');plt.close(fig)
+    _durable.save_figure(fig, out/'gain_curves.png', dpi=180);_durable.save_figure(fig, out/'gain_curves.svg');plt.close(fig)
     fig,ax=plt.subplots(figsize=(10,4),layout='constrained')
     torder=list(TOPICS)
     t=topic.loc[torder]
@@ -77,7 +82,7 @@ def main():
     ax.invert_yaxis();ax.set(xlim=(0,110),xlabel='Recall after 1,000 reviews (%)')
     for i,v in enumerate(t.mean_recall*100):ax.text(v+2,i,f'{v:.1f}%',va='center')
     ax.legend(frameon=False,loc='lower right',fontsize=8);ax.grid(axis='x',alpha=.12)
-    fig.savefig(out/'topic_recall.png',dpi=180);fig.savefig(out/'topic_recall.svg');plt.close(fig)
+    _durable.save_figure(fig, out/'topic_recall.png', dpi=180);_durable.save_figure(fig, out/'topic_recall.svg');plt.close(fig)
     display=pd.DataFrame({'Method':[NAMES[p] for p in order],
                           'Recall at 1,000':[f'{v:.1%}' for v in summary.recall_at_1000],
                           'Recall at 5,000':[f'{v:.1%}' for v in summary.recall_at_5000],
@@ -127,7 +132,7 @@ You can demonstrate and explain reviewer feedback with actual measured results. 
 
 Read `docs/IMPLEMENTATION_TASKS.md` for the learning path, `docs/PAPER_COMPARISON.md` for the research comparison, and `docs/IST_PLAYBOOK.md` for the daily workflow and pilot design. The downloadable package is an AI-assisted project foundation; make and defend your own changes before presenting it as independently authored work.
 '''
-    (ROOT/'RESULTS.md').write_text(report)
+    _durable.write_text(ROOT/'RESULTS.md', report)
     print(display.to_string(index=False))
 
 

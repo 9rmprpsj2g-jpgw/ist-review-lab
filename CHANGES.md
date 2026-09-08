@@ -272,3 +272,58 @@ Each target family includes exact effort, whole-batch effort, depth/N, and depth
 - Original ZIP entries are exact prefixes of the corresponding observed reconstructed files; C12/11 is currently equal to its deficient archive entry. Missing suffixes originally comprise indices 42–47, 43–47 and 41–47. Writer inspection shows per-record flush and close-before-hash, but no fsync or atomic final publication. This is a durability weakness, not proof of the mechanism or why exactly these three files were affected. The 102 other original ledger digests matched the prior inventory. No broader safety claim is warranted; original results/ and experiment_plan.json still have no diff against v1-frozen.
 - Twelve missing records are now recovered with matching digests, all converged. RESULTS.md retains the initial provisional disclosure and adds current evidence: 5,874 retained fit records, eight known failures, six statuses unsupported by retained per-fit evidence. Process-reported convergence for the remaining six is distinguished from preserved evidence. Topic/policy alone cannot establish whether an unexamined fit converged; low prevalence is not a convergence guarantee.
 - Files touched: RESULTS.md, CHANGES.md. Added diagnostics/ledger_reconstruction/{reconstruct.py,schedule.json,report.json,reconstruct.log,gate_receipt.json,post_exit_integrity.json}. Full reconstruction log and every captured warning array inspected: no fit warnings; the post-exit integrity failure overrides producer COMPLETE status. No assertion, tolerance, expected digest, solver parameter, plan or original results changed. No max_iter probes, census rerun or Phase 4. Stop at failed reconstruction gate; do not silently retry or replace expected hashes.
+
+
+### Phase 3C — durable write path and final ledger recovery (2026-09-08)
+
+- Read AGENTS.md and prior failures. Current historical state: two ledgers recovered; C12/11 producer success contradicted by a 41-record final file. User authorizes write-path repair and one reconstruction only; solver-limit probes, census and Phase 4 remain blocked.
+- Consolidated every active project-owned artifact writer behind src/durable_io.py: same-directory temporary serialization, flush, file fsync, close, pre-publication parse/count/reference checks, atomic replace, supported directory fsync, final-path readback/parse/count/hash/value verification and repeated final hash. Expected digests never change. A pre-publication failure retains an existing complete destination; detected post-publication corruption removes the invalid destination and raises. Hard process death can leave unpublished scratch. No claim is made about hardware or filesystems that violate fsync/rename contracts.
+- Full writer inventory, validation contracts, format qualifications and exceptions in docs/DURABLE_WRITES.md. Census JSON already had file fsync/replace; this phase adds stronger verification and removes the separate ledger path. Workers return final-path audit digests and parents must agree. JSON value checks bind nested records to intended input rather than trusting a digest of a truncated serialization. This increases read/parse cost and transient RAM; no census-scale benchmark or new runtime claim was made.
+- Migrated current notebook source only; retained all historical outputs, explicitly labeled as historical rather than execution of changed source. Preserved results/, both plans, all prior diagnostic outputs/ledgers, frozen learner extraction and historical execution copies. Legacy analysis commands still target historical destinations and are not authorized for execution. Third-party caches and Git/editor operations are outside the application writer; external shell redirects must be replaced by the new capture wrapper for future recorded runs.
+- Twenty tests pass (14 existing plus six fault/roundtrip contracts). Interrupted/unflushed writes and valid truncated JSONL are rejected without partial final publication. Captured warning/error injection is expected test input, not a hidden scientific failure. No existing assertion/tolerance/expected value was altered. A notebook-edit attempt in the default interpreter lacked nbformat and failed before publication; using the established environment resolved the dependency, with no validation relaxation.
+- One C12/11/auto_tar reconstruction: 47 fits/records, 99,218 bytes, original committed SHA-256 038cb83c785ae7a2abe366668eae61925f22b615389763db693344369ba1a23c matched by both producer and independent post-exit process. Zero warnings, max n_iter 2,920. Explicit final inventory verifies all 105 original/recovered ledgers against unchanged committed expectations: 5,880 supported records, eight known non-converged fits, no unknowns. RESULTS.md kept 5,874/eight/six until this verification, then added the resolved count while retaining the provisional history. No original deficient ledger was overwritten.
+- Repaired publication retained the correct ledger; missing-record concern is operationally closed. Why exactly three earlier tails were lost remains unproven; successful repaired publication does not identify a unique historical cause. Prior receipt contradictions and missing prefixes are preserved. No generator loss observed with the new path.
+- Gate logs fully inspected: both test logs, reconstruction log, captured warning fields in all verified ledgers, and original results/run.log. Eight historical C15 warnings remain recorded; no new convergence warnings. Protected-file bytes match the pre-phase commit. No max_iter probes, numerical-budget changes, census run, convergence-logging implementation or Phase 4. Those remain explicitly uncompleted and blocked. Commit at Phase 3C gate and supply patch plus verified reconstructed-ledger package.
+- Files touched/added in this phase:
+  - AGENTS.md
+  - CHANGES.md
+  - RESULTS.md
+  - analysis/artifact_io.py
+  - analysis/execute_notebook.py
+  - analysis/phase1a.py
+  - diagnostics/durable_reconstruction/post_exit_verification.json
+  - diagnostics/durable_reconstruction/reconstruct.log
+  - diagnostics/durable_reconstruction/reconstruct.py
+  - diagnostics/durable_reconstruction/report.json
+  - diagnostics/fit209_sensitivity/check.py
+  - diagnostics/iteration_requirements/probe.py
+  - diagnostics/ledger_reconstruction/reconstruct.py
+  - diagnostics/v1_convergence/check.py
+  - diagnostics/v1_convergence/summarize.py
+  - docs/DURABLE_WRITES.md
+  - notebooks/01_results.ipynb
+  - phase3_outputs/estimate_audit_size.py
+  - phase3b_outputs/estimate_storage.py
+  - phase3b_preflight/estimate.py
+  - phase3c_outputs/final_tests.log
+  - phase3c_outputs/gate_receipt.json
+  - phase3c_outputs/syntax_check.json
+  - phase3c_outputs/unit_tests.log
+  - phase3c_outputs/verified_ledger_inventory.json
+  - scripts/capture_command.py
+  - scripts/observe_census_rss.py
+  - src/bdr_queue.py
+  - src/build_report.py
+  - src/census.py
+  - src/census_io.py
+  - src/data.py
+  - src/durable_io.py
+  - src/experiment.py
+  - src/monitor_census.py
+  - src/package_audits.py
+  - src/replay.py
+  - src/summarize.py
+  - src/verify_results.py
+  - tests/test_durable_io.py
+
+- Housekeeping warning: one zero-byte unpublished log scratch file remained after completed processes exited. Removed it; no final file was missing. Added a global .writing-* ignore rule so scratch cannot enter commits. This is logged housekeeping, not a scientific stop. Additional files touched: .gitignore, docs/DURABLE_WRITES.md, phase3c_outputs/housekeeping.json.

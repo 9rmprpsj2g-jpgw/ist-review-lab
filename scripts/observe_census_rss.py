@@ -1,4 +1,9 @@
 """Host-PID-aware sidecar observer; does not signal or alter the census."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import json
 from pathlib import Path
 import time
@@ -27,6 +32,6 @@ while (Path('/proc')/str(root_pid)).exists():
     result=dict(host_root_pid=root_pid,started_unix=started,elapsed_seconds=time.time()-started,
         sampled_tree_peak_rss_kib=peak,per_process_hwm_kib=high,samples=samples,
         caveat='Started after launch; per-process lifetime VmHWM includes earlier peaks. Sampled tree sum includes shared pages multiple times and can miss sub-interval peaks.')
-    if samples%10==1:destination.write_text(json.dumps(result,indent=2)+'\n')
+    if samples%10==1:_durable.write_text(destination, json.dumps(result,indent=2)+'\n')
     time.sleep(.5)
-result['status']='COMPLETE';destination.write_text(json.dumps(result,indent=2)+'\n')
+result['status']='COMPLETE';_durable.write_text(destination, json.dumps(result,indent=2)+'\n')

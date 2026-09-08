@@ -3,6 +3,11 @@
 This model is trained from scratch on this queue. The RCV1 model is not reused.
 No contacts are scraped, messages sent, or purchase probabilities inferred.
 """
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import argparse
 import csv
 import json
@@ -86,7 +91,7 @@ def rank_signals(input_path, output_path, as_of, top=20, seed=11):
         safe[col] = safe[col].map(lambda s: "'"+s if isinstance(s,str) and s.lstrip().startswith(("=","+","-","@")) else s)
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    safe.to_csv(output_path, index=False, quoting=csv.QUOTE_MINIMAL)
+    _durable.write_csv(safe, output_path, index=False, quoting=csv.QUOTE_MINIMAL)
     meta = {"as_of":as_of,"seed":seed,"reviewed":len(observed),
             "positives":int((frame.label=="1").sum()),"negatives":int((frame.label=="0").sum()),
             "unreviewed":int((frame.label=="").sum()),"returned":len(output),
@@ -94,7 +99,7 @@ def rank_signals(input_path, output_path, as_of, top=20, seed=11):
             "score_meaning":"Uncalibrated SVM ranking margin, not probability of buying",
             "adaptation":"Class-balanced SVM using confirmed labels only; no temporary negatives for small operational queues",
             "scope":"Prototype ranked by supplied text and reviewer labels; dates are displayed, not used in ranking; no IST outcome validation"}
-    output_path.with_suffix(".audit.json").write_text(json.dumps(meta,indent=2)+"\n")
+    _durable.write_text(output_path.with_suffix(".audit.json"), json.dumps(meta,indent=2)+"\n")
     return output
 
 

@@ -1,4 +1,9 @@
 """Run the locked, paired simulation; save a complete review-order audit."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import argparse
 import hashlib
 import json
@@ -64,7 +69,9 @@ def simulate(task):
     audit_path = dest / f"{topic}_{random_seed}_{policy}.json"
     if audit_path.exists():
         raise ValueError("Refusing to overwrite an existing audit")
-    atomic_json(audit_path, audit)
+    if len(order) != min(budget, len(y)):
+        raise AssertionError("Incomplete intended audit record count")
+    result["audit_sha256"] = atomic_json(audit_path, audit)
     result["worker_process_peak_rss_kib"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     return result
 
@@ -86,9 +93,9 @@ def write_configuration(config, destination):
         raise ValueError("Unknown policy in plan; frozen_svm is now seed_only_frozen")
     destination = output_directory(destination)
     destination.mkdir(parents=True, exist_ok=True)
-    (destination/"resolved_config.json").write_text(json.dumps(resolved,indent=2)+"\n")
+    _durable.write_text(destination/"resolved_config.json", json.dumps(resolved,indent=2)+"\n")
     actual = {str(seed):new_svm(seed,resolved).get_params(deep=True) for seed in resolved.get("seeds",[0])}
-    (destination/"model_parameters.json").write_text(json.dumps(actual,indent=2)+"\n")
+    _durable.write_text(destination/"model_parameters.json", json.dumps(actual,indent=2)+"\n")
     return resolved
 
 
@@ -117,14 +124,14 @@ def main():
             print(f'{len(results)}/{len(jobs)} {result["topic"]} '
                   f'{result["seed"]} {result["policy"]}: '
                   f'R@1000={result["recall_at_1000"]:.3f}', flush=True)
-            pd.DataFrame(results).to_csv(destination / "runs.csv", index=False)
+            _durable.write_csv(pd.DataFrame(results), destination / "runs.csv", index=False)
     environment = {"python": platform.python_version(), "platform": platform.platform(),
                    "numpy": np.__version__, "scipy": scipy.__version__,
                    "scikit_learn": sklearn.__version__, "pandas": pd.__version__,
                    "seconds_wall": time.perf_counter()-start, "jobs": args.jobs,
                    "plan_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
                    "data_sha256": info["sha256"], "runs": len(results)}
-    (destination / "environment.json").write_text(json.dumps(environment, indent=2)+"\n")
+    _durable.write_text(destination / "environment.json", json.dumps(environment, indent=2)+"\n")
 
 
 if __name__ == "__main__":

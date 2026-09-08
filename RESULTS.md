@@ -26,6 +26,10 @@ This amendment is post-outcome analysis of the same five topics, three seeds and
 
 
 
+
+**Phase 3C recovery, after independent post-exit verification:** the durable reconstruction of C12/11 retained all 47 records and matched the unchanged committed SHA-256 digest. The final inventory verifies all 105 ledgers across original and recovered locations: all 5,880 fit records are now supported, with eight non-converged fits (all C15) and zero unknown statuses. All 18 formerly missing fits converged. The provisional counts above document the evidence gap before recovery; they are superseded by this verified inventory. This closes the missing-record qualification, not the broader solver-limit investigation.
+
+
 ## Overshoot by topic and policy
 
 Documents committed beyond crossing; means require all three seeds. Paired tables report method_a minus method_b, both 95% intervals and raw five-topic differences. Exact sign-flip remains primary; neither interval is reliable with five topics.

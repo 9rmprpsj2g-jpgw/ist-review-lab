@@ -1,4 +1,9 @@
 """Download and verify public RCV1 token/label data; no raw stories included."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import bz2
 import hashlib
 import json
@@ -17,7 +22,7 @@ def load_collection():
     path.parent.mkdir(parents=True, exist_ok=True)
     if not path.exists():
         with urlopen(URL, timeout=120) as response:
-            path.write_bytes(response.read())
+            _durable.write_bytes(path, response.read(), expected_count=23149, expected_sha256=(json.loads((ROOT/'data/source_lock.json').read_text())['sha256'] if (ROOT/'data/source_lock.json').exists() else None))
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     lock = ROOT / "data/source_lock.json"
     if lock.exists():
@@ -46,5 +51,5 @@ def load_collection():
             "features_fit_scope": "all unlabeled documents in the fixed review pool",
             "source_split": "RCV1-v2 chronological training partition, used as a review pool"}
     if not lock.exists():
-        lock.write_text(json.dumps(info, indent=2)+"\n")
+        _durable.write_text(lock, json.dumps(info, indent=2)+"\n")
     return X, rows, topics, info

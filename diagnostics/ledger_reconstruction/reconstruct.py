@@ -1,4 +1,9 @@
 """Refit original v1 trajectories without changing any solver parameter."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[2]))
+from src import durable_io as _durable
 import csv,hashlib,importlib.util,json,platform,sys,time,warnings
 from pathlib import Path
 import numpy as np
@@ -20,7 +25,7 @@ def main():
     report={'status':'RUNNING','runs_completed':0,'fits_checked':0,'nonconverged_fits':0,'runs':[],
         'limitations':'Temporary negatives reconstructed from frozen code/RNG, not archived directly. Warnings and n_iter_ are retrospective observations, not contemporaneous v1 logs.'}
     def save():
-        (report_dir/'report.json').write_text(json.dumps(report,indent=2)+'\n')
+        _durable.write_text(report_dir/'report.json', json.dumps(report,indent=2)+'\n')
     env=json.loads((ROOT/'results/environment.json').read_text())
     for key,actual in [('python',platform.python_version()),('numpy',np.__version__),('scipy',scipy.__version__),('scikit_learn',sklearn.__version__)]:
         if actual!=env[key]:raise AssertionError(f'Original runtime version mismatch: {key}')
@@ -51,7 +56,7 @@ def main():
             if initial!=order[0] or str(ids[initial])!=str(result['seed_doc_id']):raise AssertionError('Seed mismatch')
             state={'round':0,'failed':0,'iterations':[]}
             ledger=output/f'{topic}_{seed}_{policy}.jsonl'
-            with ledger.open('w') as log:
+            with _durable.atomic_file(ledger, 'w', expected_count=int(result['fits'])) as log:
                 class ObservedLearner(v1.ReviewLearner):
                     def fit(self):
                         with warnings.catch_warnings(record=True) as caught:

@@ -6,6 +6,7 @@ from pathlib import Path
 import zipfile
 from .census_io import atomic_json,sha256_file
 from .data import ROOT
+from .durable_io import atomic_file
 
 
 def main():
@@ -31,7 +32,7 @@ def main():
             audit=source/entry['filename']
             if audit.stat().st_size!=entry['byte_size'] or sha256_file(audit)!=entry['sha256']:
                 raise AssertionError('Audit changed before packaging')
-        with zipfile.ZipFile(path,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6,allowZip64=True) as archive:
+        with atomic_file(path, 'w+b', expected_count=len(entries)+2) as stream, zipfile.ZipFile(stream,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6,allowZip64=True) as archive:
             for entry in sorted(entries,key=lambda e:e['seed']):
                 archive.write(source/entry['filename'],f'audit_store/{args.generation_id}/{entry["filename"]}')
             archive.write(manifest_path,f'audit_manifests/{args.generation_id}.json')

@@ -14,21 +14,7 @@ import fitz
 import nbformat
 
 
-@contextmanager
-def atomic_file(path, mode="wb"):
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = None
-    try:
-        fd, temporary = tempfile.mkstemp(prefix=".writing-", dir=path.parent)
-        with os.fdopen(fd, mode) as handle:
-            yield handle
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, path)
-    finally:
-        if temporary is not None:
-            Path(temporary).unlink(missing_ok=True)
+from src.durable_io import atomic_file, sha256_file, parse_count
 
 
 def cleanup_temporary_files(directory):
@@ -42,8 +28,11 @@ def cleanup_temporary_files(directory):
 
 
 def atomic_copy(source, target):
-    with atomic_file(target) as handle:
-        handle.write(Path(source).read_bytes())
+    source = Path(source)
+    kind = ".csv.gz" if source.name.endswith(".csv.gz") else source.suffix
+    with atomic_file(target, expected_sha256=sha256_file(source),
+                     expected_count=parse_count(source, kind)) as handle:
+        handle.write(source.read_bytes())
 
 
 def xml_tree(element):

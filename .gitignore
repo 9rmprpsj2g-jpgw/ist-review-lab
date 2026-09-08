@@ -8,3 +8,6 @@ phase1_outputs/reproducibility/**/gain_curves.csv.gz
 /audit_store/
 /data/raw/
 /transfer_packages/
+
+# Unpublished durable-write scratch; never evidence
+.writing-*

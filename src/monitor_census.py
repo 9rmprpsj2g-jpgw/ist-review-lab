@@ -7,6 +7,7 @@ import subprocess
 import sys
 import time
 from .census_io import atomic_json
+from .durable_io import atomic_file
 
 
 def processes():
@@ -24,7 +25,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--plan',required=True);args=parser.parse_args()
     config=json.loads(Path(args.plan).read_text());dest=Path(config['outputs']['directory']);dest.mkdir(parents=True,exist_ok=True)
     start=time.perf_counter();peak=0;highwaters={};samples=0
-    with (dest/'run.log').open('w') as log:
+    with atomic_file(dest/'run.log', 'w') as log:
         process=subprocess.Popen([sys.executable,'-m','src.census','--plan',args.plan,'--jobs','2'],stdout=log,stderr=subprocess.STDOUT)
         while process.poll() is None:
             info=processes()
@@ -41,6 +42,7 @@ def main():
             for pid in members:highwaters[str(pid)]=max(highwaters.get(str(pid),0),info.get(pid,(0,0,0))[2])
             samples+=1
             time.sleep(.5)
+        process.wait()  # Full subprocess exit precedes log publication and hashing.
         status=dict(exit_code=process.returncode,seconds_wall=time.perf_counter()-start,
             sampled_process_tree_peak_rss_kib=peak,process_peak_rss_kib=highwaters,
             samples=samples,sampling_interval_seconds=.5,

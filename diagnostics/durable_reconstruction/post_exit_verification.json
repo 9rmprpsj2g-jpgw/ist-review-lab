@@ -1,0 +1,1 @@
+{"records": 47, "sha256": "038cb83c785ae7a2abe366668eae61925f22b615389763db693344369ba1a23c", "expected_sha256": "038cb83c785ae7a2abe366668eae61925f22b615389763db693344369ba1a23c", "expected_records": 47, "matches": true, "producer_matches": true, "method": "Independent process after capture_command and reconstruction subprocess fully exited; parse/count/hash final path"}

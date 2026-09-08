@@ -1,4 +1,9 @@
 """Approved data generation only. No cross-policy analysis or hypothesis tests."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import hashlib
@@ -121,12 +126,14 @@ def main():
             task=futures[future];result=future.result()
             path=audit_dir/f'{task[0]}_{task[1]}_{task[2]}.json'
             entry=validate_audit(path,task)
+            if entry["sha256"] != result["audit_sha256"]:
+                raise AssertionError("Producer/parent final audit digests disagree")
             if entry['fits']!=result['fits'] or result['reviewed']!=config['budget']:
                 raise AssertionError('Result/audit completeness mismatch')
             if result['positives']!=topic_counts[task[0]][1]:raise AssertionError('Result prevalence mismatch')
             manifest['entries'].append(entry);manifest['completed']+=1
             results.append(result)
-            pd.DataFrame(results).to_csv(destination/'runs.csv',index=False)
+            _durable.write_csv(pd.DataFrame(results), destination/'runs.csv', index=False)
             atomic_json(manifest_path,manifest)
             print(json.dumps(dict(completed=len(results),total=len(grid),topic=task[0],seed=task[1],policy=task[2],
                                   fits=entry['fits'],audit_bytes=entry['byte_size'],elapsed_seconds=time.perf_counter()-started)),flush=True)

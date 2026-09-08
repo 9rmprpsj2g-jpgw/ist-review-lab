@@ -1,4 +1,9 @@
 """Replay a complete reference run without overwriting its audit or metrics."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import json
 import numpy as np
 from .data import ROOT,load_collection
@@ -17,7 +22,7 @@ def main():
     assert order==reference['row_order'], 'Replay diverged from the saved reference.'
     result={'status':'PASS','topic':'C12','seed':11,'policy':'auto_tar',
             'identical_review_positions':5000,'reference_preserved':True}
-    (ROOT/'results/replay_verification.json').write_text(json.dumps(result,indent=2)+'\n')
+    _durable.write_text(ROOT/'results/replay_verification.json', json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))
 
 

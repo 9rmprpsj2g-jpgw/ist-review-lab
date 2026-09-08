@@ -1,4 +1,9 @@
 """Structural storage projection only: no data loading, model or experiment calls."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import json
 import math
 from pathlib import Path
@@ -31,7 +36,7 @@ if __name__ == '__main__':
     result = {'kind':'structural estimate, not a measured run', 'collection_size':23149,
               'assumptions':'24–48 bytes per margin entry; 80–160 per reviewed document; 400–800 per round; 3000–6000 per fit. External IDs <=12 ASCII characters. Uncompressed JSON; Python RAM usage may be substantially larger.',
               'runs':[estimate(p,b) for p in policies for b in (5000,23149)]}
-    Path(__file__).with_name('audit_size_estimates.json').write_text(json.dumps(result,indent=2)+'\n')
+    _durable.write_text(Path(__file__).with_name('audit_size_estimates.json'), json.dumps(result,indent=2)+'\n')
     for row in result['runs']:
         print(row['policy'],row['budget'],row['query_rounds'],row['candidate_margin_entries'],
               round(row['estimated_bytes_low']/1e6,2), round(row['estimated_bytes_high']/1e6,2))

@@ -11,6 +11,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Table,TableStyle,Image,PageBreak
 from .data import ROOT
+from .durable_io import atomic_file
 
 
 def main():
@@ -139,9 +140,10 @@ def main():
         canvas.setFillColor(grey);canvas.setFont('DejaVu',8)
         canvas.drawString(50,29,'IST REVIEW LAB  |  Scoped method reproduction  |  AI-assisted project')
         canvas.drawRightString(w-50,29,str(doc.page));canvas.restoreState()
-    pdf=SimpleDocTemplate(str(out/'IST_Review_Lab_Report.pdf'),pagesize=A4,rightMargin=50,leftMargin=50,
-        topMargin=43,bottomMargin=57,title='IST Review Lab - Research Reproduction',author='Prepared for Arhan Shah with AI assistance')
-    pdf.build(story,onFirstPage=footer,onLaterPages=footer)
+    with atomic_file(out/'IST_Review_Lab_Report.pdf', 'wb') as stream:
+        pdf=SimpleDocTemplate(stream,pagesize=A4,rightMargin=50,leftMargin=50,
+            topMargin=43,bottomMargin=57,title='IST Review Lab - Research Reproduction',author='Prepared for Arhan Shah with AI assistance')
+        pdf.build(story,onFirstPage=footer,onLaterPages=footer)
     print(out/'IST_Review_Lab_Report.pdf')
 
 

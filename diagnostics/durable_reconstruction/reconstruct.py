@@ -18,10 +18,10 @@ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def main():
-    output=ROOT/'audit_store/v1_convergence_check'
+    output=ROOT/'audit_store/v1_durable_reconstruction'
     if output.exists():raise ValueError('Do not overwrite diagnostic evidence')
     output.mkdir(parents=True)
-    report_dir=ROOT/'diagnostics/v1_convergence'
+    report_dir=ROOT/'diagnostics/durable_reconstruction'
     report={'status':'RUNNING','runs_completed':0,'fits_checked':0,'nonconverged_fits':0,'runs':[],
         'limitations':'Temporary negatives reconstructed from frozen code/RNG, not archived directly. Warnings and n_iter_ are retrospective observations, not contemporaneous v1 logs.'}
     def save():
@@ -29,7 +29,7 @@ def main():
     env=json.loads((ROOT/'results/environment.json').read_text())
     for key,actual in [('python',platform.python_version()),('numpy',np.__version__),('scipy',scipy.__version__),('scikit_learn',sklearn.__version__)]:
         if actual!=env[key]:raise AssertionError(f'Original runtime version mismatch: {key}')
-    source=report_dir/'source/learner_v1.py'
+    source=ROOT/'diagnostics/v1_convergence/source/learner_v1.py'
     import subprocess
     if source.read_bytes()!=subprocess.check_output(['git','show','v1-frozen:src/learner.py'],cwd=ROOT):raise AssertionError('Frozen learner source mismatch')
     report['learner_source_sha256']=sha(source)
@@ -39,6 +39,10 @@ def main():
     report['environment']={k:env[k] for k in ('python','numpy','scipy','scikit_learn')}
     report['source_sha256']=info['sha256']
     rows=list(csv.DictReader((ROOT/'results/runs.csv').open()))
+    rows=[r for r in rows if (r['topic'],int(r['seed']),r['policy']) in {('C12',11,'auto_tar')}]
+    original_bytes=subprocess.check_output(['git','show','838d029:diagnostics/v1_convergence/report.json'],cwd=ROOT)
+    if original_bytes != (ROOT/'diagnostics/v1_convergence/report.json').read_bytes():raise AssertionError('Committed expectation report changed')
+    original=json.loads(original_bytes)
     started=time.perf_counter()
     current={}
     try:
@@ -54,7 +58,7 @@ def main():
             if initial!=order[0] or str(ids[initial])!=str(result['seed_doc_id']):raise AssertionError('Seed mismatch')
             state={'round':0,'failed':0,'iterations':[]}
             ledger=output/f'{topic}_{seed}_{policy}.jsonl'
-            with _durable.atomic_file(ledger, 'w', expected_count=int(result['fits'])) as log:
+            with _durable.atomic_file(ledger, 'w', expected_count=int(result['fits']), expected_sha256=next(r['ledger_sha256'] for r in original['runs'] if all(r[k]==current[k] for k in current))) as log:
                 class ObservedLearner(v1.ReviewLearner):
                     def fit(self):
                         with warnings.catch_warnings(record=True) as caught:
@@ -84,7 +88,11 @@ def main():
                     'max_observed_n_iter':max(state['iterations']) if state['iterations'] else None,
                     'trajectory_match':'EXACT','ledger':str(ledger.relative_to(ROOT)),
                     'ledger_sha256':sha(ledger),'ledger_bytes':ledger.stat().st_size}
+            expected=next(r for r in original['runs'] if all(r[k]==current[k] for k in current))
+            record['expected_sha256']=expected['ledger_sha256']
+            record['digest_match']=record['ledger_sha256']==expected['ledger_sha256']
             report['runs'].append(record);report['runs_completed']+=1
+            if not record['digest_match']:raise AssertionError('Reconstructed ledger differs from committed expected digest')
             report['seconds_wall']=time.perf_counter()-started;save()
             print(json.dumps(record),flush=True)
     except BaseException as error:

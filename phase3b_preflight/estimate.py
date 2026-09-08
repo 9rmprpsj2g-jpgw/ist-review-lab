@@ -1,4 +1,9 @@
 """Read-only historical timing extrapolation and schedule arithmetic. No experiments."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import csv,json,math,statistics,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -45,6 +50,6 @@ result={'method':'Historical scaling scenarios, not confidence bounds. Times exc
         'audit_GB':[sum(r['audit_MB_all_15_'+x] for r in rows)/1000 for x in ('low','high')],
         'matrix_CSR_bytes_float64_int32':1739103*12+(23149+1)*4,
         'peak_memory_caveat':'Retained audit and serialization estimate only. Add feature matrix, train slices, solver allocations, interpreter, loader peak and parent/worker duplication. No measured RSS available.'}
-(ROOT/'phase3b_preflight/estimates.json').write_text(json.dumps(result,indent=2)+'\n')
+_durable.write_text(ROOT/'phase3b_preflight/estimates.json', json.dumps(result,indent=2)+'\n')
 for r in rows:print(r['policy'],r['fits'],r['fits_all_15'],*[round(r[k],2) for k in ('worker_minutes_low','worker_minutes_high','audit_MB_all_15_low','audit_MB_all_15_high','retained_audit_plus_serialization_MB')],r['max_batch'])
 print(json.dumps({k:v for k,v in result.items() if k!='rows'},indent=2))

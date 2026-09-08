@@ -1,4 +1,9 @@
 """Summarize convergence findings against already-persisted Phase 1 targets."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[2]))
+from src import durable_io as _durable
 import collections,csv,json,hashlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
@@ -26,6 +31,6 @@ summary={'runs_checked':report['runs_completed'],'fits_checked':report['fits_che
 original_log=ROOT/'results/run.log'
 summary['original_log_sha256']=hashlib.sha256(original_log.read_bytes()).hexdigest()
 summary['original_warning_lines']=[{'line':i,'text':line} for i,line in enumerate(original_log.read_text().splitlines(),1) if 'ConvergenceWarning' in line]
-(HERE/'findings.json').write_text(json.dumps(summary,indent=2)+'\n')
-with (HERE/'nonconverged_fits.csv').open('w',newline='') as f:
+_durable.write_text(HERE/'findings.json', json.dumps(summary,indent=2)+'\n')
+with _durable.atomic_file(HERE/'nonconverged_fits.csv', 'w', newline='', expected_count=len(failures)) as f:
     writer=csv.DictWriter(f,fieldnames=list(failures[0]));writer.writeheader();writer.writerows(failures)

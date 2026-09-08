@@ -173,3 +173,8 @@ nonzero pairs alongside any p-value.
 ## Mandatory phase-gate log inspection
 
 Every phase gate must inspect run logs and captured warnings, not only test results and numerical outputs. A passing test suite is not evidence that nothing went wrong. Record the logs inspected and any warnings, their attribution where known, and their resolution or explicit unresolved status before reporting the gate. Do not infer absence of warnings from a log tail or from successful exit status.
+
+
+## Durable artifact publication (Phase 3C)
+
+All new application artifact writers must use src/durable_io.py. Supply expected record counts for tabular/ledger streams and immutable reference digests where available. Do not hash an in-memory representation as a claim about a published file. Wait for full worker exit, then independently reopen/parse/count/hash final artifacts. Capture run logs through scripts/capture_command.py or src/monitor_census.py; bare shell redirection is not a durable publication path. Publication or content-verification failure is an integrity stop. Immutable historical evidence is not rewritten to migrate an old embedded writer.

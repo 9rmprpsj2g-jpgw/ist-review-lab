@@ -1,4 +1,9 @@
 """Isolate the effect of completing v1 C15/11/fixed_20 fit 209."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[2]))
+from src import durable_io as _durable
 import copy,csv,hashlib,importlib.util,json,math,platform,subprocess,sys,warnings
 from pathlib import Path
 import numpy as np
@@ -19,7 +24,7 @@ def main():
     if out.exists():raise ValueError('Refusing to overwrite diagnostic evidence')
     out.mkdir(parents=True)
     report={'status':'RUNNING','intervention':'Only fit 209 max_iter changes to 100000; subsequent fits retain original 10000.'}
-    def save():(HERE/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+    def save():_durable.write_text(HERE/'report.json', json.dumps(report,indent=2,allow_nan=False)+'\n')
     try:
         env=json.loads((ROOT/'results/environment.json').read_text())
         for key,value in [('python',platform.python_version()),('numpy',np.__version__),('scipy',scipy.__version__),('scikit_learn',sklearn.__version__)]:
@@ -69,7 +74,8 @@ def main():
             removed_rows=sorted(set(expected)-set(selected)),added_rows=sorted(set(selected)-set(expected)),
             ordered_batch_positions_changed=sum(a!=b for a,b in zip(expected,selected)),
             ordered_batch_identical=selected==expected)
-        np.savez_compressed(out/'candidate_margins.npz',rows=candidates,baseline=low,converged=high)
+        with _durable.atomic_file(out/'candidate_margins.npz', 'wb', expected_count=3) as stream:
+            np.savez_compressed(stream,rows=candidates,baseline=low,converged=high)
         # Recover RNG state through the audited temporary-negative draw for fit 209.
         source=ROOT/'diagnostics/v1_convergence/source/learner_v1.py'
         if source.read_bytes()!=subprocess.check_output(['git','show','v1-frozen:src/learner.py'],cwd=ROOT):raise AssertionError('Frozen source changed')
@@ -108,7 +114,7 @@ def main():
             effort_at_90=crossing,batch_effort_at_90=committed,original_effort_at_90=old_exact,original_batch_effort_at_90=old_committed,
             isolated_change_in_five_topic_three_seed_mean_contrast=-(committed-old_committed)/15,
             status='COMPLETE')
-        (out/'replayed_trajectory.json').write_text(json.dumps({'row_order':order,'batch_ends':ends,'observed_labels':y[order].tolist(),'downstream_fits':fit_records},allow_nan=False)+'\n')
+        _durable.write_text(out/'replayed_trajectory.json', json.dumps({'row_order':order,'batch_ends':ends,'observed_labels':y[order].tolist(),'downstream_fits':fit_records},allow_nan=False)+'\n')
         save();print(json.dumps(report,indent=2),flush=True)
     except BaseException as error:
         report['status']='STOPPED';report['error']=repr(error);save();raise

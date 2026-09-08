@@ -1,4 +1,9 @@
 """Independently recompute all stored metrics from the audit trail."""
+
+import sys as _durable_sys
+from pathlib import Path as _DurablePath
+_durable_sys.path.insert(0, str(_DurablePath(__file__).resolve().parents[1]))
+from src import durable_io as _durable
 import json
 import math
 import numpy as np
@@ -46,7 +51,7 @@ def main():
             'checks':['unique review IDs','matched seeds across methods','revealed labels match source',
                       'fixed budget respected','independent precision and recall arithmetic',
                       'censored recall thresholds','batch-complete effort','WSS definition']}
-    (ROOT/'results/verification.json').write_text(json.dumps(result,indent=2)+'\n')
+    _durable.write_text(ROOT/'results/verification.json', json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))
 
 

@@ -11,6 +11,7 @@ import traceback
 import uuid
 
 import nbformat
+from src.durable_io import write_notebook
 from analysis.artifact_io import atomic_copy, atomic_file, validate_artifacts, cleanup_temporary_files
 from analysis.review_report import write_report
 
@@ -68,12 +69,12 @@ def worker(destination):
         if failure is not None:
             cell.outputs.append(nbformat.v4.new_output("error", ename=type(failure).__name__,
                                                        evalue=str(failure), traceback=trace))
-            nbformat.write(notebook, destination / "executed_notebook.ipynb")
+            write_notebook(notebook, destination / "executed_notebook.ipynb")
             raise failure
         print(f"Completed code cell {count}", flush=True)
     check_inputs()
     nbformat.validate(notebook)
-    nbformat.write(notebook, destination / "executed_notebook.ipynb")
+    write_notebook(notebook, destination / "executed_notebook.ipynb")
 
 
 def inventory(directory):
