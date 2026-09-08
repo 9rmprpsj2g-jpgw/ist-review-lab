@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/write_investigation_v2/investigate.py", line 66, in child
+    benchmark.child(path,task['name'])  # unchanged prior timing wrapper and writer
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/verification_memory/benchmark.py", line 53, in child
+    digest=io.atomic_json(dest,value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/durable_io.py", line 179, in atomic_json
+    with atomic_file(path, 'w', expected_count=len(value) if isinstance(value, (dict, list)) else 1,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/verification_memory/benchmark.py", line 44, in measured_atomic
+    with original_atomic(*args,**kwargs) as stream:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/durable_io.py", line 142, in atomic_file
+    raise ValueError(f'Published bytes differ for {path}')
+ValueError: Published bytes differ for /workspace/scratch/127f3d74bf3e/ist-review-lab-git/audit_store/write_investigation_v2/size70_05/size70_05.json
+
+{"trial": "size70_05", "status": "FAIL", "seconds": 8.940219531999901}

@@ -1,0 +1,1 @@
+{"trials": 10, "purpose": "Record standard API return values and metadata around unchanged verification; no ptrace capability, no bypass attempt, no retries. Writer proxy only counts existing write requests and returned lengths.", "source": "original full audit", "production_verifier_modified": false}

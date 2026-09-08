@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/write_investigation_v2/investigate.py", line 180, in <module>
+    try:main()
+        ^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/write_investigation_v2/investigate.py", line 165, in main
+    tasks=prepare()
+          ^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/write_investigation_v2/investigate.py", line 137, in prepare
+    path=STORE/f'input_{mib}MiB.json';io.atomic_json(path,value)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/durable_io.py", line 179, in atomic_json
+    with atomic_file(path, 'w', expected_count=len(value) if isinstance(value, (dict, list)) else 1,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/durable_io.py", line 143, in atomic_file
+    if parse_count(path, kind) != count:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/src/durable_io.py", line 28, in parse_count
+    value = json.load(f)
+            ^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 1 column 69953368 (char 69953367)

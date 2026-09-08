@@ -1,0 +1,13 @@
+# Write investigation: setup failed before rate trials
+
+No full-size repeated trials or size-sweep rate measurements ran. Six exact-size diagnostic inputs (20/40/60/70/80/100 MiB) were prepared and passed the shared writer checks. They are inputs, not evidence for a failure rate.
+
+The diagnostic driver put resource.getrlimit() return values (Python tuples) into its plan metadata. The unchanged atomic_json verifier compares the decoded JSON value against its input. JSON decodes tuples as lists, so the metadata comparison fails even when numeric values are preserved. The driver should have supplied a JSON-stable representation. This is an instrumentation error introduced here, not an explanation for the earlier 87.8 MB audit JSONDecodeError. No production helper or verification rule was changed.
+
+The failure-capture hook was scoped to child trials; setup failed before any child, so the failed plan temporary was removed by the existing helper cleanup. This limitation is recorded rather than claiming staged bytes were retained. The previous failed audit bytes at character 70,109,136 also remain unavailable. No success/failure byte comparison or root-cause diagnosis has been completed.
+
+Preliminary read-only environment evidence: staging root is overlay, approximately 29 GiB free at launch; file-size and address-space limits unlimited; cgroup OOM counters zero; /dev/shm is tmpfs with about 8 GiB available. These observations do not rule out intermittent filesystem/read behavior, buffering, concurrency or memory pressure at the historical failure. Proposed trials would use unique destinations and fresh sequential processes, plus native helper, plain serialization and tmpfs controls, but none ran.
+
+The plan was to measure 20 actual full-audit trials, 10 trials at each requested size and five of each of three controls. Failures were to be independent measured endpoints, not automatically retried. A source-input or diagnostic-metadata failure was a stop. This setup stop is preserved under AGENTS.md; no assertion, expected digest or metadata expectation was edited after failure to make it pass.
+
+The driver needs JSON-stable resource metadata and failure capture covering setup before it can run. Those corrections have not been applied after this stop. No max_iter work, census or Phase 4. An artifact can pass verification at one time and be wrong later if it is subsequently modified or reads are inconsistent; checks establish agreement at observed times, not perpetual storage correctness. Whether that happened to additional project artifacts remains unresolved; original results/, both plans and production source still match phase3c-complete.

@@ -1,0 +1,1 @@
+{"reference": "phase3c-complete", "checked": 408, "excluded_authorized_edit": ["CHANGES.md"], "mismatches": [], "method": "Recompute Git blob hash from each actual file byte sequence; compare against immutable tag tree, not stat cache."}

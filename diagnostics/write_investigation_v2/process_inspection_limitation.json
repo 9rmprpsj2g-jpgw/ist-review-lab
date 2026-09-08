@@ -1,0 +1,1 @@
+{"command": "ps -eo pid,ppid,etime,rss,comm", "observed_error": "fatal library error, lookup self", "consequence": "Process enumeration unavailable through this command; do not claim an exhaustive exclusion of external processes. Project trial serialization is evidenced by driver subprocess waits and unique paths."}
