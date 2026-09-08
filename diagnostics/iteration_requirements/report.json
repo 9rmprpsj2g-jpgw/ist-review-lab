@@ -1,0 +1,7 @@
+{
+  "status": "STOPPED",
+  "diagnostic_ceiling": 1000000,
+  "headroom_rule": "ceil(2 * observed_max / 1000) * 1000",
+  "fits": [],
+  "error": "AssertionError('v1 ledger integrity failure')"
+}

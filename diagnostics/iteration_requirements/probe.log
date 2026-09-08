@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/iteration_requirements/probe.py", line 77, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/iteration_requirements/probe.py", line 39, in main
+    if hashlib.sha256(path.read_bytes()).hexdigest()!=run['ledger_sha256']:raise AssertionError('v1 ledger integrity failure')
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: v1 ledger integrity failure
