@@ -6,12 +6,10 @@ The SVM implementation is an explicit deviation from the paper's SVMlight.
 import math
 import hashlib
 import time
-import warnings
 from copy import deepcopy
 from fractions import Fraction
 import numpy as np
 from sklearn.svm import LinearSVC
-from sklearn.exceptions import ConvergenceWarning
 from .config import resolve_plan
 
 POLICIES = ("random", "seed_similarity", "seed_only_frozen", "uncertainty",
@@ -89,25 +87,12 @@ class ReviewLearner:
         train_X = self.X[train_ids]
         parameters = deepcopy(self.model.get_params(deep=True))
         started = time.perf_counter()
-        with warnings.catch_warnings(record=True) as caught:
-            warnings.simplefilter("always")
-            self.model.fit(train_X, train_y)
+        self.model.fit(train_X, train_y)
         elapsed = time.perf_counter() - started
         self.fit_count += 1
-        iterations = getattr(self.model, "n_iter_", None)
-        nonconverged = any(issubclass(w.category, ConvergenceWarning) for w in caught)
         self.last_fit = {"fit_index": self.fit_count,
                          "temporary_negative_rows": self.last_temporary.tolist(),
-                         "model_parameters": parameters, "fit_seconds": elapsed,
-                         "n_iter": int(iterations) if iterations is not None else None,
-                         "converged": not nonconverged if iterations is not None else None,
-                         "warnings": [{"category": w.category.__name__, "message": str(w.message)}
-                                      for w in caught]}
-        # Convergence warnings remain visible and never abort a fit/trajectory.
-        # Do not emit them via warnings.warn: a caller may promote that to an error.
-        for warning in self.last_fit["warnings"]:
-            print(f"FIT_WARNING policy={self.policy} seed={self.seed} fit={self.fit_count} "
-                  f"{warning['category']}: {warning['message']}", flush=True)
+                         "model_parameters": parameters, "fit_seconds": elapsed}
 
     def rank(self):
         self.candidate_margins = None

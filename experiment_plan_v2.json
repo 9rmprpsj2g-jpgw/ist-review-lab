@@ -1,5 +1,5 @@
 {
-  "status": "POST-OUTCOME v2 configuration. Phase 2 resolves model parameters and policy names; no new experiment has run.",
+  "status": "POST-OUTCOME v2 local-only census configuration. Nine iteration probes complete; full production grid not run.",
   "topics": [
     "C12",
     "C15",
@@ -19,9 +19,14 @@
     "uncertainty",
     "auto_tar",
     "fixed_20",
-    "explore_10"
+    "explore_10",
+    "fixed_10",
+    "fixed_50",
+    "fixed_100",
+    "grow_5pct",
+    "grow_20pct"
   ],
-  "budget": 5000,
+  "budget": 23149,
   "primary_metric": "recall_at_R",
   "secondary_metrics": [
     "overshoot_at_75",
@@ -44,13 +49,13 @@
     "loss": "hinge",
     "dual": true,
     "tol": 0.0001,
-    "max_iter": 10000
+    "max_iter": 41000
   },
   "seeding": "Same randomly chosen known-positive document for every method in a topic/seed pair; seed counts as one review; discovery/search cost excluded.",
   "topic_selection": "Selected before any model runs for legal/judicial, performance, insolvency/liquidity, ownership changes and crime/law enforcement; no selection based on model results.",
   "temporary_negatives": "100 random unreviewed documents, resampled each fit, never persisted as true labels",
   "inference": "Descriptive within-collection results. No significance or superiority claim across legal matters or IST leads.",
-  "stopping": "Fixed 5000-document budget, independent of hidden labels. Unreached recall thresholds remain censored.",
+  "stopping": "Census budget 23,149 for all 180 runs; no target-recall early stopping. Local runner only.",
   "extensions": {
     "fixed_20": "Review exactly 20 per retraining batch",
     "explore_10": "Use 10% random exploration for batches of at least 10"
@@ -58,11 +63,11 @@
   "revision": {
     "date_utc": "2026-09-07",
     "timing": "AFTER outcomes were observed",
-    "reason": "Fixed recall@1000 has topic-dependent mathematical ceilings and different prevalence-scaled review effort.",
+    "reason": "Fixed recall@1000 has topic-dependent mathematical ceilings and different prevalence-scaled review effort. Numerical optimization budget changed after observed non-convergence: nine high-ceiling refits needed 10,190\u201320,005 iterations; ceil(2*20005/1000)*1000=41000. C, loss, dual and tol unchanged. See diagnostics/iteration_requirements_v2/report.json. This numerical-budget change may affect rankings where previous optimization was incomplete; it is not a change to the model objective or acquisition algorithm.",
     "historical_plan": "experiment_plan.json",
     "original_primary_metric": "recall_at_1000",
     "original_primary_metric_always_reported": true,
-    "phase": "Phase 2 code fixes only; execution remains disabled pending Phase 3B approval",
+    "phase": "Local census preparation after sandbox storage investigation; no Phase 4.",
     "original_plan_sha256": "982f5079b33a6b473ba610a42194990ce6e2c2598708eacdc49b22aaa4af4719"
   },
   "metric_parameters": {
@@ -127,11 +132,12 @@
   },
   "withdrawn_exploration_option": "No pool/tail option in Phase 2: identical residual set under exploit-first. Distinct global exploration-before-exploitation arm deferred.",
   "outputs": {
-    "directory": "phase2_outputs",
-    "notebook": "notebooks/01_results.ipynb"
+    "directory": "local_outputs/census-v2",
+    "notebook": "notebooks/01_results.ipynb",
+    "audit_directory": "audit_store/census-v2"
   },
   "epsilon": 0.1,
   "audit": {
-    "margin_scope": "top_1000_plus_selected"
+    "margin_scope": "batch_plus_100_min_1000_plus_selected"
   }
 }

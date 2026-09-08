@@ -11,3 +11,6 @@ phase1_outputs/reproducibility/**/gain_curves.csv.gz
 
 # Unpublished durable-write scratch; never evidence
 .writing-*
+
+# Local generation receipts and logs (audit manifests remain tracked)
+/local_outputs/

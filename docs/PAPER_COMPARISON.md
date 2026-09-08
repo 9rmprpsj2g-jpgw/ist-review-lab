@@ -38,3 +38,12 @@ The operational BDR queue is a separate adaptation: it trains a class-balanced S
 - [RCV1 benchmark paper](https://jmlr.org/papers/v5/lewis04a.html)
 - [LIBSVM RCV1 data and preprocessing description](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel.html)
 - [LinearSVC documentation](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html)
+
+
+## Measured solver-budget divergence (post-outcome diagnostic)
+
+The substituted LinearSVC dual solver reached its 10,000-iteration limit in eight archived v1 fits, all in C15, within the original 5,000-review budget. This is not a census-depth-only phenomenon. Refit counts ranged from 10,190 to 20,005 under identical archived training rows, labels, temporary negatives and model parameters except the diagnostic ceiling. A reconstruction of the failed census C15/11/uncertainty trajectory reached its first warning at fit 47; that fit required 10,959 iterations with a high ceiling. No saved failure-round state existed to independently authenticate the ninth fit's identity.
+
+Production max_iter is now 41,000, using the recorded ceil(2*observed_max/1000)*1000 headroom rule. C=1, hinge loss, dual=True and tol=1e-4 remain unchanged. This changes the available optimization work, not the stated objective or review policy. It can affect rankings where earlier optimization was incomplete; fit-209's separately measured zero downstream selection effect is not generalized to other failures. Permanent per-fit convergence/iteration/warning records make the substitution's numerical behavior reviewable. The concentration in C15 and varying training sets suggest a composition-related issue but do not isolate prevalence as the cause. Mac-native solver behavior is a further environment change that will be logged, not assumed bitwise identical.
+
+Complete observations: diagnostics/iteration_requirements_v2/report.json and post_exit_verification.json. No new census outcome or Phase 4 conclusion is claimed here.

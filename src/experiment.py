@@ -32,7 +32,7 @@ def initialize():
     _X, _IDS, _TOPICS, _ = load_collection()
 
 
-def simulate(task):
+def simulate(task, progress=None):
     topic, random_seed, policy, budget, config, output_dir = task
     y = np.array([topic in s for s in _TOPICS], dtype=np.uint8)
     learner = ReviewLearner(_X, policy, random_seed, config)
@@ -42,12 +42,18 @@ def simulate(task):
     order = [seed_index]
     batch_ends = [1]
     start = time.perf_counter()
+    last_progress = start
     while len(order) < min(budget, len(y)):
         batch = learner.query(budget-len(order))
         learner.observe(batch, y[batch])
         order.extend(batch.tolist())
         batch_ends.append(len(order))
         rounds.append(externalize_round(learner.last_round, _IDS))
+        if progress is not None and time.perf_counter()-last_progress >= 10:
+            progress(dict(topic=topic, seed=random_seed, policy=policy,
+                          reviewed=len(order), fits=learner.fit_count,
+                          seconds=time.perf_counter()-start))
+            last_progress = time.perf_counter()
     result = evaluate(order, y)
     result.update(topic=topic, seed=random_seed, policy=policy,
                   seed_doc_id=_IDS[seed_index], fits=learner.fit_count,
@@ -72,7 +78,8 @@ def simulate(task):
     if len(order) != min(budget, len(y)):
         raise AssertionError("Incomplete intended audit record count")
     result["audit_sha256"] = atomic_json(audit_path, audit)
-    result["worker_process_peak_rss_kib"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    result["worker_process_peak_rss_kib"] = rss/1024 if _durable_sys.platform == 'darwin' else rss
     return result
 
 

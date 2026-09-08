@@ -2075,5 +2075,8 @@
     "byte_size": 13576553,
     "sha256": "9128241cede80654ef1cd9ba38545dee480e2592a0440a6c0656ded140498b40",
     "download_library_file_id": "libfile_81fa062d33e081919db18920e69f013a"
-  }
+  },
+  "supersession_status": "SUPERSEDED_FOR_PRODUCTION",
+  "superseded_by_plan": "experiment_plan_v2.json",
+  "supersession_note": "All 38 completed audits retained as failed-generation history and diagnostics only. A fresh full grid will run on the user machine; no new generation completed yet."
 }

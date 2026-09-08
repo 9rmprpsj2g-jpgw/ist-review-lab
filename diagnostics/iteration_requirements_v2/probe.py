@@ -11,7 +11,12 @@ from sklearn.svm import LinearSVC
 from sklearn.exceptions import ConvergenceWarning
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 from src.data import load_collection
-from src.learner import ReviewLearner
+from importlib.util import spec_from_file_location, module_from_spec
+# Preserve the exact pre-instrumentation census-warning behavior used by this probe.
+_spec = spec_from_file_location('src._iteration_frozen_learner', Path(__file__).with_name('frozen_learner.py'))
+_module = module_from_spec(_spec)
+_spec.loader.exec_module(_module)
+ReviewLearner = _module.ReviewLearner
 HERE=Path(__file__).resolve().parent
 CEILING=1000000
 

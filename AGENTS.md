@@ -178,3 +178,8 @@ Every phase gate must inspect run logs and captured warnings, not only test resu
 ## Durable artifact publication (Phase 3C)
 
 All new application artifact writers must use src/durable_io.py. Supply expected record counts for tabular/ledger streams and immutable reference digests where available. Do not hash an in-memory representation as a claim about a published file. Wait for full worker exit, then independently reopen/parse/count/hash final artifacts. Capture run logs through scripts/capture_command.py or src/monitor_census.py; bare shell redirection is not a durable publication path. Publication or content-verification failure is an integrity stop. Immutable historical evidence is not rewritten to migrate an old embedded writer.
+
+
+## Patch handoff base
+
+Base each patch on the latest commit the user explicitly confirms, and state its full SHA in the handoff. Latest confirmation at local-census preparation: cbe42024cc632bc1872f18a7ed45313944e48361. Do not assume the user's SHA equals an assistant commit after applying a diff; inspect origin and ask if the base remains uncertain. Census now runs only on the user's macOS machine. No sandbox census or Phase 4 is authorized.
