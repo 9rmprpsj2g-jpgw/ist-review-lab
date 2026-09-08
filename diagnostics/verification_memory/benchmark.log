@@ -1,0 +1,14 @@
+size0_repeat0 391936 1.1367281250022643
+size0_repeat1 391952 1.160240060002252
+size1_repeat0 549696 2.6160474169992085
+size1_repeat1 548004 2.599984470005438
+size2_repeat0 910864 5.613727476000349
+Traceback (most recent call last):
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/verification_memory/benchmark.py", line 103, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/verification_memory/benchmark.py", line 95, in main
+    subprocess.run([sys.executable,str(ROOT/'scripts/capture_command.py'),str(HERE/(name+'.log')),sys.executable,__file__,'--child',str(path),'--name',name],check=True,cwd=ROOT)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/workspace/scratch/127f3d74bf3e/phase1-notebook-env/bin/python', '/workspace/scratch/127f3d74bf3e/ist-review-lab-git/scripts/capture_command.py', '/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/verification_memory/size2_repeat1.log', '/workspace/scratch/127f3d74bf3e/phase1-notebook-env/bin/python', '/workspace/scratch/127f3d74bf3e/ist-review-lab-git/diagnostics/verification_memory/benchmark.py', '--child', '/workspace/scratch/127f3d74bf3e/ist-review-lab-git/audit_store/20260907_census_18add1f5ba0e/C12_11_fixed_10.json', '--name', 'size2_repeat1']' returned non-zero exit status 1.

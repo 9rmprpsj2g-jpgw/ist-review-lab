@@ -327,3 +327,33 @@ Each target family includes exact effort, whole-batch effort, depth/N, and depth
   - tests/test_durable_io.py
 
 - Housekeeping warning: one zero-byte unpublished log scratch file remained after completed processes exited. Removed it; no final file was missing. Added a global .writing-* ignore rule so scratch cannot enter commits. This is logged housekeeping, not a scientific stop. Additional files touched: .gitignore, docs/DURABLE_WRITES.md, phase3c_outputs/housekeeping.json.
+
+
+### Post-3C memory benchmark — integrity stop before iteration probes (2026-09-08)
+
+- Confirmed origin/main and phase3c-complete at 29274b4dc39546c1fed402b928e5fd99d878c1a5; tree matches approved local 07eec35. Started a clean branch from the public tag. Prior gate verified all 5,880 records; no expected digest or recovered artifact was changed.
+- User authorized memory measurement first, then the nine high-ceiling iteration probes, with census requiring a further memory decision. Largest retained real fixed_10 census audit: C12/11, 87,782,855 bytes, 2,315 fits, widened scope. Confirmed source digest/size and complete census structure before benchmarking. Derived actual quarter/half prefixes strictly for size scaling, no model fitting or new outcomes generation. Each measurement runs in a fresh process holding the feature matrix and deserialized audit, using the unchanged durable helper; full decoded equality, counts and disk hashes remain enabled.
+- Five measurements completed: 21.355 MiB audits peaked at 382.75–382.77 MiB RSS, verification 1.137–1.160 s; 42.735 MiB at 535.16–536.81 MiB, 2.600–2.616 s; first 83.716 MiB full audit at 889.52 MiB, 5.614 s verification (8.401 s write plus verification). Full-size peak is 2.23 times the historical 398 MiB worker figure. Deserialized input loses producer string sharing; figures are conservative for that component and do not measure a complete learner's optimizer state. Warm-cache only, approximately linear size scaling over three sizes, no safe upper-bound claim.
+- Available cgroup ceiling 14 GiB, about 1.855 GiB in use at launch. Two observed full-size peaks plus previously measured parent high-water total about 2.29 GiB. Preliminary memory recommendation is retain two workers and all verification, not streaming or reduced checks. No memory mitigation or production concurrency change applied. This is arithmetic based on completed observations, not a concurrent-worker stress test.
+- STOP: second full-size repetition failed in the staged full-value verifier with JSONDecodeError at character 70109136, after the preceding staged parse/count returned. Atomic replacement had not occurred; no final output exists. This is a new content-integrity failure, not evidence of out-of-memory and not a passing gate. Existing cleanup removed the failed temporary, so bad bytes are unavailable. Exact cause remains unresolved. No rerun, changed assertion, expected digest update or weakened validation followed. The source audit still matches its committed digest.
+- Full outer log and all six child logs inspected; no fit warnings, last child has parsing traceback and parent has CalledProcessError. Successful outputs were independently hashed after process exit. Failure report, raw per-operation timing/RSS receipts, memory provenance, explanatory README and protected-file receipt retained in diagnostics/verification_memory. Large benchmark copies remain ignored in audit_store/verification_memory and are regenerable from the source audit; not scientific results or Git artifacts.
+- Prepared diagnostics/iteration_requirements_v2/probe.py to use verified recovered paths and immutable committed expectations, retaining high diagnostic ceiling 1,000,000 and proposed twice-observed-max rounding rule. It was NOT executed. No actual iteration requirements obtained, no production max_iter or convergence-logging changes, no census, no failed-generation reuse/supersession by a new generation, no Phase 4. These remain uncompleted under the integrity stop. src/, results/ and both plans match phase3c-complete.
+- Files added in this gate:
+  - diagnostics/iteration_requirements_v2/probe.py
+  - diagnostics/verification_memory/README.md
+  - diagnostics/verification_memory/benchmark.log
+  - diagnostics/verification_memory/benchmark.py
+  - diagnostics/verification_memory/failure_report.json
+  - diagnostics/verification_memory/protected_files.json
+  - diagnostics/verification_memory/provenance.json
+  - diagnostics/verification_memory/size0_repeat0.json
+  - diagnostics/verification_memory/size0_repeat0.log
+  - diagnostics/verification_memory/size0_repeat1.json
+  - diagnostics/verification_memory/size0_repeat1.log
+  - diagnostics/verification_memory/size1_repeat0.json
+  - diagnostics/verification_memory/size1_repeat0.log
+  - diagnostics/verification_memory/size1_repeat1.json
+  - diagnostics/verification_memory/size1_repeat1.log
+  - diagnostics/verification_memory/size2_repeat0.json
+  - diagnostics/verification_memory/size2_repeat0.log
+  - diagnostics/verification_memory/size2_repeat1.log
