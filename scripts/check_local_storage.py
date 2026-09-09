@@ -13,7 +13,7 @@ import uuid
 import resource
 import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from src.local_runtime import ROOT, REFERENCE, reference_entry, paths, check_environment, stable_identity
+from src.local_runtime import ROOT, REFERENCE, reference_entry, paths, check_environment, stable_identity, check_platform
 from src.durable_io import atomic_file, atomic_json, sha256_file
 
 
@@ -32,8 +32,7 @@ def preserve_failures(directory):
 
 
 def child(destination):
-    if sys.platform != 'darwin':
-        raise RuntimeError('Full-size storage check is local macOS only')
+    check_platform()
     destination.mkdir(exist_ok=False)
     started = time.perf_counter()
     # Real matrix residency, no model fitting, same full JSON value verification.
@@ -43,7 +42,7 @@ def child(destination):
     with preserve_failures(destination):
         digest = atomic_json(destination/'audit.json', value)
     atomic_json(destination/'receipt.json', {'sha256': digest,
-        'peak_rss_bytes': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+        'peak_rss_bytes': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * (1 if sys.platform == 'darwin' else 1024),
         'seconds_wall': time.perf_counter()-started})
 
 

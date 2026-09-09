@@ -183,3 +183,7 @@ All new application artifact writers must use src/durable_io.py. Supply expected
 ## Patch handoff base
 
 Base each patch on the latest commit the user explicitly confirms, and state its full SHA in the handoff. Latest confirmation at local-census preparation: cbe42024cc632bc1872f18a7ed45313944e48361. Do not assume the user's SHA equals an assistant commit after applying a diff; inspect origin and ask if the base remains uncertain. Census now runs only on the user's macOS machine. No sandbox census or Phase 4 is authorized.
+
+### Linux handoff supersedes the macOS routing (2026-09-08)
+
+Latest confirmed patch base: **95cafe313c1861b41004cd5cfbc1c72fd2750c40**, user branch `local-census`; `main` remains cbe4202. The Mac has 8 GiB, not the user-supplied 14 GB used in prior sizing. Both available-memory gates failed; no storage trial or census ran there. Preserve the attempt record. Do not lower the 4 GiB threshold or offer a smaller Mac configuration. Census now runs only on a separately obtained external Linux VM or Slurm allocation, after the unchanged gates pass there. Two workers, max_iter=41,000, convergence logging and full verification remain unchanged. No sandbox census and no Phase 4.

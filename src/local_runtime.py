@@ -44,10 +44,18 @@ def check_worktree(generation):
         raise RuntimeError('Commit preparation changes; only the current generated manifest may be dirty: '+repr(unexpected))
 
 
-def check_environment(generation, require_clean=True):
-    # Production and full-size storage checks are deliberately blocked in Linux sandbox.
-    if sys.platform != 'darwin':
+def check_platform():
+    if os.environ.get('IST_CENSUS_HOST') == 'external-linux':
+        if sys.platform != 'linux':
+            raise RuntimeError('The external Linux entry point requires Linux')
+        if os.environ.get('CODEX_PRIMARY_RUNTIME_ROOT'):
+            raise RuntimeError('Sandbox census prohibited; use the external Linux host')
+    elif sys.platform != 'darwin':
         raise RuntimeError('Local census/storage check requires macOS; sandbox census prohibited')
+
+
+def check_environment(generation, require_clean=True):
+    check_platform()
     if platform.python_version() != PYTHON:
         raise RuntimeError(f'Expected CPython {PYTHON}; found {platform.python_version()}')
     if platform.python_implementation() != 'CPython':
@@ -101,8 +109,12 @@ def check_environment(generation, require_clean=True):
     memory = psutil.virtual_memory()
     if memory.available < 4*2**30:
         raise RuntimeError('At least 4 GiB currently available RAM required for two workers')
+    linux = {}
+    if os.environ.get('IST_CENSUS_HOST') == 'external-linux':
+        from .linux_runtime import check_linux_resources
+        linux = check_linux_resources(ROOT, audits, output, memory.available)
     import threadpoolctl
-    return {'python': platform.python_version(), 'implementation': platform.python_implementation(),
+    return {**linux, 'python': platform.python_version(), 'implementation': platform.python_implementation(),
             'executable': sys.executable, 'platform': platform.platform(), 'machine': platform.machine(),
             'versions': versions, 'byteorder': sys.byteorder, 'code_files': code_identity(),
             'code_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
@@ -115,9 +127,12 @@ def check_environment(generation, require_clean=True):
 
 
 def stable_identity(environment):
-    return {k: environment[k] for k in ('python', 'implementation', 'executable', 'platform',
+    identity = {k: environment[k] for k in ('python', 'implementation', 'executable', 'platform',
         'machine', 'versions', 'byteorder', 'code_files', 'code_commit', 'source_sha256',
         'reference_sha256', 'audit_device', 'output_device')}
+    if 'linux_host' in environment:
+        identity['linux_filesystems'] = environment['linux_host']['mounts']
+    return identity
 
 
 def resolved_config(generation):

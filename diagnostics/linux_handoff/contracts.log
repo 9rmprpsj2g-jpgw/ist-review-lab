@@ -1,0 +1,44 @@
+test_new_schedule_recurrences (test_census_contracts.CensusContracts.test_new_schedule_recurrences) ... ok
+test_seed_scope_metadata (test_census_contracts.CensusContracts.test_seed_scope_metadata) ... ok
+test_widened_window_and_selection_identity (test_census_contracts.CensusContracts.test_widened_window_and_selection_identity) ... ok
+test_complete_roundtrip_and_independent_child_digest (test_durable_io.DurablePublication.test_complete_roundtrip_and_independent_child_digest) ... ok
+test_csv_gzip_and_json_count_verification (test_durable_io.DurablePublication.test_csv_gzip_and_json_count_verification) ... ok
+test_final_path_corruption_raises_and_removes_bad_publication (test_durable_io.DurablePublication.test_final_path_corruption_raises_and_removes_bad_publication) ... ok
+test_fsync_failure_preserves_old_complete_file (test_durable_io.DurablePublication.test_fsync_failure_preserves_old_complete_file) ... ok
+test_killed_unflushed_writer_never_publishes_partial (test_durable_io.DurablePublication.test_killed_unflushed_writer_never_publishes_partial) ... ok
+test_valid_jsonl_truncated_at_record_boundary_is_rejected (test_durable_io.DurablePublication.test_valid_jsonl_truncated_at_record_boundary_is_rejected) ... ok
+test_four_gib_gate_retained (test_linux_handoff.LinuxHandoffContracts.test_four_gib_gate_retained) ... ok
+test_host_free_memory_cannot_override_job_cap (test_linux_handoff.LinuxHandoffContracts.test_host_free_memory_cannot_override_job_cap) ... ok
+test_linux_is_explicit_and_sandbox_stays_blocked (test_linux_handoff.LinuxHandoffContracts.test_linux_is_explicit_and_sandbox_stays_blocked) ... ok
+test_parent_cgroup_limit_is_observed (test_linux_handoff.LinuxHandoffContracts.test_parent_cgroup_limit_is_observed) ... ok
+test_termination_enters_existing_interruption_cleanup (test_linux_handoff.LinuxHandoffContracts.test_termination_enters_existing_interruption_cleanup) ... ok
+test_unreadable_or_unlimited_slurm_allocation_stops (test_linux_handoff.LinuxHandoffContracts.test_unreadable_or_unlimited_slurm_allocation_stops) ... ok
+test_v1_mount_root_is_resolved (test_linux_handoff.LinuxHandoffContracts.test_v1_mount_root_is_resolved) ... ok
+test_generated_manifest_does_not_block_resume_but_source_edits_do (test_local_census.LocalCensusContracts.test_generated_manifest_does_not_block_resume_but_source_edits_do) ... ok
+test_linux_production_guard (test_local_census.LocalCensusContracts.test_linux_production_guard) ... ok
+test_local_grid_and_path_validation (test_local_census.LocalCensusContracts.test_local_grid_and_path_validation) ... ok
+test_missing_convergence_metadata_is_rejected (test_local_census.LocalCensusContracts.test_missing_convergence_metadata_is_rejected) ... ok
+test_orphan_preserved_but_not_counted_as_complete (test_local_census.LocalCensusContracts.test_orphan_preserved_but_not_counted_as_complete) ... UNCOMMITTED audit retained; rerunning interrupted run: synthetic_11_random
+ok
+test_resume_never_replaces_expected_digest (test_local_census.LocalCensusContracts.test_resume_never_replaces_expected_digest) ... ok
+test_resume_validates_and_skips_completed_pair (test_local_census.LocalCensusContracts.test_resume_validates_and_skips_completed_pair) ... RESUME_CHECK 1 completed audit(s) verified: synthetic_11_random
+ok
+test_warning_recorded_and_fit_continues_even_with_error_filter (test_local_census.LocalCensusContracts.test_warning_recorded_and_fit_continues_even_with_error_filter) ... FIT_WARNING policy=auto_tar seed=11 fit=1 ConvergenceWarning: injected non-convergence
+FIT_WARNING policy=auto_tar seed=11 fit=2 ConvergenceWarning: injected non-convergence
+ok
+test_scope_preserves_selection_and_retains_ranked_union (test_margin_scope.MarginScopeContracts.test_scope_preserves_selection_and_retains_ranked_union) ... ok
+test_C_configuration_reaches_instantiated_model (test_phase2.Phase2Contracts.test_C_configuration_reaches_instantiated_model) ... ok
+test_eligible_exploration_carry_and_gate (test_phase2.Phase2Contracts.test_eligible_exploration_carry_and_gate) ... ok
+test_epsilon_validation (test_phase2.Phase2Contracts.test_epsilon_validation) ... ok
+test_renamed_policy_stays_frozen_and_auto_retrains (test_phase2.Phase2Contracts.test_renamed_policy_stays_frozen_and_auto_retrains) ... ok
+test_snapshots_record_actual_parameters (test_phase2.Phase2Contracts.test_snapshots_record_actual_parameters) ... ok
+test_streams_reproducible_and_isolated (test_phase2.Phase2Contracts.test_streams_reproducible_and_isolated) ... ok
+test_unknown_config_keys_rejected (test_phase2.Phase2Contracts.test_unknown_config_keys_rejected) ... ok
+test_complete_audit_only_replay_all_policies (test_phase3.Phase3Contracts.test_complete_audit_only_replay_all_policies) ... ok
+test_fit_timer_measures_fit_call (test_phase3.Phase3Contracts.test_fit_timer_measures_fit_call) ... ok
+test_invalid_audit_and_unauthorized_truncation_rejected (test_phase3.Phase3Contracts.test_invalid_audit_and_unauthorized_truncation_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.635s
+
+OK

@@ -17,7 +17,7 @@ import traceback
 import uuid
 import resource
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from src.local_runtime import ROOT, paths, check_environment, stable_identity, resolved_config
+from src.local_runtime import ROOT, paths, check_environment, stable_identity, resolved_config, check_platform
 from src.durable_io import atomic_file, atomic_json, sha256_file, _sync_directory, write_csv, write_bytes
 
 
@@ -121,8 +121,7 @@ def recover_completed(grid, audit_dir, config, identity, prior_entries):
 
 
 def worker(args):
-    if sys.platform != 'darwin':
-        raise RuntimeError('Production worker is macOS-only; no sandbox census')
+    check_platform()
     def parent_watch():
         while True:
             if os.getppid() != args.parent_pid:
@@ -146,7 +145,7 @@ def worker(args):
             progress=lambda event: print('PROGRESS '+json.dumps(event), flush=True))
     audit = json.loads((audit_dir/(run_name(task)+'.json')).read_text())
     convergence = summarize_convergence(audit, new_svm(args.seed, config).get_params())
-    result['worker_process_peak_rss_kib'] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024
+    result['worker_process_peak_rss_kib'] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1024 if sys.platform == 'darwin' else 1)
     receipt_path = audit_dir/'receipts'/(run_name(task)+'.json')
     if receipt_path.exists():
         raise AssertionError('Never overwrite a producer completion receipt')
