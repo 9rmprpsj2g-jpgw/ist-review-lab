@@ -7,7 +7,17 @@ than a stop-and-ask.
 
 ## Current state
 
-Phase 1 and Phase 1A passed. Phase 2 authorized, not started.
+Phase 1 and Phase 1A passed. Phases 2, 3, 3B preflight and 3C are
+complete and committed. The Linux handoff is committed on `local-census`
+at 48c9ca1b52b26c93ed31ec17ca303e1246583be9; the user reports all
+35 tests pass locally.
+
+Phase 3B census execution is not complete. The earlier sandbox generation
+failed after 38 completed audits and is superseded for production. The
+full 180-run census is authorized only on an external Linux host after
+its preflight and storage gates pass. No census ran on the Mac.
+Phase 4 remains unauthorized.
+
 Read `CHANGES.md` before doing anything and summarize it back.
 
 Collection: 23,149-document chronological partition of RCV1-v2.
@@ -182,8 +192,8 @@ All new application artifact writers must use src/durable_io.py. Supply expected
 
 ## Patch handoff base
 
-Base each patch on the latest commit the user explicitly confirms, and state its full SHA in the handoff. Latest confirmation at local-census preparation: cbe42024cc632bc1872f18a7ed45313944e48361. Do not assume the user's SHA equals an assistant commit after applying a diff; inspect origin and ask if the base remains uncertain. Census now runs only on the user's macOS machine. No sandbox census or Phase 4 is authorized.
+Base each patch or replacement-file handoff on the latest commit the user explicitly confirms, and state its full SHA in the handoff. Latest confirmed base: **48c9ca1b52b26c93ed31ec17ca303e1246583be9** on `local-census`. Use this base until the user confirms a newer commit. Do not assume the user's SHA equals an assistant commit after transferring changes; inspect origin and ask if the base remains uncertain. The Linux handoff reached this commit through verified complete-file transfer, not patch application. Census runs only on an external Linux host after its required gates pass. No sandbox census or Phase 4 is authorized.
 
 ### Linux handoff supersedes the macOS routing (2026-09-08)
 
-Latest confirmed patch base: **95cafe313c1861b41004cd5cfbc1c72fd2750c40**, user branch `local-census`; `main` remains cbe4202. The Mac has 8 GiB, not the user-supplied 14 GB used in prior sizing. Both available-memory gates failed; no storage trial or census ran there. Preserve the attempt record. Do not lower the 4 GiB threshold or offer a smaller Mac configuration. Census now runs only on a separately obtained external Linux VM or Slurm allocation, after the unchanged gates pass there. Two workers, max_iter=41,000, convergence logging and full verification remain unchanged. No sandbox census and no Phase 4.
+The Linux handoff was prepared from **95cafe313c1861b41004cd5cfbc1c72fd2750c40** on `local-census`; the latest confirmed base is recorded above. The Mac has 8 GiB, not the user-supplied 14 GB used in prior sizing. Both available-memory gates failed; no storage trial or census ran there. Preserve the attempt record. Do not lower the 4 GiB threshold or offer a smaller Mac configuration. Census now runs only on a separately obtained external Linux VM or Slurm allocation, after the unchanged gates pass there. Two workers, max_iter=41,000, convergence logging and full verification remain unchanged. No sandbox census and no Phase 4.
